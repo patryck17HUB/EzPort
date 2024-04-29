@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "467750875455",
+    "project_id": "ezport-papus",
+    "storage_bucket": "ezport-papus.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:467750875455:android:7b90712cc7bc700405e38a",
+        "android_client_info": {
+          "package_name": "com.papus.ezport"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "467750875455-5e0n1euhv4ntlvhvnjfnge6d79susjlf.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.papus.ezport",
+            "certificate_hash": "8b1eaed9527e901c7b6cc6e8f43ffc70968dc97b"
+          }
+        },
+        {
+          "client_id": "467750875455-d7ou19di6ckc6v1eo22ufvpjl8bo6blb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCL4NhrzlbTlqwmG5wR6mcWLUvAdVtx44I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "467750875455-d7ou19di6ckc6v1eo22ufvpjl8bo6blb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

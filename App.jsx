@@ -71,36 +71,12 @@ function MainTabs() {
 }
 
 export default function App() {
-  const [userLoggedIn, setUserLoggedIn] = useState(false);
-
-  useEffect(() => {
-    setTimeout(() => {
-      handleGetToken();
-    }
-    , 2000);
-  }); 
-
-  const handleGetToken = async () => {
-    const token = "123456"
-    //const token = await AsyncStorage.getItem("AccessToken");
-    console.log(token);
-    if (token) {
-      setUserLoggedIn(true);
-    }
-  }
-
-  console.log(userLoggedIn);
-
   return (
     <SafeAreaProvider>
     <NavigationContainer>
-      {userLoggedIn ? (
+
         <MainTabs />
-      ) : (
-        <Stack.Navigator>
-          <Stack.Screen name="Login" component={Login} options={{ headerShown: false }} />
-        </Stack.Navigator>
-      )}
+
     </NavigationContainer>
     </SafeAreaProvider>
   );

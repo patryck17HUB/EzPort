@@ -5,6 +5,9 @@ import { styles } from "../styles/explorestyles";
 import { globalstyles } from "../styles/GlobalStyles";
 import { Color, FontSize, FontFamily } from "../styles/GlobalStyles";
 
+import { GoogleSignin, GoogleSigninButton } from '@react-native-google-signin/google-signin';
+import { useEffect, useState } from "react";
+
 const Ejercicios = () => (
   <View style={{ flex: 1, backgroundColor: Color.primary }} />
 );
@@ -19,6 +22,30 @@ const renderScene = SceneMap({
 });
 
 export default function Explore({ navigation }) {
+
+  const [error, setError] = useState();
+  const [userInfo, setUserInfo] = useState();
+
+  useEffect(() => {
+    GoogleSignin.configure({
+      webClientId: '467750875455-d7ou19di6ckc6v1eo22ufvpjl8bo6blb.apps.googleusercontent.com',
+    });
+  }, []);
+  const signin = async () => {
+    try {
+      await GoogleSignin.hasPlayServices();
+      const userInfo = await GoogleSignin.signIn();
+      setUserInfo(user);
+    } catch (e) {
+      setError(e);
+    }
+  }
+  const logout = () => {
+    SetUserInfo();
+    GoogleSignin.revokeAccess();
+    GoogleSignin.signOut();
+  }
+
   const layout = useWindowDimensions();
 
   const [index, setIndex] = React.useState(0);
@@ -69,6 +96,20 @@ export default function Explore({ navigation }) {
       indicatorStyle={{ backgroundColor: Color.secondary }}
       style={{backgroundColor: Color.primary}}
       />
+      <View style={styles.container}>
+      <Text style={{color: "#FFF"}}>ERROR: {JSON.stringify(error)} </Text>
+      <Text style={{color: "#FFF"}}>USERINFO: {userInfo} </Text>
+      {userInfo && <Text style={{color: "#FFF"}}>{JSON.stringify(error)} </Text>}
+      {userInfo ? (
+        <Button title="Logout" onPress={logout} style={signout} />
+      ) : (
+        <GoogleSigninButton
+          size={GoogleSigninButton.Size.Standard}
+          color={GoogleSigninButton.Color.Light}
+          onPress={signin}
+        />
+      )}
+      </View>
     </View>
   );
 }

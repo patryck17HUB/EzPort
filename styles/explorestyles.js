@@ -12,6 +12,17 @@ export const styles = StyleSheet.create({
     marginTop: 30,
     marginBottom: 20,
   },
+  container: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  signout: {
+    backgroundColor: Color.secondary,
+    padding: 10,
+    borderRadius: 10,
+    margin: 10,
+  },
 });
 
 /*   
