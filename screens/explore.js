@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { View, useWindowDimensions, Text} from 'react-native';
+import { View, useWindowDimensions, Text, Button} from 'react-native';
 import { TabView, SceneMap, TabBar} from 'react-native-tab-view';
 import { styles } from "../styles/explorestyles";
 import { globalstyles } from "../styles/GlobalStyles";
@@ -23,6 +23,8 @@ const renderScene = SceneMap({
 
 export default function Explore({ navigation }) {
 
+
+
   const [error, setError] = useState();
   const [userInfo, setUserInfo] = useState();
 
@@ -31,20 +33,24 @@ export default function Explore({ navigation }) {
       webClientId: '467750875455-d7ou19di6ckc6v1eo22ufvpjl8bo6blb.apps.googleusercontent.com',
     });
   }, []);
+
   const signin = async () => {
     try {
       await GoogleSignin.hasPlayServices();
-      const userInfo = await GoogleSignin.signIn();
+      const user = await GoogleSignin.signIn();
       setUserInfo(user);
+      setError();
     } catch (e) {
       setError(e);
     }
   }
   const logout = () => {
-    SetUserInfo();
+    setUserInfo();
     GoogleSignin.revokeAccess();
     GoogleSignin.signOut();
   }
+
+
 
   const layout = useWindowDimensions();
 
@@ -96,19 +102,22 @@ export default function Explore({ navigation }) {
       indicatorStyle={{ backgroundColor: Color.secondary }}
       style={{backgroundColor: Color.primary}}
       />
+
+
       <View style={styles.container}>
-      <Text style={{color: "#FFF"}}>ERROR: {JSON.stringify(error)} </Text>
-      <Text style={{color: "#FFF"}}>USERINFO: {userInfo} </Text>
-      {userInfo && <Text style={{color: "#FFF"}}>{JSON.stringify(error)} </Text>}
-      {userInfo ? (
-        <Button title="Logout" onPress={logout} style={signout} />
-      ) : (
-        <GoogleSigninButton
-          size={GoogleSigninButton.Size.Standard}
-          color={GoogleSigninButton.Color.Light}
-          onPress={signin}
-        />
-      )}
+      <Text style={{color: "#FFF"}}> {JSON.stringify(error)} </Text>
+      {userInfo && <Text style={{color: "#FFF"}}>{JSON.stringify(userInfo.user)} </Text>}
+
+      <Button title="Logout" onPress={logout} style={styles.signout} />
+
+      <GoogleSigninButton
+        size={GoogleSigninButton.Size.Standard}
+        color={GoogleSigninButton.Color.Light}
+        onPress={signin}
+      />
+
+
+
       </View>
     </View>
   );
