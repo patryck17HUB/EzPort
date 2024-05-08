@@ -77,7 +77,7 @@ export default function Explore({ navigation }) {
       <View style={styles.container}>
 
       </View>
-      <StatusBar style="light" />
+      <StatusBar hidden={true} />
     </View>
   );
 }
