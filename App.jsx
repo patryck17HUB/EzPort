@@ -3,6 +3,8 @@ import { View, SafeAreaView, StyleSheet, ScrollView } from "react-native";
 import { Color, FontSize, FontFamily } from "./styles/GlobalStyles";
 import { BottomNavigation, Text , TouchableRipple} from 'react-native-paper';
 
+import { StatusBar } from 'expo-status-bar';
+
 import Workouts from "./screens/workouts";
 import Explore from "./screens/explore";
 import Profile from "./screens/profile";
@@ -98,7 +100,6 @@ const styles = StyleSheet.create({
 /* COSAS POR HACER
 Paginas--
   Login
-  Register
   Explorar
     Ejercicios
     Plantillas publicas (Rutinas)
@@ -106,7 +107,7 @@ Paginas--
     Rutinas
     Programas
   Profile
-    Registros
+    Registros (Historial)
     Peso corporal
   Settings 
   -- DIVIDER --

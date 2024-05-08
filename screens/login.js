@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React from "react";
 import { View, Image, Text, TouchableOpacity, StyleSheet, ScrollView, TextInput, } from "react-native";
 import { styles } from "../styles/loginstyles";
 import { globalstyles } from "../styles/GlobalStyles";
@@ -6,68 +6,52 @@ import { login } from "../api/user_api";
 import { register } from "../api/user_api";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
-export default function Login({ navigation }) {
-    const [email, setEmail] = useState(""); 
-    const [password, setPassword] = useState("");
-    const [username, setUsername] = useState("");
+import { GoogleSignin, GoogleSigninButton } from '@react-native-google-signin/google-signin';
+import { useEffect, useState } from "react";
 
-    const handleLogin = () => {
-        if(password && username){
-            console.log("Username: ", username);
-            console.log("Password: ", password);
-            login({
-                password : password,
-                username : username, 
-                email:email
-            }).then((result) => {
-                if(result.status == 200){
-                    AsyncStorage.setItem("AccessToken", result.token);
-                    console.log(result);
-                }
-            })
-            .catch(err => {
-                console.error(err);
-            });
-        }else{
-            alert("Por favor, llene todos los campos");
+export default function Login({ navigation }) {
+
+    const [error, setError] = useState();
+    const [userInfo, setUserInfo] = useState();
+
+    useEffect(() => {
+        GoogleSignin.configure({
+          webClientId: '467750875455-d7ou19di6ckc6v1eo22ufvpjl8bo6blb.apps.googleusercontent.com',
+        });
+      }, []);
+    
+      const signin = async () => {
+        try {
+          await GoogleSignin.hasPlayServices();
+          const user = await GoogleSignin.signIn();
+          setUserInfo(user);
+          setError();
+        } catch (e) {
+          setError(e);
         }
-    }
+      }
+      const logout = () => {
+        setUserInfo();
+        GoogleSignin.revokeAccess();
+        GoogleSignin.signOut();
+      }
+
 
   return (
     <View style={globalstyles.background}>
 
-      <ScrollView style={[globalstyles.contenido]}>
+        <View style={styles.container}>
+            <Text style={{color: "#FFF"}}> {JSON.stringify(error)} </Text>
+            {userInfo && <Text style={{color: "#FFF"}}>{JSON.stringify(userInfo.user)} </Text>}
 
-        <View style={styles.inputContainer}>
-            <TextInput
-            style={styles.TextInput} 
-            placeholder="Nombre de Usuario"
-            placeholderTextColor={"#FFFFFF"}
-            maxLength={30}
-            onChangeText={setUsername}
-            />
-            <TextInput 
-            style={styles.TextInput}
-            placeholder="Email"
-            placeholderTextColor={"#FFFFFF"}
-            maxLength={30}
-            onChangeText={setEmail}
-            />
-            <TextInput 
-            style={styles.TextInput}
-            placeholder="Contraseña"
-            placeholderTextColor={"#FFFFFF"}
-            maxLength={20}
-            onChangeText={setPassword}
-            //secureTextEntry={true}
-            />
-        </View> 
+            <Button title="Logout" onPress={logout} style={styles.signout} />
 
-        <TouchableOpacity style={styles.button} onPress={handleLogin}>
-            <Text style={styles.buttontext}>Enviar</Text>
-        </TouchableOpacity>
-
-       </ScrollView> 
+            <GoogleSigninButton
+                size={GoogleSigninButton.Size.Standard}
+                color={GoogleSigninButton.Color.Light}
+                onPress={signin}
+            />
+        </View>
 
     </View>
   );
