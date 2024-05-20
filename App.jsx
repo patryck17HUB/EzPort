@@ -1,6 +1,9 @@
-import  React from "react";
-import { Color} from "./styles/GlobalStyles";
-import { BottomNavigation} from 'react-native-paper';
+import  React, { useEffect, useState } from "react";
+import { View, SafeAreaView, StyleSheet, ScrollView } from "react-native";
+import { Color, FontSize, FontFamily } from "./styles/GlobalStyles";
+import { BottomNavigation, Text , TouchableRipple} from 'react-native-paper';
+
+import { StatusBar } from 'expo-status-bar';
 
 import Workouts from "./screens/workouts";
 import PlanDetails from "./screens/planDetails";
@@ -101,7 +104,7 @@ export default function App() {
     <SafeAreaProvider>
     <NavigationContainer>
 
-        <MainTabs/>
+        <MainTabs />
 
     </NavigationContainer>
     </SafeAreaProvider>
