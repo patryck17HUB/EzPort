@@ -9,7 +9,7 @@ const LoadingScreen = () => {
         source={require('./assets/LogosW.json')}
         autoPlay
         loop
-        style={{ width: 200, height: 200 }}
+        style={styles.animation}
       />
     </View>
   );
@@ -21,6 +21,10 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#000000',
+  },
+  animation: {
+    width: 200,
+    height: 200,
   },
   text: {
     marginTop: 20,
