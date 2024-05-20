@@ -46,7 +46,7 @@ function MainTabs() {
 
   const renderScene = BottomNavigation.SceneMap({
     Explore: Explore,
-    Workouts: Workouts,
+    Workouts: WorkoutsStack,
     Profile: Profile,
     Settings: Settings,
   });
@@ -101,7 +101,7 @@ export default function App() {
     <SafeAreaProvider>
     <NavigationContainer>
 
-        <MainTabs />
+        <MainTabs/>
 
     </NavigationContainer>
     </SafeAreaProvider>
