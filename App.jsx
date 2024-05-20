@@ -101,7 +101,7 @@ export default function App() {
     <SafeAreaProvider>
     <NavigationContainer>
 
-        <MainTabs/>
+        <MainTabs />
 
     </NavigationContainer>
     </SafeAreaProvider>
