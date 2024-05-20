@@ -1,11 +1,10 @@
-import  React, { useEffect, useState } from "react";
-import { View, SafeAreaView, StyleSheet, ScrollView } from "react-native";
-import { Color, FontSize, FontFamily } from "./styles/GlobalStyles";
-import { BottomNavigation, Text , TouchableRipple} from 'react-native-paper';
-
-import { StatusBar } from 'expo-status-bar';
+import  React from "react";
+import { Color} from "./styles/GlobalStyles";
+import { BottomNavigation} from 'react-native-paper';
 
 import Workouts from "./screens/workouts";
+import PlanDetails from "./screens/planDetails";
+import CreatePlan from "./screens/createPlan";
 import Explore from "./screens/explore";
 import Profile from "./screens/profile";
 import Settings from "./screens/settings";
@@ -24,13 +23,23 @@ import { SafeAreaProvider } from "react-native-safe-area-context";
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator(); 
 
+function WorkoutsStack() {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen name="Workouts" component={Workouts} options={{ headerShown: false }} />
+      <Stack.Screen name="PlanDetails" component={PlanDetails} options={{ headerShown: true, title: 'Plan Details' }} />
+      <Stack.Screen name="CreatePlan" component={CreatePlan} options={{ headerShown: true, title: 'Crear Plan' }} /> 
+    </Stack.Navigator>
+  );
+}
+
 function MainTabs() {
 
   const [index, setIndex] = React.useState(0);
 
   const [routes] = React.useState([
     { key: 'Explore', title: 'Explorar', component: Explore, icon: 'search-web', tabbarColor: '#FF1C1C' },
-    { key: 'Workouts', title: 'Plan', component: Workouts, icon: 'arm-flex', tabbarColor: '#72FF1C' },
+    { key: 'Workouts', title: 'Plan', component: WorkoutsStack, icon: 'arm-flex', tabbarColor: '#72FF1C' },
     { key: 'Profile', title: 'Perfil', component: Profile, icon: 'account', tabbarColor: '#1CFFE3' },
     { key: 'Settings', title: 'Config', component: Settings, icon: 'cog', tabbarColor: '#D91CFF' },
   ]);
@@ -92,25 +101,13 @@ export default function App() {
     <SafeAreaProvider>
     <NavigationContainer>
 
-        <MainTabs />
+        <MainTabs/>
 
     </NavigationContainer>
     </SafeAreaProvider>
   );
 }
 
-const pageoptions = {
-  headerShown: false,
-  tabBarShowLabel: false,
-};
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-  }
-})
 
 /* COSAS POR HACER
 Paginas--
