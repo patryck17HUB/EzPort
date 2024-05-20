@@ -6,12 +6,11 @@ const LoadingScreen = () => {
   return (
     <View style={styles.container}>
       <LottieView
-        source={require('./assets/Logos.json')}
+        source={require('./assets/LogosW.json')}
         autoPlay
         loop
         style={{ width: 200, height: 200 }}
       />
-      <Text style={styles.text}>Cargando...</Text>
     </View>
   );
 };
@@ -21,7 +20,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#fff',
+    backgroundColor: '#000000',
   },
   text: {
     marginTop: 20,
