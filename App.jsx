@@ -10,6 +10,7 @@ import Explore from "./screens/explore";
 import Profile from "./screens/profile";
 import Settings from "./screens/settings";
 import Login from "./screens/login";
+import LoadingScreen from "./LoadingScreen"; 
 
 // Navegar entre paginas
 import { NavigationContainer } from "@react-navigation/native";
@@ -73,6 +74,20 @@ function MainTabs() {
 }
 
 export default function App() {
+
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    // Simula un tiempo de carga
+    setTimeout(() => {
+      setLoading(false);
+    }, 3000); // Cambia el tiempo según sea necesario
+  }, []);
+
+  if (loading) {
+    return <LoadingScreen />;
+  }
+
   return (
     <SafeAreaProvider>
     <NavigationContainer>
