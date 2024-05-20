@@ -1,4 +1,4 @@
-import  React from "react";
+import  React,{useEffect, useState} from "react";
 import { Color} from "./styles/GlobalStyles";
 import { BottomNavigation} from 'react-native-paper';
 
