@@ -99,11 +99,13 @@ export default function App() {
 
   return (
     <SafeAreaProvider>
-    <NavigationContainer>
-
-        <MainTabs/>
-
-    </NavigationContainer>
+      <NavigationContainer>
+        {isAuthenticated ? (
+          <MainTabs navigationState={{ index: 0 }} onIndexChange={() => {}} />
+        ) : (
+          <Login setIsAuthenticated={setIsAuthenticated} />
+        )}
+      </NavigationContainer>
     </SafeAreaProvider>
   );
 }
