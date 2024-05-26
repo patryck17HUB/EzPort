@@ -7,6 +7,8 @@ import SvgComponent from './SVGComponet';
 export default function Login({ navigation }) {
     const [error, setError] = useState(null);
     const [userInfo, setUserInfo] = useState(null);
+    const [isSigningIn,setIsSigningIn] =useState (null);
+
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     
@@ -37,17 +39,23 @@ export default function Login({ navigation }) {
    
 
     const signin = async () => {
+        if (isSigningIn) {
+            return;
+        }
+
+        setIsSigningIn(true);
         try {
             await GoogleSignin.hasPlayServices();
             const user = await GoogleSignin.signIn();
             setUserInfo(user);
             setError(null);
-            setIsLoggedIn(true);
             navigation.navigate('Explore');
         } catch (e) {
             setError(e);
+        } finally {
+            setIsSigningIn(false);
         }
-    }
+    };
 
     const logout = async () => {
       try {

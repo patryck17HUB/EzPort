@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { View, Text, TouchableOpacity, ScrollView, StyleSheet } from "react-native";
+import { View, Text, TouchableOpacity, ScrollView } from "react-native";
 import { getMuscleList, getMuscle } from "../api/user_api";
 import { styles } from "../styles/workoutsstyles";
 import { globalstyles } from "../styles/GlobalStyles";
