@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { View, Text, TouchableOpacity, TextInput, StyleSheet, ImageBackground } from "react-native";
-import { GoogleSignin, GoogleSigninButton, statusCodes  } from '@react-native-google-signin/google-signin';
+import { View, Text, TouchableOpacity, TextInput, StyleSheet, ImageBackground, Alert } from "react-native";
+import { GoogleSignin, GoogleSigninButton  } from '@react-native-google-signin/google-signin';
 import { styles } from "../styles/loginstyles"; // Importando los estilos
 import SvgComponent from './SVGComponet';
 
@@ -21,7 +21,9 @@ export default function Login({ navigation }) {
             if (isSignedIn) {
                 const userInfo = await GoogleSignin.signInSilently();
                 setUserInfo(userInfo);
-                navigation.navigate('MainTaps'); 
+                navigation.navigate('Explore'); 
+            }else {
+                navigation.navigate('Login');
             }
         } catch (error) {
             console.error(error);
@@ -41,7 +43,7 @@ export default function Login({ navigation }) {
             setUserInfo(user);
             setError(null);
             setIsLoggedIn(true);
-            navigation.navigate('MainTaps');
+            navigation.navigate('Explore');
         } catch (e) {
             setError(e);
         }

@@ -106,8 +106,8 @@ export default function App() {
     <NavigationContainer>
 
         <Stack.Navigator>
-            <Stack.Screen name="Login" component={Login} />
-            <Stack.Screen name="MainTaps" component={Explore} />
+            <Stack.Screen name="Login" component={Login}options={{ headerShown: false }} />
+            <Stack.Screen name="Explore" component={Explore} options={{ headerShown: false }}/>
         </Stack.Navigator>
 
     </NavigationContainer>
