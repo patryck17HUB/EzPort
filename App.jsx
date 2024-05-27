@@ -26,6 +26,7 @@ const Stack = createNativeStackNavigator();
 function WorkoutsStack() {
   return (
     <Stack.Navigator>
+      <Stack.Screen name ="MainTaps" component={Explore} options={{ headerShown: false }} />
       <Stack.Screen name="Workouts" component={Workouts} options={{ headerShown: false }} />
       <Stack.Screen name="PlanDetails" component={PlanDetails} options={{ headerShown: true, title: 'Plan Details' }} />
       <Stack.Screen name="CreatePlan" component={CreatePlan} options={{ headerShown: true, title: 'Crear Plan' }} /> 
@@ -85,10 +86,13 @@ function MainTabs() {
 export default function App() {
 
   const [loading, setLoading] = useState(true);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
 
   useEffect(() => {
     // Simula un tiempo de carga
     setTimeout(() => {
+      setIsLoggedIn(false);
       setLoading(false);
     }, 3000); // Cambia el tiempo según sea necesario
   }, []);
@@ -101,7 +105,10 @@ export default function App() {
     <SafeAreaProvider>
     <NavigationContainer>
 
-        <MainTabs/>
+        <Stack.Navigator>
+            <Stack.Screen name="Login" component={Login}options={{ headerShown: false }} />
+            <Stack.Screen name="Explore" component={Explore} options={{ headerShown: false }}/>
+        </Stack.Navigator>
 
     </NavigationContainer>
     </SafeAreaProvider>

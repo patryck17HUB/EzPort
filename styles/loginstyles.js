@@ -3,39 +3,42 @@ import { Color, FontSize, FontFamily } from "./GlobalStyles";
 
 export const styles = StyleSheet.create({
     container:{
-        flex: 1,
-        backgroundColor: '#f1f1f1',
         alignItems: "center",
         justifyContent: "center",
+        backgroundColor: '#000',
+        flex: 1,
+        
     },
     titulo:{
         fontSize: 80,
-        color: '#000',
+        color: '#fff',
         fontWeight: 'bold',
+        flex:3,
+      
     },
     subTiltle:{
         fontSize: 20,
         color: 'gray',
+        flex:11,
     },
-    googleButton:{
-        borderColor :'gray',
+    containerButton: {
+        position: 'absolute',
+        top: 530,
+        alignItems: 'center', 
+    },
+    googleButton: {
+        borderColor: 'gray',
         padding: 10,
-        width: '80%',
+        width: '70%',
         height: 50,
-        marginTop: 20,
-        borderRadius: 50,
     },
-    button: {
-        backgroundColor: Color.primary,
-        padding: 10,
-        margin: 10,
-        borderRadius: 10,
-        alignItems: 'center',
+    logoutButtonText: {
+        color: '#FF0000',
     },
-    buttontext: {
-        color: '#FFFFFF',
-        fontFamily: FontFamily.bold,
-        backgroundColor: Color.secondary,
-        padding: 10,
+    userInfo:{
+        color: '#FF0000',
     },
+    errorText:{
+        color: '#FF0000',
+    }
 });
