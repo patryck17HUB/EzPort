@@ -23,7 +23,7 @@ export default function Login({ navigation }) {
             if (isSignedIn) {
                 const userInfo = await GoogleSignin.signInSilently();
                 setUserInfo(userInfo);
-                navigation.navigate('Explore'); 
+                navigation.navigate('MainTabs'); 
             }else {
                 navigation.navigate('Login');
             }

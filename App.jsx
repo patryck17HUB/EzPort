@@ -26,7 +26,6 @@ const Stack = createNativeStackNavigator();
 function WorkoutsStack() {
   return (
     <Stack.Navigator>
-      <Stack.Screen name ="MainTaps" component={Explore} options={{ headerShown: false }} />
       <Stack.Screen name="Workouts" component={Workouts} options={{ headerShown: false }} />
       <Stack.Screen name="PlanDetails" component={PlanDetails} options={{ headerShown: true, title: 'Plan Details' }} />
       <Stack.Screen name="CreatePlan" component={CreatePlan} options={{ headerShown: true, title: 'Crear Plan' }} /> 
@@ -80,6 +79,8 @@ function MainTabs() {
       style={{
       }}
     />
+
+    
   );
 }
 
@@ -106,8 +107,8 @@ export default function App() {
     <NavigationContainer>
 
         <Stack.Navigator>
-            <Stack.Screen name="Login" component={Login}options={{ headerShown: false }} />
-            <Stack.Screen name="Explore" component={Explore} options={{ headerShown: false }}/>
+            <Stack.Screen name="Login" component={Login} options={{ headerShown: false }} />
+            <Stack.Screen name="MainTabs" component={MainTabs} options={{ headerShown: false }} />
         </Stack.Navigator>
 
     </NavigationContainer>
@@ -138,3 +139,4 @@ Paginas--
     Cookies
     Legal
 */
+
