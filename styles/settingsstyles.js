@@ -6,11 +6,33 @@ export const styles = StyleSheet.create({
         padding: 20,
         borderBottomWidth: 1,
         borderBottomColor: '#fff',
-        marginHorizontal: 10, // margen para que no toque los bordes
-        borderRadius: 5, // bordes redondeados
+        marginHorizontal: 15,
+        borderRadius: 10,
+        backgroundColor: Color.primary,
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
     },
     optionText: {
-        fontSize: 18,
+        fontSize: FontSize.size_base,
         color: '#fff',
+        fontFamily: FontFamily.font_base,
+    },
+    icon: {
+        position: 'absolute',
+        right: 10,
+    },
+    content: {
+        paddingHorizontal: 20,
+        paddingVertical: 10,
+        backgroundColor: Color.secondary,
+        marginHorizontal: 15,
+        borderBottomLeftRadius: 15,
+        borderBottomRightRadius: 15,
+    },
+    contentText: {
+        color: '#fff',
+        fontSize: FontSize.size_base,
+        fontFamily: FontFamily.font_base,
     },
 });
