@@ -49,7 +49,7 @@ export default function Login({ navigation }) {
             const user = await GoogleSignin.signIn();
             setUserInfo(user);
             setError(null);
-            navigation.navigate('Explore');
+            navigation.navigate('MainTabs');
         } catch (e) {
             setError(e);
         } finally {
