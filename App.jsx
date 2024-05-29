@@ -17,11 +17,12 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { SafeAreaProvider } from "react-native-safe-area-context";
+import { UserProvider } from './context/UserContext';
 
 //const Tab = createMaterialTopTabNavigator();
 
 const Tab = createBottomTabNavigator();
-const Stack = createNativeStackNavigator(); 
+const Stack = createNativeStackNavigator();
 
 function WorkoutsStack() {
   return (
@@ -34,10 +35,9 @@ function WorkoutsStack() {
 }
 
 function MainTabs() {
+  const [index, setIndex] = useState(0);
 
-  const [index, setIndex] = React.useState(0);
-
-  const [routes] = React.useState([
+  const [routes] = useState([
     { key: 'Explore', title: 'Explorar', component: Explore, icon: 'search-web', tabbarColor: '#FF1C1C' },
     { key: 'Workouts', title: 'Plan', component: WorkoutsStack, icon: 'arm-flex', tabbarColor: '#72FF1C' },
     { key: 'Profile', title: 'Perfil', component: Profile, icon: 'account', tabbarColor: '#1CFFE3' },
@@ -65,9 +65,8 @@ function MainTabs() {
         color = focused ? '#000000' : color;
         return <MaterialCommunityIcons name={iconName} size={iconSize} color={color} />;
       }}
-      barStyle={{ 
-        backgroundColor: Color.secondary ,
-        //height: 70,
+      barStyle={{
+        backgroundColor: Color.secondary,
         position: 'absolute',
         bottom: 16,
         left: 16,
@@ -76,26 +75,17 @@ function MainTabs() {
         overflow: 'hidden',
         height: 73,
       }}
-      style={{
-      }}
     />
-
-    
   );
 }
 
 export default function App() {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [loading, setLoading] = useState(true);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-
 
   useEffect(() => {
-    // Simula un tiempo de carga
     setTimeout(() => {
-      setIsLoggedIn(false);
       setLoading(false);
-    }, 3000); // Cambia el tiempo según sea necesario
+    }, 3000);
   }, []);
 
   if (loading) {
@@ -103,19 +93,18 @@ export default function App() {
   }
 
   return (
-    <SafeAreaProvider>
-    <NavigationContainer>
-
-        <Stack.Navigator>
+    <UserProvider>
+      <SafeAreaProvider>
+        <NavigationContainer>
+          <Stack.Navigator>
             <Stack.Screen name="Login" component={Login} options={{ headerShown: false }} />
             <Stack.Screen name="MainTabs" component={MainTabs} options={{ headerShown: false }} />
-        </Stack.Navigator>
-
-    </NavigationContainer>
-    </SafeAreaProvider>
+          </Stack.Navigator>
+        </NavigationContainer>
+      </SafeAreaProvider>
+    </UserProvider>
   );
 }
-
 
 /* COSAS POR HACER
 Paginas--
@@ -139,4 +128,3 @@ Paginas--
     Cookies
     Legal
 */
-
