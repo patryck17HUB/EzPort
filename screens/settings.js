@@ -1,11 +1,13 @@
 import React, { useState } from "react";
-import { View, Image, Text, TouchableOpacity, StyleSheet, ScrollView, TextInput, } from "react-native";
+import { View, Image, Text, TouchableOpacity, ScrollView, } from "react-native";
 import { styles } from "../styles/settingsstyles";
 import { globalstyles } from "../styles/GlobalStyles";
+import { GoogleSignin, GoogleSigninButton } from '@react-native-google-signin/google-signin';
 import { Ionicons } from '@expo/vector-icons'; // Importa los iconos de Ionicons
 
-export default function Settings() {
+export default function Settings({ navigation }) {
   const [expandedSections, setExpandedSections] = useState({});
+  const [error, setError] = useState(null);
 
   const toggleSection = (section) => {
     setExpandedSections((prev) => ({
@@ -13,6 +15,19 @@ export default function Settings() {
       [section]: !prev[section],
     }));
   };
+
+  const logout = async () => {
+    try {
+      await GoogleSignin.revokeAccess();
+      await GoogleSignin.signOut();
+      setUserInfo(null);
+      navigation.navigate('Login');
+    } catch (error) {
+      setError(error);
+    }
+  };
+
+
 
   const sections = [
     { title: "Sobre EzPort", content: "Está vergas" },
@@ -46,7 +61,11 @@ export default function Settings() {
             )}
           </View>
         ))}
+        <TouchableOpacity style={styles.logoutButton} onPress={logout}>
+          <Text style={styles.logoutButtonText}>Logout</Text>
+        </TouchableOpacity>
       </ScrollView>
     </View>
+
   );
 }
