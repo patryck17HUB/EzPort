@@ -1,13 +1,16 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { View, Image, Text, TouchableOpacity, ScrollView, } from "react-native";
 import { styles } from "../styles/settingsstyles";
 import { globalstyles } from "../styles/GlobalStyles";
 import { GoogleSignin, GoogleSigninButton } from '@react-native-google-signin/google-signin';
 import { Ionicons } from '@expo/vector-icons'; // Importa los iconos de Ionicons
 
+import { UserContext } from '../context/UserContext';
+
 export default function Settings({ navigation }) {
   const [expandedSections, setExpandedSections] = useState({});
   const [error, setError] = useState(null);
+  const { setUser } = useContext(UserContext);
 
   const toggleSection = (section) => {
     setExpandedSections((prev) => ({
@@ -20,13 +23,13 @@ export default function Settings({ navigation }) {
     try {
       await GoogleSignin.revokeAccess();
       await GoogleSignin.signOut();
-      setUserInfo(null);
+      setUser(null);
       navigation.navigate('Login');
     } catch (error) {
+      console.error("Error during logout:", error);
       setError(error);
     }
   };
-
 
 
   const sections = [
@@ -64,6 +67,7 @@ export default function Settings({ navigation }) {
         <TouchableOpacity style={styles.logoutButton} onPress={logout}>
           <Text style={styles.logoutButtonText}>Logout</Text>
         </TouchableOpacity>
+        {error && <Text style={styles.errorText}>Error: {error.message}</Text>}
       </ScrollView>
     </View>
 

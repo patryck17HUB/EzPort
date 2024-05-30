@@ -10,6 +10,7 @@ import Profile from "./screens/profile";
 import Settings from "./screens/settings";
 import Login from "./screens/login";
 import LoadingScreen from "./LoadingScreen"; 
+import AgregarEjercicios from "./screens/agregarejercicios";
 
 // Navegar entre paginas
 import { NavigationContainer } from "@react-navigation/native";
@@ -30,6 +31,16 @@ function WorkoutsStack() {
       <Stack.Screen name="Workouts" component={Workouts} options={{ headerShown: false }} />
       <Stack.Screen name="PlanDetails" component={PlanDetails} options={{ headerShown: true, title: 'Plan Details' }} />
       <Stack.Screen name="CreatePlan" component={CreatePlan} options={{ headerShown: true, title: 'Crear Plan' }} /> 
+      <Stack.Screen name="AgregarEjercicios" component={AgregarEjercicios} options={{ headerShown: true, title: 'Agregar Ejercicio' }} /> 
+    </Stack.Navigator>
+  );
+}
+
+function SettingsStack() {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen name="Settings" component={Settings} options={{ false: false}} />
+      <Stack.Screen name="Login" component={Login} options={{ headerShown: false }} />
     </Stack.Navigator>
   );
 }
@@ -41,14 +52,14 @@ function MainTabs() {
     { key: 'Explore', title: 'Explorar', component: Explore, icon: 'search-web', tabbarColor: '#FF1C1C' },
     { key: 'Workouts', title: 'Plan', component: WorkoutsStack, icon: 'arm-flex', tabbarColor: '#72FF1C' },
     { key: 'Profile', title: 'Perfil', component: Profile, icon: 'account', tabbarColor: '#1CFFE3' },
-    { key: 'Settings', title: 'Config', component: Settings, icon: 'cog', tabbarColor: '#D91CFF' },
+    { key: 'Settings', title: 'Config', component: SettingsStack, icon: 'cog', tabbarColor: '#D91CFF' },
   ]);
 
   const renderScene = BottomNavigation.SceneMap({
     Explore: Explore,
     Workouts: WorkoutsStack,
     Profile: Profile,
-    Settings: Settings,
+    Settings: SettingsStack,
   });
 
   return (

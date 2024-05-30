@@ -70,6 +70,7 @@ export const crearstyles = StyleSheet.create({
     fontSize: 18,
     fontWeight: 'bold',
     marginBottom: 8,
+    color: '#FFF',
   },
   input: {
     borderWidth: 1,
@@ -77,5 +78,6 @@ export const crearstyles = StyleSheet.create({
     padding: 8,
     marginBottom: 16,
     borderRadius: 4,
+    color: '#FFF',
   },
 });

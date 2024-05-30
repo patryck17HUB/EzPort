@@ -7,20 +7,35 @@ import { crearstyles } from "../styles/workoutsstyles";
 export default function CreatePlan({ navigation }) {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
-  
+
   const handleCreatePlan = () => {
     const userId = "userId1"; // Reemplaza esto con el ID del usuario actualmente autenticado
-    const newPlanRef = database.ref(`users/${userId}/exercisePlans`).push();
-    const newPlan = {
-      title,
-      description,
-      exercises: {} // Aquí podrías agregar la estructura inicial de los ejercicios
-    };
-    newPlanRef.set(newPlan, (error) => {
+    const userRef = database.ref(`users/${userId}`);
+
+    userRef.child('planCounter').transaction(currentCounter => {
+      if (currentCounter === null) {
+        return 1; // Si no existe, inicializar a 1
+      }
+      return currentCounter + 1;
+    }, (error, committed, snapshot) => {
       if (error) {
-        console.error("Error creating new plan:", error);
-      } else {
-        navigation.goBack();
+        console.error("Error incrementing plan counter:", error);
+      } else if (committed) {
+        const newPlanId = snapshot.val();
+        const newPlanRef = userRef.child(`exercisePlans/plan${newPlanId}`);
+        const newPlan = {
+          title,
+          description,
+          exercises: {}
+        };
+
+        newPlanRef.set(newPlan, (error) => {
+          if (error) {
+            console.error("Error creating new plan:", error);
+          } else {
+            navigation.navigate('AgregarEjercicios', { planId: `plan${newPlanId}` });
+          }
+        });
       }
     });
   };

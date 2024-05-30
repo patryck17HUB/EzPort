@@ -1,12 +1,15 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect , useContext} from "react";
 import { View, Text, TouchableOpacity, ScrollView } from "react-native";
 import { getMuscleList, getMuscle } from "../api/user_api";
 import { styles } from "../styles/workoutsstyles";
 import { globalstyles } from "../styles/GlobalStyles";
 import { database } from '../firebaseConfig';
 
+import { UserContext } from '../context/UserContext';
+
 export default function Workouts({ navigation }) {
   const [exercisePlans, setExercisePlans] = useState([]);
+  const { user } = useContext(UserContext);
 
   useEffect(() => {
     const userId = "userId1"; // Reemplaza esto con el ID del usuario actualmente autenticado
@@ -36,7 +39,7 @@ export default function Workouts({ navigation }) {
           style={styles.createButton}
           onPress={() => navigation.navigate('CreatePlan')}
         >
-          <Text style={styles.createButtonText}>Crear Plan</Text>
+          <Text style={styles.createButtonText}>Crear Rutina</Text>
         </TouchableOpacity>
       </View>
       <ScrollView style={globalstyles.contenido}>
@@ -116,7 +119,8 @@ const handleGetMuscle = async () => {
             }
           }
         }
-      }
+      },
+      "planCounter": 3 // Nuevo nodo para contar planes
     },
     "userId2": {
       "name": "Jane Smith",

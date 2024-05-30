@@ -44,7 +44,7 @@ export const styles = StyleSheet.create({
     },
     logoutButtonText: {
         fontSize: FontSize.size_base,
-        color: '#fff',
+        color: '#FF0000',
         fontFamily: FontFamily.font_base,
     },
 });

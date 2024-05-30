@@ -19,7 +19,6 @@ export const styles = StyleSheet.create({
     alignItems: "center",
     marginTop: '0%',
     marginBottom: '24%',
-    
   },
   signout: {
     backgroundColor: Color.secondary,
@@ -59,7 +58,6 @@ export const styles = StyleSheet.create({
     optionText: {
       fontSize: 16,
     },
-
     // Botones de cada ejercicio
     exerciseItem: {
       margin: 10,
@@ -86,9 +84,22 @@ export const styles = StyleSheet.create({
       justifyContent: 'center',
       alignItems: 'center',
     },
+    buttonchueco: {
+      backgroundColor: '#7539e5',
+      padding: 15,
+      marginRight: '5.5%',
+      borderRadius: 5,
+      width: '80%',
+    },
+    botongift: {
+      backgroundColor: '#7539e5',
+      padding: 15,
+      margin:5,
+      borderRadius: 5,
+      width: '80%',
+    },
     
-   
-    
+
 });
 
 /*   
