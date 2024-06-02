@@ -24,7 +24,7 @@ export default function Settings({ navigation }) {
       await GoogleSignin.revokeAccess();
       await GoogleSignin.signOut();
       setUser(null);
-      navigation.navigate('Login');
+      //navigation.navigate('Login');
     } catch (error) {
       console.error("Error during logout:", error);
       setError(error);

@@ -1,15 +1,18 @@
-import React, { useState } from "react";
+import React, { useState,useContext } from "react";
 import { View, Text, TextInput, Button } from "react-native";
 import { database } from "../firebaseConfig";
 import { globalstyles } from "../styles/GlobalStyles";
 import { crearstyles } from "../styles/workoutsstyles";
 
+import { UserContext } from '../context/UserContext';
+
 export default function CreatePlan({ navigation }) {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
+  const { user } = useContext(UserContext);
 
   const handleCreatePlan = () => {
-    const userId = "userId1"; // Reemplaza esto con el ID del usuario actualmente autenticado
+    const userId = user.id; // Reemplaza esto con el ID del usuario actualmente autenticado
     const userRef = database.ref(`users/${userId}`);
 
     userRef.child('planCounter').transaction(currentCounter => {
@@ -33,7 +36,7 @@ export default function CreatePlan({ navigation }) {
           if (error) {
             console.error("Error creating new plan:", error);
           } else {
-            navigation.navigate('AgregarEjercicios', { planId: `plan${newPlanId}` });
+            navigation.navigate('EditarPlan', { planId: `plan${newPlanId}` });
           }
         });
       }

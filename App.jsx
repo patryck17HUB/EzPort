@@ -1,7 +1,6 @@
-import  React,{useEffect, useState} from "react";
-import { Color} from "./styles/GlobalStyles";
-import { BottomNavigation} from 'react-native-paper';
-
+import React, { useEffect, useState } from "react";
+import { Color } from "./styles/GlobalStyles";
+import { BottomNavigation } from 'react-native-paper';
 import Workouts from "./screens/workouts";
 import PlanDetails from "./screens/planDetails";
 import CreatePlan from "./screens/createPlan";
@@ -9,20 +8,16 @@ import Explore from "./screens/explore";
 import Profile from "./screens/profile";
 import Settings from "./screens/settings";
 import Login from "./screens/login";
-import LoadingScreen from "./LoadingScreen"; 
-import AgregarEjercicios from "./screens/agregarejercicios";
+import LoadingScreen from "./LoadingScreen";
+import EditarPlan from "./screens/EditarPlan";
 
 // Navegar entre paginas
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { MaterialCommunityIcons } from '@expo/vector-icons';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import { UserProvider } from './context/UserContext';
 
-//const Tab = createMaterialTopTabNavigator();
-
-const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
 
 function WorkoutsStack() {
@@ -30,17 +25,8 @@ function WorkoutsStack() {
     <Stack.Navigator>
       <Stack.Screen name="Workouts" component={Workouts} options={{ headerShown: false }} />
       <Stack.Screen name="PlanDetails" component={PlanDetails} options={{ headerShown: true, title: 'Plan Details' }} />
-      <Stack.Screen name="CreatePlan" component={CreatePlan} options={{ headerShown: true, title: 'Crear Plan' }} /> 
-      <Stack.Screen name="AgregarEjercicios" component={AgregarEjercicios} options={{ headerShown: true, title: 'Agregar Ejercicio' }} /> 
-    </Stack.Navigator>
-  );
-}
-
-function SettingsStack() {
-  return (
-    <Stack.Navigator>
-      <Stack.Screen name="Settings" component={Settings} options={{ false: false}} />
-      <Stack.Screen name="Login" component={Login} options={{ headerShown: false }} />
+      <Stack.Screen name="CreatePlan" component={CreatePlan} options={{ headerShown: true, title: 'Crear Plan' }} />
+      <Stack.Screen name="EditarPlan" component={EditarPlan} options={{ headerShown: true, title: 'EditarPlan' }} />
     </Stack.Navigator>
   );
 }
@@ -52,14 +38,14 @@ function MainTabs() {
     { key: 'Explore', title: 'Explorar', component: Explore, icon: 'search-web', tabbarColor: '#FF1C1C' },
     { key: 'Workouts', title: 'Plan', component: WorkoutsStack, icon: 'arm-flex', tabbarColor: '#72FF1C' },
     { key: 'Profile', title: 'Perfil', component: Profile, icon: 'account', tabbarColor: '#1CFFE3' },
-    { key: 'Settings', title: 'Config', component: SettingsStack, icon: 'cog', tabbarColor: '#D91CFF' },
+    { key: 'Settings', title: 'Config', component: Settings, icon: 'cog', tabbarColor: '#D91CFF' },
   ]);
 
   const renderScene = BottomNavigation.SceneMap({
     Explore: Explore,
     Workouts: WorkoutsStack,
     Profile: Profile,
-    Settings: SettingsStack,
+    Settings: Settings,
   });
 
   return (
@@ -116,26 +102,3 @@ export default function App() {
     </UserProvider>
   );
 }
-
-/* COSAS POR HACER
-Paginas--
-  Login
-  Explorar
-    Ejercicios
-    Plantillas publicas (Rutinas)
-  Entrenamientos
-    Rutinas
-    Programas
-  Profile
-    Registros (Historial)
-    Peso corporal
-  Settings 
-  -- DIVIDER --
-    About
-    Contact
-    Help
-    Terms
-    Privacy
-    Cookies
-    Legal
-*/
