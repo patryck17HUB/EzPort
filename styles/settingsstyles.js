@@ -13,6 +13,11 @@ export const styles = StyleSheet.create({
         justifyContent: 'space-between',
         alignItems: 'center',
     },
+    scrollContainer: {
+        marginTop: '5%',
+        flexGrow: 1,
+        marginBottom: '17%',
+    },
     optionText: {
         fontSize: FontSize.size_base,
         color: '#fff',
@@ -43,6 +48,7 @@ export const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         marginTop: 20,
+        marginBottom: '5%',
     },
     logoutButtonText: {
         fontSize: FontSize.size_base,

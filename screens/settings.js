@@ -54,7 +54,7 @@ export default function Settings() {
 
   return (
     <View style={globalstyles.background}>
-      <ScrollView style={globalstyles.contenido}>
+      <ScrollView style={styles.scrollContainer}>
       <View style={styles.logocontainer}>
         <Image source={miImagen} style={styles.logo} />
       </View>
@@ -72,16 +72,12 @@ export default function Settings() {
             {expandedSections[section.title] && (
               <View style={styles.content}>
                 <Text style={styles.contentText}>{section.content}</Text>
-
               </View>
             )}
           </View>
         ))}
         <TouchableOpacity style={styles.logoutButton} onPress={logout}>
           <Text style={styles.logoutButtonText}>Logout</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.navigateToRootButton} onPress={navigateToRoot}>
-          <Text style={styles.navigateToRootButtonText}>Navigate to Root</Text>
         </TouchableOpacity>
         {error && <Text style={styles.errorText}>Error: {error.message}</Text>}
       </ScrollView>
