@@ -1,13 +1,16 @@
 import React, { useState, useContext } from "react";
-import { View, Image, Text, TouchableOpacity, ScrollView, } from "react-native";
+import { View, Text, TouchableOpacity, ScrollView } from "react-native";
 import { styles } from "../styles/settingsstyles";
 import { globalstyles } from "../styles/GlobalStyles";
-import { GoogleSignin, GoogleSigninButton } from '@react-native-google-signin/google-signin';
-import { Ionicons } from '@expo/vector-icons'; // Importa los iconos de Ionicons
+import { GoogleSignin } from '@react-native-google-signin/google-signin';
+import { Ionicons } from '@expo/vector-icons';
+import RNRestart from 'react-native-restart';
+import { useNavigation } from "@react-navigation/native"; // Importa la función useNavigation
 
 import { UserContext } from '../context/UserContext';
 
-export default function Settings({ navigation }) {
+export default function Settings() {
+  const navigation = useNavigation(); // Obtén el objeto de navegación
   const [expandedSections, setExpandedSections] = useState({});
   const [error, setError] = useState(null);
   const { setUser } = useContext(UserContext);
@@ -24,13 +27,19 @@ export default function Settings({ navigation }) {
       await GoogleSignin.revokeAccess();
       await GoogleSignin.signOut();
       setUser(null);
-      //navigation.navigate('Login');
+      RNRestart.restart();
     } catch (error) {
       console.error("Error during logout:", error);
       setError(error);
     }
   };
 
+  const navigateToRoot = () => {
+    navigation.reset({
+      index: 0,
+      routes: [{ name: 'MainTabs' }]
+    });
+  };
 
   const sections = [
     { title: "Sobre EzPort", content: "Está vergas" },
@@ -59,7 +68,7 @@ export default function Settings({ navigation }) {
             {expandedSections[section.title] && (
               <View style={styles.content}>
                 <Text style={styles.contentText}>{section.content}</Text>
-                {/*Cambiar aquí si se quiere agregar otra cosa aparte de sólo texto*/}
+
               </View>
             )}
           </View>
@@ -67,9 +76,11 @@ export default function Settings({ navigation }) {
         <TouchableOpacity style={styles.logoutButton} onPress={logout}>
           <Text style={styles.logoutButtonText}>Logout</Text>
         </TouchableOpacity>
+        <TouchableOpacity style={styles.navigateToRootButton} onPress={navigateToRoot}>
+          <Text style={styles.navigateToRootButtonText}>Navigate to Root</Text>
+        </TouchableOpacity>
         {error && <Text style={styles.errorText}>Error: {error.message}</Text>}
       </ScrollView>
     </View>
-
   );
 }

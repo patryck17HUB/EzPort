@@ -225,3 +225,44 @@ export const editarstyles = StyleSheet.create({
     marginBottom: 10,
   },
 });
+export const trainingstyles = StyleSheet.create({
+  planTitle: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    marginVertical: 10,
+    textAlign: 'center',
+  },
+  exerciseContainer: {
+    backgroundColor: '#f0f0f0',
+    padding: 10,
+    marginVertical: 5,
+    borderRadius: 5,
+  },
+  exerciseName: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    marginBottom: 5,
+  },
+  exerciseDetails: {
+    fontSize: 16,
+    color: '#333',
+  },
+  input: {
+    height: 40,
+    borderColor: 'gray',
+    borderWidth: 1,
+    marginVertical: 5,
+    paddingHorizontal: 10,
+  },
+  finishButton: {
+    backgroundColor: '#4CAF50',
+    padding: 10,
+    borderRadius: 5,
+    alignItems: 'center',
+    marginVertical: 10,
+  },
+  finishButtonText: {
+    color: '#FFFFFF',
+    fontSize: 16,
+  },
+});

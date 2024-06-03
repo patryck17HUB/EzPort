@@ -12,7 +12,7 @@ export default function PlanDetails({ route, navigation }) {
   const { user } = useContext(UserContext);
 
   useEffect(() => {
-    const userId = user.id; // Reemplaza esto con el ID del usuario actualmente autenticado
+    const userId = user.id;
     const planRef = database.ref(`users/${userId}/exercisePlans/${planId}`);
 
     planRef.once('value')
@@ -77,6 +77,11 @@ export default function PlanDetails({ route, navigation }) {
         <Button
           title="Editar Plan"
           onPress={() => navigation.navigate('EditarPlan', { planId })}
+        />
+        {/* Botón para registrar un día de entrenamiento */}
+        <Button
+          title="Registrar Día de Entrenamiento"
+          onPress={() => navigation.navigate('Training', { planId })}
         />
       </ScrollView>
     </View>

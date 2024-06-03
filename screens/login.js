@@ -50,16 +50,6 @@ export default function Login({ navigation }) {
     }
   };
 
-  const logout = async () => {
-    try {
-      await GoogleSignin.revokeAccess();
-      await GoogleSignin.signOut();
-      setUser(null);
-    } catch (error) {
-      setError(error);
-    }
-  }
-
   return (
     <View style={styles.container}>
       <SvgComponent />
@@ -72,9 +62,6 @@ export default function Login({ navigation }) {
           onPress={signin}
           style={styles.googleButton}
         />
-        <TouchableOpacity style={styles.logoutButton} onPress={logout}>
-          <Text style={styles.logoutButtonText}>Logout</Text>
-        </TouchableOpacity>
         {error && <Text style={styles.errorText}>{JSON.stringify(error)}</Text>}
       </View>
     </View>

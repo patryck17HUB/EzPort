@@ -10,6 +10,8 @@ import Settings from "./screens/settings";
 import Login from "./screens/login";
 import LoadingScreen from "./LoadingScreen";
 import EditarPlan from "./screens/EditarPlan";
+import Training from "./screens/Training";
+import AgregarEjercicio from "./screens/AgregarEjercicio";
 
 // Navegar entre paginas
 import { NavigationContainer } from "@react-navigation/native";
@@ -27,6 +29,8 @@ function WorkoutsStack() {
       <Stack.Screen name="PlanDetails" component={PlanDetails} options={{ headerShown: true, title: 'Plan Details' }} />
       <Stack.Screen name="CreatePlan" component={CreatePlan} options={{ headerShown: true, title: 'Crear Plan' }} />
       <Stack.Screen name="EditarPlan" component={EditarPlan} options={{ headerShown: true, title: 'EditarPlan' }} />
+      <Stack.Screen name="Training" component={Training} options={{ headerShown: true, title: 'Training' }} />
+      <Stack.Screen name="AgregarEjercicio" component={AgregarEjercicio} options={{ headerShown: true, title: 'AgregarEjercicio' }} />
     </Stack.Navigator>
   );
 }
