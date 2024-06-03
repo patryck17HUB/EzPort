@@ -78,83 +78,6 @@ contentText: {
     fontWeight: 'bold',
     flex:0,
   },
-<<<<<<< HEAD
-    button: {
-      backgroundColor: '#7539e5',
-      padding: 15,
-      borderRadius: 5,
-      width: '80%',
-      marginTop: 20,
-      
-    },
-    buttonText: {
-      color: '#fff',
-      fontSize: 40,
-    },
-    modalContainer: {
-      flex: 40,
-      justifyContent: 'center',
-      alignItems: 'center',
-      backgroundColor: 'rgba(0, 0, 0, 0.5)',
-      
-    },
-    modalContent: {
-      width: '80%',
-      backgroundColor: 'white',
-      borderRadius: 10,
-      padding: 20,
-      alignItems: 'center',
-    },
-    option: {
-      padding: 15,
-      borderBottomWidth: 1,
-      borderBottomColor: '#ddd',
-    },
-    optionText: {
-      fontSize: 16,
-    },
-    // Botones de cada ejercicio
-    exerciseItem: {
-      margin: 10,
-      width: '100%',
-      justifyContent: "center",
-    alignItems: "center",
-    },
-    exerciseText: {
-      fontSize: 16,
-      color: '#fff',
-    },
-    exercisePText: {
-      fontSize: 16,
-      color: '#000',
-    },
-    exerciseList: {
-      marginTop: '10%',
-      justifyContent: "center",
-      alignSelf: 'center', 
-      width: '100%',
-      flex:40,
-    },
-    gradient: {
-      flex: 1,
-      justifyContent: 'center',
-      alignItems: 'center',
-    },
-    buttonchueco: {
-      backgroundColor: '#7539e5',
-      padding: 15,
-      marginRight: '5.5%',
-      borderRadius: 5,
-      width: '80%',
-    },
-    botongift: {
-      backgroundColor: '#7539e5',
-      padding: 15,
-      margin:5,
-      borderRadius: 5,
-      width: '80%',
-    },
-=======
   button: {
     marginLeft: '3%', // Mantén el margen izquierdo en 20
     marginRight: '9%',
@@ -163,7 +86,6 @@ contentText: {
     borderColor: '#fff', 
     width: '100%',
     borderColor: '#fff', // Color del borde
->>>>>>> 16a33daa4b9421c9d3a1cbf6d8ee96a0aa8c7fa2
     
     borderBottomWidth: 2, 
   },

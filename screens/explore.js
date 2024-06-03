@@ -170,26 +170,6 @@ export default function Explore({ navigation }) {
         style={{ backgroundColor: Color.primary }}
       />
       
-<<<<<<< HEAD
-       
-          <View style={styles.modalContainer}>
-            <View style={styles.modalContent}>
-              <FlatList
-                data={options}
-                keyExtractor={(item) => item.label}
-                renderItem={({ item }) => (
-                  <TouchableOpacity style={styles.option} onPress={() => handleSelectMuscle(item.label)}>
-                    <Text style={styles.optionText}>{item.label}</Text>
-                  </TouchableOpacity>
-                )}
-              />
-            </View>
-
-
-      {exercises.length > 0 && (
-        
-=======
->>>>>>> 16a33daa4b9421c9d3a1cbf6d8ee96a0aa8c7fa2
         <FlatList
           data={options}
           keyExtractor={(item) => item.label}
