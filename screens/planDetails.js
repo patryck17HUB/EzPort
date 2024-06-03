@@ -38,17 +38,35 @@ export default function PlanDetails({ route, navigation }) {
 
   return (
     <View style={globalstyles.background}>
-      <ScrollView style={globalstyles.contenido}>
+      <ScrollView style={planstyles.scrollContainer}>
         <Text style={planstyles.planTitle}>{planDetails.title}</Text>
         <View style={planstyles.descriptionContainer}>
-          <Text 
-            style={planstyles.planDescription} 
-            numberOfLines={descriptionExpanded ? null : 1}
+          {planDetails.description && (
+            <>
+              <Text 
+                style={planstyles.planDescription} 
+                numberOfLines={descriptionExpanded ? null : 1}
+              >
+                {planDetails.description}
+              </Text>
+              <TouchableOpacity onPress={toggleDescription}>
+                <Text style={planstyles.moreButton}>{descriptionExpanded ? " menos" : " más"}</Text>
+              </TouchableOpacity>
+            </>
+          )}
+        </View>
+        <View style={planstyles.buttonRow}>
+          <TouchableOpacity 
+            style={planstyles.button1}
+            onPress={() => navigation.navigate('Training', { planId })}
           >
-            {planDetails.description}
-          </Text>
-          <TouchableOpacity onPress={toggleDescription}>
-            <Text style={planstyles.moreButton}>{descriptionExpanded ? " menos" : " más"}</Text>
+            <Text style={planstyles.buttonText}>Registrar Día de Entrenamiento</Text>
+          </TouchableOpacity>
+          <TouchableOpacity 
+            style={planstyles.button2}
+            onPress={() => navigation.navigate('EditarPlan', { planId })}
+          >
+            <Text style={planstyles.buttonText}>Editar</Text>
           </TouchableOpacity>
         </View>
         {planDetails.exercises ? (
@@ -58,11 +76,16 @@ export default function PlanDetails({ route, navigation }) {
               return (
                 <View key={exerciseId} style={planstyles.exerciseContainer}>
                   <Text style={planstyles.exerciseName}>{exercise.name}</Text>
+                  <View style={planstyles.tableHeader}>
+                    <Text style={planstyles.tableHeaderText}>Set</Text>
+                    <Text style={planstyles.tableHeaderText}>Repeticiones</Text>
+                    <Text style={planstyles.tableHeaderText}>Peso</Text>
+                  </View>
                   {exercise.sets && exercise.sets.map((set, index) => (
-                    <View key={index}>
-                      <Text style={planstyles.exerciseDetails}>Set {index + 1}</Text>
-                      <Text style={planstyles.exerciseDetails}>Repetitions: {set.reps}</Text>
-                      <Text style={planstyles.exerciseDetails}>Weight: {set.weight}</Text>
+                    <View key={index} style={planstyles.tableRow}>
+                      <Text style={planstyles.tableCell}>{index + 1}</Text>
+                      <Text style={planstyles.tableCell}>{set.reps}</Text>
+                      <Text style={planstyles.tableCell}>{set.weight}</Text>
                     </View>
                   ))}
                 </View>
@@ -73,16 +96,6 @@ export default function PlanDetails({ route, navigation }) {
         ) : (
           <Text>No hay ejercicios en este plan.</Text>
         )}
-        {/* Botón para agregar ejercicio */}
-        <Button
-          title="Editar Plan"
-          onPress={() => navigation.navigate('EditarPlan', { planId })}
-        />
-        {/* Botón para registrar un día de entrenamiento */}
-        <Button
-          title="Registrar Día de Entrenamiento"
-          onPress={() => navigation.navigate('Training', { planId })}
-        />
       </ScrollView>
     </View>
   );
