@@ -36,15 +36,28 @@ export const styles = StyleSheet.create({
         fontFamily: FontFamily.font_base,
     },
     logoutButton: {
-        padding: 20,
-        margin: 15,
-        borderRadius: 15,
-        backgroundColor: '#FF000', 
+        padding: 15,
+        marginHorizontal: 30,
+        borderRadius: 10,
+        backgroundColor: '#7539e5',
         alignItems: 'center',
+        justifyContent: 'center',
+        marginTop: 20,
     },
     logoutButtonText: {
         fontSize: FontSize.size_base,
-        color: '#FF0000',
+        color: '#FFFFFF',
         fontFamily: FontFamily.font_base,
+    },
+    logocontainer: {
+        alignSelf: 'center',
+        marginVertical: 30,
+        width: '50%',
+        aspectRatio: 2,
+    },
+    logo: {
+        flex: 1, 
+        alignSelf: 'center',
+        resizeMode: 'contain',
     },
 });

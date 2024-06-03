@@ -21,7 +21,7 @@ export const globalstyles = StyleSheet.create({
   },
   contenido: {
     marginTop: 35,
-    marginBottom: '27%',
+    marginBottom: '1%',
     flex: 1,
   },
 });
