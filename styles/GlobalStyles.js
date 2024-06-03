@@ -8,7 +8,7 @@ export const FontSize = {
 };
   /* Colors */
 export const Color = {
-    primary: "#0F0F12",
+    primary: "#000000",
     secondary: "#2E2E2E",
 };
 
@@ -21,6 +21,7 @@ export const globalstyles = StyleSheet.create({
   },
   contenido: {
     marginTop: 35,
-    marginBottom: 0,
+    marginBottom: '27%',
+    flex: 1,
   },
 });

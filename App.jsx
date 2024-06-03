@@ -1,7 +1,6 @@
-import  React,{useEffect, useState} from "react";
-import { Color} from "./styles/GlobalStyles";
-import { BottomNavigation} from 'react-native-paper';
-
+import React, { useEffect, useState } from "react";
+import { Color } from "./styles/GlobalStyles";
+import { BottomNavigation } from 'react-native-paper';
 import Workouts from "./screens/workouts";
 import PlanDetails from "./screens/planDetails";
 import CreatePlan from "./screens/createPlan";
@@ -9,19 +8,18 @@ import Explore from "./screens/explore";
 import Profile from "./screens/profile";
 import Settings from "./screens/settings";
 import Login from "./screens/login";
-import LoadingScreen from "./LoadingScreen"; 
+import LoadingScreen from "./LoadingScreen";
+import EditarPlan from "./screens/EditarPlan";
+import Training from "./screens/Training";
+import AgregarEjercicio from "./screens/AgregarEjercicio";
 
 // Navegar entre paginas
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { MaterialCommunityIcons } from '@expo/vector-icons';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import { UserProvider } from './context/UserContext';
 
-//const Tab = createMaterialTopTabNavigator();
-
-const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
 
 function WorkoutsStack() {
@@ -29,7 +27,10 @@ function WorkoutsStack() {
     <Stack.Navigator>
       <Stack.Screen name="Workouts" component={Workouts} options={{ headerShown: false }} />
       <Stack.Screen name="PlanDetails" component={PlanDetails} options={{ headerShown: true, title: 'Plan Details' }} />
-      <Stack.Screen name="CreatePlan" component={CreatePlan} options={{ headerShown: true, title: 'Crear Plan' }} /> 
+      <Stack.Screen name="CreatePlan" component={CreatePlan} options={{ headerShown: true, title: 'Crear Plan' }} />
+      <Stack.Screen name="EditarPlan" component={EditarPlan} options={{ headerShown: true, title: 'EditarPlan' }} />
+      <Stack.Screen name="Training" component={Training} options={{ headerShown: true, title: 'Training' }} />
+      <Stack.Screen name="AgregarEjercicio" component={AgregarEjercicio} options={{ headerShown: true, title: 'AgregarEjercicio' }} />
     </Stack.Navigator>
   );
 }
@@ -105,26 +106,3 @@ export default function App() {
     </UserProvider>
   );
 }
-
-/* COSAS POR HACER
-Paginas--
-  Login
-  Explorar
-    Ejercicios
-    Plantillas publicas (Rutinas)
-  Entrenamientos
-    Rutinas
-    Programas
-  Profile
-    Registros (Historial)
-    Peso corporal
-  Settings 
-  -- DIVIDER --
-    About
-    Contact
-    Help
-    Terms
-    Privacy
-    Cookies
-    Legal
-*/

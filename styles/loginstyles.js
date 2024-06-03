@@ -26,12 +26,6 @@ export const styles = StyleSheet.create({
         top: 530,
         alignItems: 'center', 
     },
-    googleButton: {
-        borderColor: 'gray',
-        padding: 10,
-        width: '70%',
-        height: 50,
-    },
     logoutButtonText: {
         color: '#FF0000',
     },

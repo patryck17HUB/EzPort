@@ -35,4 +35,16 @@ export const styles = StyleSheet.create({
         fontSize: FontSize.size_base,
         fontFamily: FontFamily.font_base,
     },
+    logoutButton: {
+        padding: 20,
+        margin: 15,
+        borderRadius: 15,
+        backgroundColor: '#FF000', 
+        alignItems: 'center',
+    },
+    logoutButtonText: {
+        fontSize: FontSize.size_base,
+        color: '#FF0000',
+        fontFamily: FontFamily.font_base,
+    },
 });

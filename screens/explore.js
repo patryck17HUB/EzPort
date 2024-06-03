@@ -138,8 +138,6 @@ export default function Explore({ navigation }) {
 
   return (
     
-
-
     // Estilos de la vista principal
     <View style={globalstyles.background}>
       <TabView
