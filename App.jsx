@@ -25,12 +25,63 @@ const Stack = createNativeStackNavigator();
 function WorkoutsStack() {
   return (
     <Stack.Navigator>
-      <Stack.Screen name="Workouts" component={Workouts} options={{ headerShown: false }} />
-      <Stack.Screen name="PlanDetails" component={PlanDetails} options={{ headerShown: true, title: 'Plan Details' }} />
-      <Stack.Screen name="CreatePlan" component={CreatePlan} options={{ headerShown: true, title: 'Crear Plan' }} />
-      <Stack.Screen name="EditarPlan" component={EditarPlan} options={{ headerShown: true, title: 'EditarPlan' }} />
-      <Stack.Screen name="Training" component={Training} options={{ headerShown: true, title: 'Training' }} />
-      <Stack.Screen name="AgregarEjercicio" component={AgregarEjercicio} options={{ headerShown: true, title: 'AgregarEjercicio' }} />
+      <Stack.Screen 
+        name="Workouts" 
+        component={Workouts} 
+        options={{ 
+          headerShown: false,
+        }} 
+      />
+      <Stack.Screen 
+        name="PlanDetails" 
+        component={PlanDetails} 
+        options={{ 
+          headerShown: true, 
+          title: 'Plan Details',
+          headerStyle: { backgroundColor: Color.primary },
+          headerTintColor: '#fff' 
+        }} 
+      />
+      <Stack.Screen 
+        name="CreatePlan" 
+        component={CreatePlan} 
+        options={{ 
+          headerShown: true, 
+          title: 'Crear Plan',
+          headerStyle: { backgroundColor: Color.primary },
+          headerTintColor: '#fff'
+        }} 
+      />
+      <Stack.Screen 
+        name="EditarPlan" 
+        component={EditarPlan} 
+        options={{ 
+          headerShown: true, 
+          title: 'Editar Plan',
+          headerStyle: { backgroundColor: Color.primary },
+          headerTintColor: '#fff'
+        }} 
+      />
+      <Stack.Screen 
+        name="Training" 
+        component={Training} 
+        options={{ 
+          headerShown: true, 
+          title: 'Training',
+          headerStyle: { backgroundColor: Color.primary },
+          headerTintColor: '#fff'
+        }} 
+      />
+      <Stack.Screen 
+        name="AgregarEjercicio" 
+        component={AgregarEjercicio} 
+        options={{ 
+          headerShown: true, 
+          title: 'Add Exercise',
+          headerStyle: { backgroundColor: Color.primary },
+          headerTintColor: '#fff'
+        }} 
+      />
     </Stack.Navigator>
   );
 }
@@ -67,14 +118,12 @@ function MainTabs() {
         return <MaterialCommunityIcons name={iconName} size={iconSize} color={color} />;
       }}
       barStyle={{
-        backgroundColor: Color.secondary,
+        backgroundColor: Color.primary,
         position: 'absolute',
-        bottom: 16,
-        left: 16,
-        right: 16,
-        borderRadius: 16,
         overflow: 'hidden',
-        height: 73,
+        height: 68,
+        borderTopWidth: 1,
+        borderTopColor: '#FFFFFF',
       }}
     />
   );

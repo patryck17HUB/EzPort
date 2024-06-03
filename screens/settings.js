@@ -1,11 +1,12 @@
 import React, { useState, useContext } from "react";
-import { View, Text, TouchableOpacity, ScrollView } from "react-native";
+import { View, Text, TouchableOpacity, ScrollView, Image,ImageBackground  } from "react-native";
 import { styles } from "../styles/settingsstyles";
 import { globalstyles } from "../styles/GlobalStyles";
 import { GoogleSignin } from '@react-native-google-signin/google-signin';
 import { Ionicons } from '@expo/vector-icons';
 import RNRestart from 'react-native-restart';
 import { useNavigation } from "@react-navigation/native"; // Importa la función useNavigation
+import miImagen from '../assets/Logoblanco.png'; 
 
 import { UserContext } from '../context/UserContext';
 
@@ -53,7 +54,12 @@ export default function Settings() {
 
   return (
     <View style={globalstyles.background}>
+      
       <ScrollView style={globalstyles.contenido}>
+      <View style={styles.logocontainer}>
+        
+        <Image source={miImagen} style={styles.logo} />
+      </View>
         {sections.map((section) => (
           <View key={section.title}>
             <TouchableOpacity style={styles.option} onPress={() => toggleSection(section.title)}>
@@ -76,10 +82,6 @@ export default function Settings() {
         <TouchableOpacity style={styles.logoutButton} onPress={logout}>
           <Text style={styles.logoutButtonText}>Logout</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.navigateToRootButton} onPress={navigateToRoot}>
-          <Text style={styles.navigateToRootButtonText}>Navigate to Root</Text>
-        </TouchableOpacity>
-        {error && <Text style={styles.errorText}>Error: {error.message}</Text>}
       </ScrollView>
     </View>
   );

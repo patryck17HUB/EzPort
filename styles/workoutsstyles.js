@@ -1,5 +1,4 @@
 import { StyleSheet } from "react-native";
-import { Color, FontSize, FontFamily } from "./GlobalStyles";
 
 export const styles = StyleSheet.create({
     container: {
@@ -12,11 +11,12 @@ export const styles = StyleSheet.create({
       justifyContent: 'space-between',
       alignItems: 'center',
       padding: 16,
-      backgroundColor: '#fff',
+      backgroundColor: '#000000',
     },
     headerTitle: {
       fontSize: 24,
       fontWeight: 'bold',
+      color: '#FFFFFF',
     },
     createButton: {
       padding: 8,
@@ -36,6 +36,11 @@ export const styles = StyleSheet.create({
     planTitle: {
         fontSize: 18,
         fontWeight: 'bold',
+    },
+    backgroundImage: {
+      flex:1,
+      width: '100%', // asegura que la imagen ocupe toda la anchura disponible
+      height: 10, // ajusta la altura según sea necesario
     },
 });
 

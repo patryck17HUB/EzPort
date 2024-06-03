@@ -1,9 +1,12 @@
 import React, { useState, useEffect , useContext} from "react";
-import { View, Text, TouchableOpacity, ScrollView } from "react-native";
+import { View, Text, TouchableOpacity, ScrollView,Image } from "react-native";
 import { getMuscleList, getMuscle } from "../api/user_api";
 import { styles } from "../styles/workoutsstyles";
 import { globalstyles } from "../styles/GlobalStyles";
 import { database } from '../firebaseConfig';
+import miImagen from '../assets/reverse.png'; 
+
+
 
 import { UserContext } from '../context/UserContext';
 
@@ -33,6 +36,7 @@ export default function Workouts({ navigation }) {
 
   return (
     <View style={globalstyles.background}>
+
       <View style={styles.header}>
         <Text style={styles.headerTitle}>Entrenamientos</Text>
         <TouchableOpacity
@@ -55,6 +59,8 @@ export default function Workouts({ navigation }) {
           ))}
         </View>
       </ScrollView>
+           <Image source={miImagen} style={styles.backgroundImage} />
+
     </View>
   );
 }
