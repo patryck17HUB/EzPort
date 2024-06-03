@@ -1,25 +1,35 @@
-import React, { useState, useContext } from "react";
-import { View, Text, TouchableOpacity, FlatList, Modal, Image, ScrollView, Alert } from "react-native";
-import { database } from "../firebaseConfig";
+import * as React from 'react';
+import { useState, useContext } from 'react';
+import { View, useWindowDimensions, Text, Button, Modal, FlatList, TouchableOpacity, Image, ScrollView, Alert} from 'react-native';
+import { TabView, SceneMap, TabBar } from 'react-native-tab-view';
+import { Ionicons } from '@expo/vector-icons';
+import { styles } from "../styles/explorestyles";
 import { globalstyles } from "../styles/GlobalStyles";
-import { editarstyles } from "../styles/workoutsstyles";
+import { Color } from "../styles/GlobalStyles";
+import { StatusBar } from 'expo-status-bar';
 import { getMuscle, getExerciseByID } from '../api/user_api';
+import { LinearGradient } from 'expo-linear-gradient';
+import { editarstyles } from '../styles/workoutsstyles';
 import { UserContext } from '../context/UserContext';
+import { database } from "../firebaseConfig";
 
 const handleGetMuscle = async (muscle, setExercises) => {
   try {
     const response = await getMuscle(muscle);
-    setExercises(response.data);
+    setExercises((prevExercises) => ({
+      ...prevExercises,
+      [muscle]: response.data,
+    }));
   } catch (error) {
     console.error("Error fetching muscle details:", error);
   }
 };
 
-const handleGetExerciseDetails = async (id, name, setExerciseDetails, setModalVisible) => {
+const handleGetExerciseDetails = async (id, setExerciseDetails, setDetailModalVisible) => {
   try {
     const response = await getExerciseByID(id);
-    setExerciseDetails({ ...response.data, name });
-    setModalVisible(true);
+    setExerciseDetails(response.data);
+    setDetailModalVisible(true);
   } catch (error) {
     console.error("Error fetching exercise details:", error);
   }
@@ -44,14 +54,15 @@ const agregarARutina = async (user, exerciseDetails, planId, navigation) => {
   }
 };
 
-const AgregarEjercicio = ({ route, navigation }) => {
+export default function Explore({ route, navigation }) {
   const { planId } = route.params;
   const { user } = useContext(UserContext);
-  const [selectedMuscle, setSelectedMuscle] = useState('');
-  const [exercises, setExercises] = useState([]);
-  const [exerciseDetails, setExerciseDetails] = useState(null);
   const [modalVisible, setModalVisible] = useState(false);
   const [detailModalVisible, setDetailModalVisible] = useState(false);
+  const [selectedMuscle, setSelectedMuscle] = useState('');
+  const [exercises, setExercises] = useState({});
+  const [exerciseDetails, setExerciseDetails] = useState(null);
+  const [expandedSections, setExpandedSections] = useState({});
 
   const options = [
     { label: 'back' },
@@ -66,98 +77,135 @@ const AgregarEjercicio = ({ route, navigation }) => {
     { label: 'waist' },
   ];
 
-  const toggleModal = () => {
-    setModalVisible(!modalVisible);
+  const toggleSection = (section) => {
+    setExpandedSections((prevExpandedSections) => ({
+      ...prevExpandedSections,
+      [section]: !prevExpandedSections[section],
+    }));
+    if (!exercises[section]) {
+      handleGetMuscle(section, setExercises);
+    }
+  };
+
+  const handleSelectExercise = (id) => {
+    handleGetExerciseDetails(id, setExerciseDetails, setDetailModalVisible);
   };
 
   const toggleDetailModal = () => {
     setDetailModalVisible(!detailModalVisible);
   };
 
-  const handleSelectMuscle = (muscle) => {
-    setSelectedMuscle(muscle);
-    toggleModal();
-    handleGetMuscle(muscle, setExercises);
-  };
+  const layout = useWindowDimensions();
+  const [index, setIndex] = useState(0);
+  const [routes] = useState([
+    { key: 'Ejercicios', title: 'Ejercicios' },
+    { key: 'Rutinas', title: 'Rutinas' },
+  ]);
 
-  const handleSelectExercise = (id, name) => {
-    handleGetExerciseDetails(id, name, setExerciseDetails, setDetailModalVisible);
-  };
+  const dynamicTabBarStyle = (index) => ({
+    margin: 0,
+    backgroundColor: index === 0 ? Color.secondary : Color.secondary,
+    top: 0,
+    borderRadius: 0,
+  });
+
+  const renderTabBar = (props) => (
+    <TabBar
+      {...props}
+      indicatorStyle={{
+        backgroundColor: 'white',
+        width: '46%',
+        left: '2.5%',
+        right: '2.5%',
+      }}
+      style={dynamicTabBarStyle(index)}
+      labelStyle={{ color: 'white', fontSize: 16 }}
+    />
+  );
 
   const renderExerciseItem = ({ item }) => (
-    <View style={editarstyles.exerciseItem}>
-      <TouchableOpacity style={editarstyles.buttonchueco} onPress={() => handleSelectExercise(item.id, item.name)}>
-        <Text style={editarstyles.exerciseText}>{item.name}</Text>
+    <View style={styles.exerciseItem}>
+      <TouchableOpacity style={styles.button} onPress={() => handleSelectExercise(item.id)}>
+        <Text style={styles.exerciseText}>{item.name}</Text>
+            <Ionicons
+      name="add"
+      size={24}
+      color="#ffffff"
+      style={styles.icon}
+    /> 
+        
       </TouchableOpacity>
     </View>
+  );
+  
+  const renderOptionItem = ({ item }) => (
+    
+
+    <View key={item.label}>
+      <ScrollView></ScrollView>
+      <TouchableOpacity style={styles.option} onPress={() => toggleSection(item.label)}>
+        <Text style={styles.optionText}>{item.label}</Text>
+        <Ionicons
+          name={expandedSections[item.label] ? "chevron-down" : "chevron-forward"}
+          size={24}
+          color="#ffffff"
+          style={styles.icon}
+        />
+      </TouchableOpacity>
+      {expandedSections[item.label] && exercises[item.label] && (
+        
+        <View style={styles.content}>
+          <FlatList
+            data={exercises[item.label]}
+            keyExtractor={(exerciseItem) => exerciseItem.id}
+            renderItem={renderExerciseItem}
+            contentContainerStyle={styles.contentText}
+          />
+        </View>
+      )}
+    </View>
+    
+
   );
 
   return (
     <View style={globalstyles.background}>
-      <View style={globalstyles.contenido}>
-        <TouchableOpacity style={editarstyles.button} onPress={toggleModal}>
-          <Text style={editarstyles.buttonText}>Seleccionar grupo muscular</Text>
-        </TouchableOpacity>
-
+      <View style={styles.header}>
+        <Text style={styles.headerTitle}> Selecciona un ejercicio </Text>
+      </View>
+        <FlatList
+          data={options}
+          keyExtractor={(item) => item.label}
+          renderItem={renderOptionItem}
+        />
+      {exerciseDetails && (
         <Modal
           animationType="slide"
           transparent={true}
-          visible={modalVisible}
-          onRequestClose={toggleModal}
+          visible={detailModalVisible}
+          onRequestClose={toggleDetailModal}
         >
-          <View style={editarstyles.modalContainer}>
-            <ScrollView contentContainerStyle={editarstyles.modalContent}>
-              <FlatList
-                data={options}
-                keyExtractor={(item) => item.label}
-                renderItem={({ item }) => (
-                  <TouchableOpacity style={editarstyles.option} onPress={() => handleSelectMuscle(item.label)}>
-                    <Text style={editarstyles.optionText}>{item.label}</Text>
-                  </TouchableOpacity>
-                )}
+          <View style={styles.modalContainer}>
+            <View style={styles.modalContent}>
+              <Text style={styles.exercisePText}>Nombre: {exerciseDetails.name}</Text>
+              <Text style={styles.exercisePText}>Equipo: {exerciseDetails.equipment}</Text>
+              <Text style={styles.exercisePText}>Target: {exerciseDetails.target}</Text>
+              <Image
+                source={{ uri: exerciseDetails.gifUrl }}
+                style={{ width: 200, height: 200 }}
               />
-            </ScrollView>
+              <TouchableOpacity style={editarstyles.botongift} onPress={toggleDetailModal}>
+                <Text style={editarstyles.exerciseText}>Cerrar</Text>
+              </TouchableOpacity>
+              <TouchableOpacity style={editarstyles.botongift} onPress={() => agregarARutina(user, exerciseDetails, planId, navigation)}>
+                <Text style={editarstyles.exerciseText}>Agregar a rutina</Text>
+              </TouchableOpacity>
+            </View>
           </View>
         </Modal>
+      )}
 
-        {exercises.length > 0 && (
-          <FlatList
-            data={exercises}
-            keyExtractor={(item) => item.id}
-            renderItem={renderExerciseItem}
-            contentContainerStyle={editarstyles.exerciseList}
-          />
-        )}
-
-        {exerciseDetails && (
-          <Modal
-            animationType="slide"
-            transparent={true}
-            visible={detailModalVisible}
-            onRequestClose={toggleDetailModal}
-          >
-            <View style={editarstyles.modalContainer}>
-              <ScrollView contentContainerStyle={editarstyles.modalContent}>
-                <Text style={editarstyles.exercisePText}>Nombre: {exerciseDetails.name}</Text>
-                <Text style={editarstyles.exercisePText}>Equipo: {exerciseDetails.equipment}</Text>
-                <Text style={editarstyles.exercisePText}>Target: {exerciseDetails.target}</Text>
-                <Image
-                  source={{ uri: exerciseDetails.gifUrl }}
-                  style={{ width: 200, height: 200 }}
-                />
-                <TouchableOpacity style={editarstyles.botongift} onPress={toggleDetailModal}>
-                  <Text style={editarstyles.exerciseText}>Cerrar</Text>
-                </TouchableOpacity>
-                <TouchableOpacity style={editarstyles.botongift} onPress={() => agregarARutina(user, exerciseDetails, planId, navigation)}>
-                  <Text style={editarstyles.exerciseText}>Agregar a rutina</Text>
-                </TouchableOpacity>
-              </ScrollView>
-            </View>
-          </Modal>
-        )}
-      </View>
+      <StatusBar hidden={true} />
     </View>
   );
-};
-
-export default AgregarEjercicio;
+}

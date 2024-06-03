@@ -1,8 +1,12 @@
-import React, { useState, useEffect, useContext } from "react";
-import { View, Text, TouchableOpacity, ScrollView } from "react-native";
+import React, { useState, useEffect , useContext} from "react";
+import { View, Text, TouchableOpacity, ScrollView,Image, ImageBackground } from "react-native";
+import { getMuscleList, getMuscle } from "../api/user_api";
 import { styles } from "../styles/workoutsstyles";
 import { globalstyles } from "../styles/GlobalStyles";
 import { database } from '../firebaseConfig';
+import miImagen from '../assets/reverse.png'; 
+import { LinearGradient } from 'expo-linear-gradient';
+
 
 import { UserContext } from '../context/UserContext';
 
@@ -42,20 +46,30 @@ export default function Workouts({ navigation }) {
           <Text style={styles.createButtonText}>Crear Rutina</Text>
         </TouchableOpacity>
       </View>
-      <ScrollView style={globalstyles.contenido}>
+      <ScrollView style={styles.contenido}>
         <View style={styles.container}>
           {exercisePlans.map(plan => (
+            <LinearGradient
+            colors={['#9656D2', '#6300BF']}
+            style={styles.gradient}
+            start={{x: 0, y: 0}}
+            end={{x: 1, y: 0}}
+          >
             <TouchableOpacity
               key={plan.id}
               style={styles.planButton}
               onPress={() => navigation.navigate('PlanDetails', { planId: plan.id })}
             >
+
               <View style={styles.planRow}>
                 <Text style={styles.planTitle}>{plan.title}</Text>
                 <Text style={styles.planCount}>Ejercicios: {plan.exercises.length}</Text>
               </View>
+              
             </TouchableOpacity>
+            </LinearGradient>
           ))}
+          
         </View>
       </ScrollView>
     </View>

@@ -9,7 +9,7 @@ export default function Profile() {
 
   return (
     <View style={globalstyles.background}>
-    <ScrollView style={[globalstyles.contenido]}>
+    <ScrollView>
       {user ? (
         <View style={styles.profileContainer}>
           <ImageBackground source={require('../assets/image.png')} style={styles.backgroundImage}>

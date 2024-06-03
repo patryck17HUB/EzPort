@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react";
-import { View, Text, TouchableOpacity, ScrollView, Image  } from "react-native";
+import { View, Text, TouchableOpacity, ScrollView, Image,ImageBackground  } from "react-native";
 import { styles } from "../styles/settingsstyles";
 import { globalstyles } from "../styles/GlobalStyles";
 import { GoogleSignin } from '@react-native-google-signin/google-signin';
@@ -49,6 +49,7 @@ export default function Settings() {
     <View style={globalstyles.background}>
       <ScrollView style={styles.scrollContainer}>
       <View style={styles.logocontainer}>
+        
         <Image source={miImagen} style={styles.logo} />
       </View>
         {sections.map((section) => (

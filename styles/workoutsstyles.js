@@ -1,6 +1,12 @@
 import { StyleSheet } from "react-native";
 
 export const styles = StyleSheet.create({
+  scrollimage: {
+    flexGrow: 1,
+    marginBottom: '17%',
+    width: '100%',
+    alignSelf: 'center',
+  },
     container: {
         flex: 1,
         justifyContent: "center",
@@ -12,6 +18,10 @@ export const styles = StyleSheet.create({
       alignItems: 'center',
       padding: 16,
       backgroundColor: '#000000',
+    },
+    backgroundImage: {
+      flex: 1,
+      height: 10,
     },
     headerTitle: {
       fontSize: 24,
@@ -32,9 +42,10 @@ export const styles = StyleSheet.create({
         fontWeight: 'bold',
     },
     planButton: {
+    },
+    gradient:{
       padding: 15,
       marginVertical: 10,
-      backgroundColor: '#7539e5',
       borderRadius: 10,
       width: '85%',
     },
@@ -48,6 +59,14 @@ export const styles = StyleSheet.create({
     },
     planCount: {
       color: '#fff',
+    },
+    backgroundImage: {
+      flex:1,
+      width: '100%', // asegura que la imagen ocupe toda la anchura disponible
+      height: 10, // ajusta la altura según sea necesario
+      backgroundColor: 'rgba(204, 204, 204, 0)',
+      position: 'absolute',
+      bottom: 0,
     },
 });
 
@@ -246,7 +265,7 @@ export const editarstyles = StyleSheet.create({
     color: '#FFFFFF', // Texto blanco
   },
   botongift: {
-    backgroundColor: '#4287f5', // Azul más claro para contraste
+    backgroundColor: '#7539e5', // Azul más claro para contraste
     paddingVertical: 10,
     paddingHorizontal: 20,
     borderRadius: 5,
