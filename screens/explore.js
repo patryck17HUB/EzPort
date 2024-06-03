@@ -153,19 +153,7 @@ export default function Explore({ navigation }) {
         style={{ backgroundColor: Color.primary }}
       />
       
-
-      <View style={styles.container}>
-
-        <TouchableOpacity style={styles.button} onPress={toggleModal}>
-          <Text style={styles.buttonText}>Buscar grupo musuclar</Text>
-        </TouchableOpacity>
-
-        <Modal
-          animationType="slide"
-          transparent={true}
-          visible={modalVisible}
-          onRequestClose={toggleModal}
-        >
+       
           <View style={styles.modalContainer}>
             <View style={styles.modalContent}>
               <FlatList
@@ -178,8 +166,7 @@ export default function Explore({ navigation }) {
                 )}
               />
             </View>
-          </View>
-        </Modal>
+
 
       {exercises.length > 0 && (
         

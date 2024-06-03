@@ -13,32 +13,42 @@ export const styles = StyleSheet.create({
     marginTop: 30,
     marginBottom: 20,
   },
+  backgroundImage: {
+    flex:7,
+    resizeMode: 'cover', // o 'contain' dependiendo de lo que prefieras
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: '100%', // asegura que la imagen ocupe toda la anchura disponible
+    height: 300, // ajusta la altura según sea necesario
+  },
   container: {
-    flex: 5,
+    flex: 15,
     justifyContent: "center",
     alignItems: "center",
     marginTop: '0%',
     marginBottom: '24%',
     
   },
-  signout: {
-    backgroundColor: Color.secondary,
-    padding: 10,
-    borderRadius: 10,
-    margin: 10,
+  titulo:{
+    fontSize: 100,
+    color: '#fff',
+    fontWeight: 'bold',
+    flex:0,
   },
     button: {
       backgroundColor: '#7539e5',
       padding: 15,
       borderRadius: 5,
       width: '80%',
+      marginTop: 20,
+      
     },
     buttonText: {
       color: '#fff',
-      fontSize: 16,
+      fontSize: 40,
     },
     modalContainer: {
-      flex: 1,
+      flex: 40,
       justifyContent: 'center',
       alignItems: 'center',
       backgroundColor: 'rgba(0, 0, 0, 0.5)',
@@ -80,6 +90,7 @@ export const styles = StyleSheet.create({
       justifyContent: "center",
       alignSelf: 'center', 
       width: '100%',
+      flex:40,
     },
     gradient: {
       flex: 1,
