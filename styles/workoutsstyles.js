@@ -20,7 +20,7 @@ export const styles = StyleSheet.create({
     },
     createButton: {
       padding: 8,
-      backgroundColor: '#007bff',
+      backgroundColor: '#7539e5',
       borderRadius: 4,
     },
     createButtonText: {

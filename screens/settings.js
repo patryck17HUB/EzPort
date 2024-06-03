@@ -54,8 +54,12 @@ export default function Settings() {
 
   return (
     <View style={globalstyles.background}>
+<<<<<<< HEAD
       
       <ScrollView style={globalstyles.contenido}>
+=======
+      <ScrollView style={styles.scrollContainer}>
+>>>>>>> 16a33daa4b9421c9d3a1cbf6d8ee96a0aa8c7fa2
       <View style={styles.logocontainer}>
         
         <Image source={miImagen} style={styles.logo} />
@@ -74,7 +78,6 @@ export default function Settings() {
             {expandedSections[section.title] && (
               <View style={styles.content}>
                 <Text style={styles.contentText}>{section.content}</Text>
-
               </View>
             )}
           </View>
@@ -82,6 +85,10 @@ export default function Settings() {
         <TouchableOpacity style={styles.logoutButton} onPress={logout}>
           <Text style={styles.logoutButtonText}>Logout</Text>
         </TouchableOpacity>
+<<<<<<< HEAD
+=======
+        {error && <Text style={styles.errorText}>Error: {error.message}</Text>}
+>>>>>>> 16a33daa4b9421c9d3a1cbf6d8ee96a0aa8c7fa2
       </ScrollView>
     </View>
   );
