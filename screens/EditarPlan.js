@@ -4,6 +4,7 @@ import { database } from "../firebaseConfig";
 import { globalstyles } from "../styles/GlobalStyles";
 import { editarstyles } from "../styles/workoutsstyles";
 import { UserContext } from '../context/UserContext';
+import { LinearGradient } from 'expo-linear-gradient';
 
 const handleSaveChanges = (user, planId, exerciseRepsSets, setChangesSaved) => {
   try {
@@ -87,8 +88,7 @@ const EditarPlan = ({ route, navigation }) => {
   };
 
   const renderSetItem = (exerciseId, set, setIndex) => (
-    <View key={setIndex} style={editarstyles.setContainer}>
-      <Text>{setIndex + 1}</Text>
+    <View key={setIndex} style={editarstyles.setRow}>
       <TextInput
         style={editarstyles.input}
         placeholder="Reps"
@@ -105,11 +105,11 @@ const EditarPlan = ({ route, navigation }) => {
         onChangeText={(text) => handleAddRepsSets(exerciseId, setIndex, 'weight', text)}
         value={set.weight}
       />
-      <TouchableOpacity style={editarstyles.removeButton} onPress={() => handleRemoveSet(exerciseId, setIndex, setExerciseRepsSets)}>
+      <TouchableOpacity style={editarstyles.removeSetButton} onPress={() => handleRemoveSet(exerciseId, setIndex, setExerciseRepsSets)}>
         <Text style={editarstyles.removeButtonText}>Eliminar set</Text>
       </TouchableOpacity>
     </View>
-  );
+  ); 
 
   if (!planDetails) {
     return (
@@ -121,18 +121,45 @@ const EditarPlan = ({ route, navigation }) => {
 
   return (
     <View style={globalstyles.background}>
-      <View style={globalstyles.contenido}>
+      <View style={editarstyles.container}>
+        
+        
+         
         <TouchableOpacity style={editarstyles.button} onPress={() => navigation.navigate('AgregarEjercicio', { planId })}>
+        <LinearGradient
+            colors={['#9656D2', '#6300BF']}
+            style={editarstyles.gradient}
+            start={{x: 0, y: 0}}
+            end={{x: 1, y: 0}}
+          >
           <Text style={editarstyles.buttonText}>Agregar Ejercicio</Text>
+          </LinearGradient>
+
         </TouchableOpacity>
-        <ScrollView>
+
+    
+        <ScrollView style = {editarstyles.ScrollView}>
           {planDetails.exercises && Object.keys(planDetails.exercises).map(exerciseId => (
             <View key={exerciseId} style={editarstyles.exerciseContainer}>
               <Text style={editarstyles.exerciseName}>{planDetails.exercises[exerciseId].name}</Text>
               {exerciseRepsSets[exerciseId] && exerciseRepsSets[exerciseId].map((set, setIndex) => renderSetItem(exerciseId, set, setIndex))}
-              <TouchableOpacity style={editarstyles.addButton} onPress={() => handleAddSet(exerciseId, setExerciseRepsSets)}>
+              
+              
+              <TouchableOpacity onPress={() => handleAddSet(exerciseId, setExerciseRepsSets)}>
+                
+              <LinearGradient
+                colors={['#9656D2', '#6300BF']}
+                style={editarstyles.gradientSet}
+                start={{x: 0, y: 0}}
+                end={{x: 1, y: 0}}
+              >
+                
                 <Text style={editarstyles.addButtonText}>Agregar set</Text>
+              </LinearGradient>
+
               </TouchableOpacity>
+              
+
               <TouchableOpacity style={editarstyles.removeButton} onPress={() => handleRemoveExercise(user, exerciseId, planId, setChangesSaved)}>
                 <Text style={editarstyles.removeButtonText}>Eliminar ejercicio</Text>
               </TouchableOpacity>

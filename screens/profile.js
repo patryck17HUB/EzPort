@@ -1,10 +1,10 @@
 import React, { useContext } from "react";
-import { View, Image, Text, ScrollView,ImageBackground } from "react-native";
+import { View, Image, Text, ScrollView, TouchableOpacity, ImageBackground } from "react-native";
 import { styles } from "../styles/profilestyles";
 import { globalstyles } from "../styles/GlobalStyles";
 import { UserContext } from '../context/UserContext';
 
-export default function Profile() {
+export default function Profile({ navigation }) {
   const { user } = useContext(UserContext);
 
   return (
@@ -22,6 +22,12 @@ export default function Profile() {
       ) : (
         <Text style={styles.noProfileText}>No user information available</Text>
       )}
+      <TouchableOpacity
+          style={styles.historyButton}
+          onPress={() => navigation.navigate('History')}
+        >
+          <Text style={styles.historyButtonText}>Ver Historial</Text>
+      </TouchableOpacity>
     </ScrollView>
     </ImageBackground>
 

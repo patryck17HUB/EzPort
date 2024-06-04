@@ -1,17 +1,7 @@
-import { StyleSheet } from "react-native";
+import { ScrollView, StyleSheet } from "react-native";
+import { Color, FontSize, FontFamily } from "./GlobalStyles";
 
 export const styles = StyleSheet.create({
-  scrollimage: {
-    flexGrow: 1,
-    marginBottom: '17%',
-    width: '100%',
-    alignSelf: 'center',
-  },
-  backgroundImage: {
-    flex: 1,
-    width: '100%', // asegura que la imagen ocupe toda la anchura disponible
-    height: '100%', // ajusta la altura según sea necesario
-  },
     container: {
         flex: 1,
         justifyContent: "center",
@@ -35,7 +25,7 @@ export const styles = StyleSheet.create({
     },
     createButton: {
       padding: 8,
-      backgroundColor: '#7539e5',
+      backgroundColor: Color.purple1,
       borderRadius: 4,
     },
     createButtonText: {
@@ -45,8 +35,6 @@ export const styles = StyleSheet.create({
     planTitle: {
         fontSize: 18,
         fontWeight: 'bold',
-    },
-    planButton: {
     },
     gradient:{
       padding: 15,
@@ -65,12 +53,20 @@ export const styles = StyleSheet.create({
     planCount: {
       color: '#fff',
     },
+    backgroundImage: {
+      flex:1,
+      width: '100%', // asegura que la imagen ocupe toda la anchura disponible
+      height: 10, // ajusta la altura según sea necesario
+      backgroundColor: 'rgba(204, 204, 204, 0)',
+      position: 'absolute',
+      bottom: 0,
+    },
 });
 
 export const planstyles = StyleSheet.create({
   scrollContainer: {
     flexGrow: 1,
-    marginBottom: '17%',
+    paddingBottom: '5%',
     width: '85%',
     alignSelf: 'center',
   },
@@ -140,7 +136,7 @@ export const planstyles = StyleSheet.create({
   button1: {
     flex: 2.2,
     paddingVertical: 15,
-    backgroundColor: '#7539e5',
+    backgroundColor: Color.purple1,
     borderTopLeftRadius: 10,
     borderBottomLeftRadius: 10,
     marginRight: 3
@@ -148,7 +144,7 @@ export const planstyles = StyleSheet.create({
   button2: {
     flex: 0.8,
     paddingVertical: 15,
-    backgroundColor: '#7539e5',
+    backgroundColor: Color.purple1,
     borderTopRightRadius: 10,
     borderBottomRightRadius: 10,
   },
@@ -166,6 +162,8 @@ export const crearstyles = StyleSheet.create({
     flex: 1,
     padding: 16,
     marginTop: '5%',
+    width: '85%',
+    alignSelf: 'center',
   },
   label: {
     fontSize: 18,
@@ -182,7 +180,7 @@ export const crearstyles = StyleSheet.create({
     color: '#FFF',
   },
   Button: {
-    backgroundColor: '#7539e5',
+    backgroundColor: Color.purple1,
     paddingVertical: 15,
     paddingHorizontal: 30,
     borderRadius: 5,
@@ -196,20 +194,23 @@ export const crearstyles = StyleSheet.create({
   },
 });
 
+
 export const editarstyles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    paddingHorizontal: 20,
-    backgroundColor: '#000000', // Fondo negro
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  ScrollView: {
+    width: '85%',
+    alignSelf: 'center',
   },
   button: {
-    backgroundColor: '#4287f5', // Azul más claro para contraste
-    paddingVertical: 15,
-    paddingHorizontal: 30,
+    padding: 8,
     borderRadius: 5,
     marginBottom: 20,
+    height: '14%',
+    width: '100%',
   },
   buttonText: {
     color: '#FFFFFF', // Texto blanco
@@ -217,57 +218,64 @@ export const editarstyles = StyleSheet.create({
     fontWeight: 'bold',
     textAlign: 'center',
   },
-  modalContainer: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: 'rgba(0, 0, 0, 0.5)',
-  },
-  modalContent: {
-    backgroundColor: '#FFFFFF', // Fondo blanco para contraste
-    padding: 20,
+  gradient: {
+    marginVertical: 10,
     borderRadius: 10,
-    width: '80%',
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    alignSelf: 'center',
+    width: '85%',
+    paddingVertical: 8,
   },
-  option: {
+  gradientSet: {
+    borderRadius: 10,
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    alignSelf: 'center',
+    width: '95%',
+    paddingVertical: 8,
+    marginBottom: 10,
+  },
+  savebutton: {
+    backgroundColor: '#4287f5', // Azul más claro para contraste
     paddingVertical: 15,
-    borderBottomWidth: 1,
-    borderBottomColor: '#ccc',
-  },
-  optionText: {
-    fontSize: 16,
-    color: '#FFFFFF', // Texto blanco
-  },
-  exerciseItem: {
+    paddingHorizontal: 30,
+    borderRadius: 5,
+    marginTop: 10,
     marginBottom: 20,
   },
-  buttonchueco: {
-    backgroundColor: '#4287f5', // Azul más claro para contraste
-    paddingVertical: 10,
-    paddingHorizontal: 20,
-    borderRadius: 5,
-  },
-  exerciseText: {
+  addButtonText: {
     color: '#FFFFFF', // Texto blanco
     fontSize: 16,
     fontWeight: 'bold',
     textAlign: 'center',
+    width: '80%',
   },
-  exerciseList: {
-    flexGrow: 1,
+  removeSetButton: {
+    backgroundColor: '#7539e5', // Morado para contraste
+    paddingVertical: 10,
+    paddingHorizontal: 2,
+    borderRadius: 10,
+    width: '30%',
+    marginBottom: '5%',
   },
-  exercisePText: {
-    fontSize: 16,
-    marginBottom: 10,
-    color: '#FFFFFF', // Texto blanco
-  },
-  botongift: {
-    backgroundColor: '#7539e5', // Azul más claro para contraste
+  removeButton: {
+    backgroundColor: '#7539e5',
     paddingVertical: 10,
     paddingHorizontal: 20,
-    borderRadius: 5,
-    marginTop: 10,
+    borderRadius: 10,
+    marginTop: 5,
+    width: '80%',
+    alignSelf: 'center',
+    marginBottom: 30,
   },
+  removeButtonText: {
+    color: 'white',
+    textAlign: 'center',
+  },
+  // Estilos para los ejercicios
   exerciseContainer: {
     marginBottom: 15,
   },
@@ -275,92 +283,119 @@ export const editarstyles = StyleSheet.create({
     fontSize: 18,
     fontWeight: 'bold',
     color: '#FFFFFF',
+    marginBottom: 20,
+    alignSelf: 'center',
   },
-  removeButton: {
-    backgroundColor: 'red',
-    paddingVertical: 10,
-    paddingHorizontal: 20,
-    borderRadius: 5,
-    marginTop: 5,
+  setRow: {
+    flexDirection: 'row', 
+    alignItems: 'center', 
+    marginBottom: 10, 
   },
-  removeButtonText: {
-    color: 'white',
-    textAlign: 'center',
+  setColumn: {
+    flex: 1,
+    marginHorizontal: 5,
   },
   input: {
+    textAlign: 'center',
+    flex: 1,
     borderWidth: 1,
     borderColor: '#ccc',
     padding: 8,
     marginBottom: 16,
     borderRadius: 4,
     color: '#FFFFFF',
-  },
-  savebutton: {
-    backgroundColor: '#4287f5', // Azul más claro para contraste
-    paddingVertical: 15,
-    paddingHorizontal: 30,
-    borderRadius: 5,
-    marginTop: 20,
-  },
-  addButton: {
-    backgroundColor: '#4287f5', // Azul más claro para contraste
-    paddingVertical: 15,
-    paddingHorizontal: 30,
-    borderRadius: 5,
-    marginTop: 20,
-  },
-  addButtonText: {
-    color: '#FFFFFF', // Texto blanco
-    fontSize: 16,
-    fontWeight: 'bold',
-    textAlign: 'center',
-  },
-  setContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    marginBottom: 10,
+    marginHorizontal: 5, 
   },
 });
 
+
 export const trainingstyles = StyleSheet.create({
+  contenido: {
+    flex: 1,
+    marginTop: '5%',
+    width: '85%',
+    alignSelf: 'center',
+  },
   planTitle: {
-    fontSize: 24,
+    fontSize: 30,
     fontWeight: 'bold',
+    color: '#FFFFFF',
+    marginVertical: 5,
+    textAlign: 'center',
+    fontFamily: 'Arial-BoldMT',
+    marginBottom: 60
+  },
+  tableContainer: {
+    flex: 1,
+    backgroundColor: '#000000',
+    padding: 10,
     marginVertical: 10,
+
+    paddingBottom: 20,
+    marginBottom: 20,
+    width: '100%',
+    alignSelf: 'center',
+    borderBottomWidth: 2,
+    borderBottomColor: Color.purple1,
+  },
+  exerciseHeader: {
+    fontSize: 22,
+    fontWeight: 'bold',
+    color: '#FFFFFF', // Color morado para el nombre del ejercicio
+    marginBottom: 5,
+    fontFamily: 'Arial-BoldMT',
     textAlign: 'center',
   },
-  exerciseContainer: {
-    backgroundColor: '#f0f0f0',
-    padding: 10,
-    marginVertical: 5,
-    borderRadius: 5,
+  tableRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    paddingVertical: 5,
   },
-  exerciseName: {
+  tableHeader: {
     fontSize: 18,
     fontWeight: 'bold',
-    marginBottom: 5,
+    color: '#E2CAF9',
+    flex: 1,
+    textAlign: 'center',
+    fontFamily: 'Arial-BoldMT',
   },
-  exerciseDetails: {
-    fontSize: 16,
-    color: '#333',
+  tableCell: {
+    fontSize: 20,
+    marginHorizontal: 15,
+    color: '#FFFFFF', // Texto blanco para el contenido de la tabla
+    flex: 1,
+    textAlign: 'center',
+    fontFamily: 'Arial-BoldMT',
+    fontWeight: 'bold'
   },
-  input: {
-    height: 40,
-    borderColor: 'gray',
+  tableCellInput: {
+    height: 35,
+    borderColor: '#FFFFFF', // Borde blanco para los inputs de la tabla
     borderWidth: 1,
     marginVertical: 5,
     paddingHorizontal: 10,
+    borderRadius: 5,
+    marginHorizontal: 5,
+    color: '#FFFFFF', // Texto blanco para los inputs de la tabla
+    backgroundColor: '#000000', // Fondo negro para los inputs de la tabla
+    flex: 1,
+    textAlign: 'center',
   },
   finishButton: {
-    backgroundColor: '#4CAF50',
-    padding: 10,
-    borderRadius: 5,
+    backgroundColor: '#4A0D66',
+    padding: 20,
+    borderRadius: 10,
     alignItems: 'center',
-    marginVertical: 10,
+    marginVertical: 20,
+    width: '80%',
+    alignSelf: 'center',
   },
   finishButtonText: {
     color: '#FFFFFF',
-    fontSize: 16,
+    fontSize: 18,
+    fontWeight: 'bold',
+    fontFamily: 'Arial',
+    textAlign: 'center',
   },
 });

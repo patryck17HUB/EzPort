@@ -17,11 +17,12 @@ export default function Training({ route, navigation }) {
 
     planRef.once('value')
       .then(snapshot => {
-        setPlanDetails(snapshot.val());
-        if (snapshot.val() && snapshot.val().exercises) {
+        const planData = snapshot.val();
+        setPlanDetails(planData);
+        if (planData && planData.exercises) {
           const repsSets = {};
-          Object.keys(snapshot.val().exercises).forEach(exerciseId => {
-            const exercise = snapshot.val().exercises[exerciseId];
+          Object.keys(planData.exercises).forEach(exerciseId => {
+            const exercise = planData.exercises[exerciseId];
             const sets = exercise.sets || [];
             repsSets[exerciseId] = {
               name: exercise.name,
@@ -63,6 +64,7 @@ export default function Training({ route, navigation }) {
 
       await historyRef.set({
         planId,
+        title: planDetails.title,
         exercises: exerciseRepsSets
       });
 
@@ -84,32 +86,37 @@ export default function Training({ route, navigation }) {
 
   return (
     <View style={globalstyles.background}>
-      <ScrollView style={globalstyles.contenido}>
+      <ScrollView style={trainingstyles.contenido}>
         <Text style={trainingstyles.planTitle}>{planDetails.title}</Text>
-        {Object.keys(planDetails.exercises).map(exerciseId => {
+        {Object.keys(planDetails.exercises).map((exerciseId, index) => {
           const exercise = planDetails.exercises[exerciseId];
           return (
-            <View key={exerciseId} style={trainingstyles.exerciseContainer}>
-              <Text style={trainingstyles.exerciseName}>{exercise.name}</Text>
-              {exerciseRepsSets[exerciseId] && exerciseRepsSets[exerciseId].sets.map((set, index) => (
-                <View key={index}>
-                  <Text style={trainingstyles.exerciseDetails}>Set {index + 1}</Text>
-                  <TextInput
-                    style={trainingstyles.input}
-                    placeholder={`Reps: ${set.reps}`}
-                    value={set.reps}
-                    onChangeText={(value) => handleInputChange(exerciseId, index, 'reps', value)}
-                    keyboardType="numeric"
-                  />
-                  <TextInput
-                    style={trainingstyles.input}
-                    placeholder={`Weight: ${set.weight}`}
-                    value={set.weight}
-                    onChangeText={(value) => handleInputChange(exerciseId, index, 'weight', value)}
-                    keyboardType="numeric"
-                  />
+            <View key={exerciseId}>
+              <Text style={trainingstyles.exerciseHeader}>{exercise.name}</Text>
+              <View style={trainingstyles.tableContainer}>
+                <View style={trainingstyles.tableRow}>
+                  <Text style={trainingstyles.tableHeader}>Set</Text>
+                  <Text style={trainingstyles.tableHeader}>Reps</Text>
+                  <Text style={trainingstyles.tableHeader}>Weight</Text>
                 </View>
-              ))}
+                {exerciseRepsSets[exerciseId] && exerciseRepsSets[exerciseId].sets.map((set, setIndex) => (
+                  <View key={setIndex} style={trainingstyles.tableRow}>
+                    <Text style={trainingstyles.tableCell}>{setIndex + 1}</Text>
+                    <TextInput
+                      style={trainingstyles.tableCellInput}
+                      value={set.reps}
+                      onChangeText={(value) => handleInputChange(exerciseId, setIndex, 'reps', value)}
+                      keyboardType="numeric"
+                    />
+                    <TextInput
+                      style={trainingstyles.tableCellInput}
+                      value={set.weight}
+                      onChangeText={(value) => handleInputChange(exerciseId, setIndex, 'weight', value)}
+                      keyboardType="numeric"
+                    />
+                  </View>
+                ))}
+              </View>
             </View>
           );
         })}
