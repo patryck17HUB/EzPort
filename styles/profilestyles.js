@@ -42,7 +42,7 @@ export const styles = StyleSheet.create({
       historyButton: {
         marginTop: 20,
         padding: 10,
-        backgroundColor: '#7539e5',
+        backgroundColor: Color.purple1,
         borderRadius: 5,
       },
       historyButtonText: {

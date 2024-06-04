@@ -4,7 +4,7 @@ import { styles } from "../styles/workoutsstyles";
 import { globalstyles } from "../styles/GlobalStyles";
 import { database } from '../firebaseConfig'; 
 import { LinearGradient } from 'expo-linear-gradient';
-
+import { Color} from "../styles/GlobalStyles";
 
 import { UserContext } from '../context/UserContext';
 
@@ -48,14 +48,13 @@ export default function Workouts({ navigation }) {
         <View style={styles.container}>
           {exercisePlans.map(plan => (
             <LinearGradient
-            colors={['#9656D2', '#6300BF']}
+            colors={['#7236AB', Color.purple1]}
             style={styles.gradient}
             start={{x: 0, y: 0}}
             end={{x: 1, y: 0}}
           >
             <TouchableOpacity
               key={plan.id}
-              style={styles.planButton}
               onPress={() => navigation.navigate('PlanDetails', { planId: plan.id })}
             >
 

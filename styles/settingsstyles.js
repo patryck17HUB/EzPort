@@ -43,7 +43,7 @@ export const styles = StyleSheet.create({
         padding: 15,
         marginHorizontal: 30,
         borderRadius: 10,
-        backgroundColor: '#7539e5',
+        backgroundColor: Color.purple1,
         alignItems: 'center',
         justifyContent: 'center',
         marginTop: 20,

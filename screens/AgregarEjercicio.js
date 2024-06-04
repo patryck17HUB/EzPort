@@ -177,6 +177,7 @@ export default function Explore({ route, navigation }) {
           data={options}
           keyExtractor={(item) => item.label}
           renderItem={renderOptionItem}
+          style={{ marginBottom: '2%' }}
         />
       {exerciseDetails && (
         <Modal

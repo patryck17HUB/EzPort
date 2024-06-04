@@ -84,7 +84,7 @@ export default function Training({ route, navigation }) {
 
   return (
     <View style={globalstyles.background}>
-      <ScrollView style={globalstyles.contenido}>
+      <ScrollView style={trainingstyles.contenido}>
         <Text style={trainingstyles.planTitle}>{planDetails.title}</Text>
         {Object.keys(planDetails.exercises).map((exerciseId, index) => {
           const exercise = planDetails.exercises[exerciseId];
@@ -115,7 +115,6 @@ export default function Training({ route, navigation }) {
                   </View>
                 ))}
               </View>
-              {index !== Object.keys(planDetails.exercises).length - 1 && <View style={trainingstyles.dividerLine} />}
             </View>
           );
         })}

@@ -1,12 +1,7 @@
 import { StyleSheet } from "react-native";
+import { Color, FontSize, FontFamily } from "./GlobalStyles";
 
 export const styles = StyleSheet.create({
-  scrollimage: {
-    flexGrow: 1,
-    marginBottom: '17%',
-    width: '100%',
-    alignSelf: 'center',
-  },
     container: {
         flex: 1,
         justifyContent: "center",
@@ -30,7 +25,7 @@ export const styles = StyleSheet.create({
     },
     createButton: {
       padding: 8,
-      backgroundColor: '#7539e5',
+      backgroundColor: Color.purple1,
       borderRadius: 4,
     },
     createButtonText: {
@@ -40,8 +35,6 @@ export const styles = StyleSheet.create({
     planTitle: {
         fontSize: 18,
         fontWeight: 'bold',
-    },
-    planButton: {
     },
     gradient:{
       padding: 15,
@@ -73,7 +66,7 @@ export const styles = StyleSheet.create({
 export const planstyles = StyleSheet.create({
   scrollContainer: {
     flexGrow: 1,
-    marginBottom: '17%',
+    paddingBottom: '5%',
     width: '85%',
     alignSelf: 'center',
   },
@@ -143,7 +136,7 @@ export const planstyles = StyleSheet.create({
   button1: {
     flex: 2.2,
     paddingVertical: 15,
-    backgroundColor: '#7539e5',
+    backgroundColor: Color.purple1,
     borderTopLeftRadius: 10,
     borderBottomLeftRadius: 10,
     marginRight: 3
@@ -151,7 +144,7 @@ export const planstyles = StyleSheet.create({
   button2: {
     flex: 0.8,
     paddingVertical: 15,
-    backgroundColor: '#7539e5',
+    backgroundColor: Color.purple1,
     borderTopRightRadius: 10,
     borderBottomRightRadius: 10,
   },
@@ -169,6 +162,8 @@ export const crearstyles = StyleSheet.create({
     flex: 1,
     padding: 16,
     marginTop: '5%',
+    width: '85%',
+    alignSelf: 'center',
   },
   label: {
     fontSize: 18,
@@ -185,7 +180,7 @@ export const crearstyles = StyleSheet.create({
     color: '#FFF',
   },
   Button: {
-    backgroundColor: '#7539e5',
+    backgroundColor: Color.purple1,
     paddingVertical: 15,
     paddingHorizontal: 30,
     borderRadius: 5,
@@ -265,7 +260,7 @@ export const editarstyles = StyleSheet.create({
     color: '#FFFFFF', // Texto blanco
   },
   botongift: {
-    backgroundColor: '#7539e5', // Azul más claro para contraste
+    backgroundColor: Color.purple1, // Azul más claro para contraste
     paddingVertical: 10,
     paddingHorizontal: 20,
     borderRadius: 5,
@@ -327,6 +322,12 @@ export const editarstyles = StyleSheet.create({
 });
 
 export const trainingstyles = StyleSheet.create({
+  contenido: {
+    flex: 1,
+    marginTop: '5%',
+    width: '85%',
+    alignSelf: 'center',
+  },
   planTitle: {
     fontSize: 30,
     fontWeight: 'bold',
@@ -337,18 +338,22 @@ export const trainingstyles = StyleSheet.create({
     marginBottom: 60
   },
   tableContainer: {
+    flex: 1,
     backgroundColor: '#000000',
     padding: 10,
     marginVertical: 10,
-    borderRadius: 10,
-    width: '90%',
+
+    paddingBottom: 20,
+    marginBottom: 20,
+    width: '100%',
     alignSelf: 'center',
-    borderColor: '#000000', // Borde negro para la tabla
+    borderBottomWidth: 2,
+    borderBottomColor: Color.purple1,
   },
   exerciseHeader: {
     fontSize: 22,
     fontWeight: 'bold',
-    color: '#7539e5', // Color morado para el nombre del ejercicio
+    color: '#FFFFFF', // Color morado para el nombre del ejercicio
     marginBottom: 5,
     fontFamily: 'Arial-BoldMT',
     textAlign: 'center',
@@ -362,7 +367,7 @@ export const trainingstyles = StyleSheet.create({
   tableHeader: {
     fontSize: 18,
     fontWeight: 'bold',
-    color: '#FFFFFF',
+    color: '#E2CAF9',
     flex: 1,
     textAlign: 'center',
     fontFamily: 'Arial-BoldMT',
@@ -404,12 +409,5 @@ export const trainingstyles = StyleSheet.create({
     fontWeight: 'bold',
     fontFamily: 'Arial',
     textAlign: 'center',
-  },
-  dividerLine: {
-    height:1,
-    backgroundColor: '#FFFFFF', // Línea blanca para dividir visualmente los contenedores de ejercicio
-    marginVertical: 15,
-    marginHorizontal: 15,
-    borderRadius: 20,
   },
 });

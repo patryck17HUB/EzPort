@@ -86,20 +86,6 @@ export default function Explore({ navigation }) {
     borderRadius: 0,
   });
 
-  const renderTabBar = (props) => (
-    <TabBar
-      {...props}
-      indicatorStyle={{
-        backgroundColor: 'white',
-        width: '46%',
-        left: '2.5%',
-        right: '2.5%',
-      }}
-      style={dynamicTabBarStyle(index)}
-      labelStyle={{ color: 'white', fontSize: 16 }}
-    />
-  );
-
   const renderExerciseItem = ({ item }) => (
     <View style={styles.exerciseItem}>
       <TouchableOpacity style={styles.button} onPress={() => handleSelectExercise(item.id)}>
@@ -154,6 +140,7 @@ export default function Explore({ navigation }) {
           data={options}
           keyExtractor={(item) => item.label}
           renderItem={renderOptionItem}
+          style={{ marginBottom: '2%' }}
         />
       {exerciseDetails && (
         <Modal

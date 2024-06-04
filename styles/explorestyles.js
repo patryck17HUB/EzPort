@@ -153,7 +153,7 @@ contentText: {
     width: '80%',
   },
   botongift: {
-    backgroundColor: '#7539e5',
+    backgroundColor: Color.purple1,
     padding: 15,
     margin: 5,
     borderRadius: 5,

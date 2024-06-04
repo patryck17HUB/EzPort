@@ -10,6 +10,7 @@ export const FontSize = {
 export const Color = {
     primary: "#000000",
     secondary: "#2E2E2E",
+    purple1: "#4A0D66"
 };
 
 import { StyleSheet } from "react-native";
