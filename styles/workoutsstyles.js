@@ -197,17 +197,15 @@ export const crearstyles = StyleSheet.create({
 export const editarstyles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    paddingHorizontal: 20,
-    backgroundColor: '#000000', // Fondo negro
-  },
+    justifyContent: "center",
+    alignItems: "center",
+},
   button: {
-    backgroundColor: '#4287f5', // Azul más claro para contraste
-    paddingVertical: 15,
-    paddingHorizontal: 30,
+    padding: 8,
     borderRadius: 5,
     marginBottom: 20,
+    height: '14%',
+    width: '80%',
   },
   buttonText: {
     color: '#FFFFFF', // Texto blanco
@@ -275,11 +273,20 @@ export const editarstyles = StyleSheet.create({
     color: '#FFFFFF',
   },
   removeButton: {
-    backgroundColor: 'red',
+    backgroundColor: '#7539e5',
     paddingVertical: 10,
     paddingHorizontal: 20,
     borderRadius: 5,
     marginTop: 5,
+    
+  },
+  removeButtonD: {
+    backgroundColor: '#7539e5',
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    borderRadius: 5,
+    marginTop: 5,
+    
   },
   removeButtonText: {
     color: 'white',
@@ -306,6 +313,7 @@ export const editarstyles = StyleSheet.create({
     paddingHorizontal: 30,
     borderRadius: 5,
     marginTop: 20,
+    width : '80%',
   },
   addButtonText: {
     color: '#FFFFFF', // Texto blanco
@@ -317,8 +325,29 @@ export const editarstyles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
+    
     marginBottom: 10,
+    marginLeft: '0%', // Mantén el margen izquierdo en 20
+    marginRight: '9%'
   },
+  gradient:{
+    
+    marginVertical: 10,
+    borderRadius: 10,
+    
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    
+  },
+  planRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    height: '5%',
+  },
+  
+  
 });
 
 export const trainingstyles = StyleSheet.create({
