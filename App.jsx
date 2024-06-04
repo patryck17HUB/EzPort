@@ -12,8 +12,8 @@ import LoadingScreen from "./LoadingScreen";
 import EditarPlan from "./screens/EditarPlan";
 import Training from "./screens/Training";
 import AgregarEjercicio from "./screens/AgregarEjercicio";
+import History from "./screens/History";
 
-// Navegar entre paginas
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { MaterialCommunityIcons } from '@expo/vector-icons';
@@ -21,6 +21,7 @@ import { SafeAreaProvider } from "react-native-safe-area-context";
 import { UserProvider } from './context/UserContext';
 
 const Stack = createNativeStackNavigator();
+const Stack2 = createNativeStackNavigator();
 
 function WorkoutsStack() {
   return (
@@ -28,9 +29,7 @@ function WorkoutsStack() {
       <Stack.Screen 
         name="Workouts" 
         component={Workouts} 
-        options={{ 
-          headerShown: false,
-        }} 
+        options={{ headerShown: false }} 
       />
       <Stack.Screen 
         name="PlanDetails" 
@@ -86,20 +85,42 @@ function WorkoutsStack() {
   );
 }
 
+function ProfileStack() {
+  return (
+    <Stack2.Navigator>
+      <Stack2.Screen 
+        name="Profile" 
+        component={Profile} 
+        options={{ headerShown: false }} 
+      />
+      <Stack2.Screen 
+        name="History" 
+        component={History} 
+        options={{ 
+          headerShown: true, 
+          title: 'Historial',
+          headerStyle: { backgroundColor: Color.primary },
+          headerTintColor: '#fff' 
+        }} 
+      />
+    </Stack2.Navigator>
+  );
+}
+
 function MainTabs() {
   const [index, setIndex] = useState(0);
 
   const [routes] = useState([
     { key: 'Explore', title: 'Explorar', component: Explore, icon: 'search-web', tabbarColor: '#FF1C1C' },
     { key: 'Workouts', title: 'Plan', component: WorkoutsStack, icon: 'arm-flex', tabbarColor: '#72FF1C' },
-    { key: 'Profile', title: 'Perfil', component: Profile, icon: 'account', tabbarColor: '#1CFFE3' },
+    { key: 'Profile', title: 'Perfil', component: ProfileStack, icon: 'account', tabbarColor: '#1CFFE3' },
     { key: 'Settings', title: 'Config', component: Settings, icon: 'cog', tabbarColor: '#D91CFF' },
   ]);
 
   const renderScene = BottomNavigation.SceneMap({
     Explore: Explore,
     Workouts: WorkoutsStack,
-    Profile: Profile,
+    Profile: ProfileStack,
     Settings: Settings,
   });
 
