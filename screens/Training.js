@@ -86,30 +86,36 @@ export default function Training({ route, navigation }) {
     <View style={globalstyles.background}>
       <ScrollView style={globalstyles.contenido}>
         <Text style={trainingstyles.planTitle}>{planDetails.title}</Text>
-        {Object.keys(planDetails.exercises).map(exerciseId => {
+        {Object.keys(planDetails.exercises).map((exerciseId, index) => {
           const exercise = planDetails.exercises[exerciseId];
           return (
-            <View key={exerciseId} style={trainingstyles.exerciseContainer}>
-              <Text style={trainingstyles.exerciseName}>{exercise.name}</Text>
-              {exerciseRepsSets[exerciseId] && exerciseRepsSets[exerciseId].sets.map((set, index) => (
-                <View key={index}>
-                  <Text style={trainingstyles.exerciseDetails}>Set {index + 1}</Text>
-                  <TextInput
-                    style={trainingstyles.input}
-                    placeholder={`Reps: ${set.reps}`}
-                    value={set.reps}
-                    onChangeText={(value) => handleInputChange(exerciseId, index, 'reps', value)}
-                    keyboardType="numeric"
-                  />
-                  <TextInput
-                    style={trainingstyles.input}
-                    placeholder={`Weight: ${set.weight}`}
-                    value={set.weight}
-                    onChangeText={(value) => handleInputChange(exerciseId, index, 'weight', value)}
-                    keyboardType="numeric"
-                  />
+            <View key={exerciseId}>
+              <Text style={trainingstyles.exerciseHeader}>{exercise.name}</Text>
+              <View style={trainingstyles.tableContainer}>
+                <View style={trainingstyles.tableRow}>
+                  <Text style={trainingstyles.tableHeader}>Set</Text>
+                  <Text style={trainingstyles.tableHeader}>Reps</Text>
+                  <Text style={trainingstyles.tableHeader}>Weight</Text>
                 </View>
-              ))}
+                {exerciseRepsSets[exerciseId] && exerciseRepsSets[exerciseId].sets.map((set, setIndex) => (
+                  <View key={setIndex} style={trainingstyles.tableRow}>
+                    <Text style={trainingstyles.tableCell}>{setIndex + 1}</Text>
+                    <TextInput
+                      style={trainingstyles.tableCellInput}
+                      value={set.reps}
+                      onChangeText={(value) => handleInputChange(exerciseId, setIndex, 'reps', value)}
+                      keyboardType="numeric"
+                    />
+                    <TextInput
+                      style={trainingstyles.tableCellInput}
+                      value={set.weight}
+                      onChangeText={(value) => handleInputChange(exerciseId, setIndex, 'weight', value)}
+                      keyboardType="numeric"
+                    />
+                  </View>
+                ))}
+              </View>
+              {index !== Object.keys(planDetails.exercises).length - 1 && <View style={trainingstyles.dividerLine} />}
             </View>
           );
         })}
