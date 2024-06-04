@@ -6,7 +6,7 @@ import { editarstyles } from "../styles/workoutsstyles";
 import { UserContext } from '../context/UserContext';
 import { LinearGradient } from 'expo-linear-gradient';
 
-const handleSaveChanges = (user, planId, exerciseRepsSets, setChangesSaved) => {
+const handleSaveChanges = (user, planId, exerciseRepsSets, setChangesSaved, navigation) => {
   try {
     // Guardar los cambios en la base de datos
     const userId = user.id;
@@ -17,37 +17,12 @@ const handleSaveChanges = (user, planId, exerciseRepsSets, setChangesSaved) => {
     });
     setChangesSaved(true);
     alert("Cambios guardados correctamente");
+    // Navegar de regreso a Workouts después de guardar los cambios
+    navigation.navigate('Workouts');
   } catch (error) {
     console.error("Error guardando cambios:", error);
     alert("Error al guardar cambios");
   }
-};
-
-const handleRemoveExercise = async (user, exerciseId, planId, setChangesSaved) => {
-  try {
-    const userId = user.id;
-    await database.ref(`users/${userId}/exercisePlans/${planId}/exercises/${exerciseId}`).remove();
-    alert("Ejercicio eliminado de la rutina");
-    setChangesSaved(false); // Indicar que se deben guardar los cambios nuevamente
-  } catch (error) {
-    console.error("Error eliminando ejercicio de la rutina:", error);
-    alert("Error eliminando ejercicio de la rutina");
-  }
-};
-
-const handleAddSet = (exerciseId, setExerciseRepsSets) => {
-  setExerciseRepsSets(prevState => ({
-    ...prevState,
-    [exerciseId]: prevState[exerciseId] ? [...prevState[exerciseId], { reps: '', weight: '' }] : [{ reps: '', weight: '' }]
-  }));
-};
-
-const handleRemoveSet = (exerciseId, setIndex, setExerciseRepsSets) => {
-  setExerciseRepsSets(prevState => {
-    const updatedSets = [...prevState[exerciseId]];
-    updatedSets.splice(setIndex, 1);
-    return { ...prevState, [exerciseId]: updatedSets };
-  });
 };
 
 const EditarPlan = ({ route, navigation }) => {
@@ -122,51 +97,42 @@ const EditarPlan = ({ route, navigation }) => {
   return (
     <View style={globalstyles.background}>
       <View style={editarstyles.container}>
-        
-        
-         
         <TouchableOpacity style={editarstyles.button} onPress={() => navigation.navigate('AgregarEjercicio', { planId })}>
-        <LinearGradient
+          <LinearGradient
             colors={['#9656D2', '#6300BF']}
             style={editarstyles.gradient}
             start={{x: 0, y: 0}}
             end={{x: 1, y: 0}}
           >
-          <Text style={editarstyles.buttonText}>Agregar Ejercicio</Text>
+            <Text style={editarstyles.buttonText}>Agregar Ejercicio</Text>
           </LinearGradient>
-
         </TouchableOpacity>
 
-    
         <ScrollView style = {editarstyles.ScrollView}>
           {planDetails.exercises && Object.keys(planDetails.exercises).map(exerciseId => (
             <View key={exerciseId} style={editarstyles.exerciseContainer}>
               <Text style={editarstyles.exerciseName}>{planDetails.exercises[exerciseId].name}</Text>
               {exerciseRepsSets[exerciseId] && exerciseRepsSets[exerciseId].map((set, setIndex) => renderSetItem(exerciseId, set, setIndex))}
               
-              
               <TouchableOpacity onPress={() => handleAddSet(exerciseId, setExerciseRepsSets)}>
-                
-              <LinearGradient
-                colors={['#9656D2', '#6300BF']}
-                style={editarstyles.gradientSet}
-                start={{x: 0, y: 0}}
-                end={{x: 1, y: 0}}
-              >
-                
-                <Text style={editarstyles.addButtonText}>Agregar set</Text>
-              </LinearGradient>
-
+                <LinearGradient
+                  colors={['#9656D2', '#6300BF']}
+                  style={editarstyles.gradientSet}
+                  start={{x: 0, y: 0}}
+                  end={{x: 1, y: 0}}
+                >
+                  <Text style={editarstyles.addButtonText}>Agregar set</Text>
+                </LinearGradient>
               </TouchableOpacity>
               
-
               <TouchableOpacity style={editarstyles.removeButton} onPress={() => handleRemoveExercise(user, exerciseId, planId, setChangesSaved)}>
                 <Text style={editarstyles.removeButtonText}>Eliminar ejercicio</Text>
               </TouchableOpacity>
             </View>
           ))}
         </ScrollView>
-        <TouchableOpacity style={editarstyles.savebutton} onPress={() => handleSaveChanges(user, planId, exerciseRepsSets, setChangesSaved)}>
+        
+        <TouchableOpacity style={editarstyles.savebutton} onPress={() => handleSaveChanges(user, planId, exerciseRepsSets, setChangesSaved, navigation)}>
           <Text style={editarstyles.buttonText}>Guardar Cambios</Text>
         </TouchableOpacity>
       </View>
