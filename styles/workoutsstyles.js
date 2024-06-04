@@ -204,6 +204,7 @@ export const editarstyles = StyleSheet.create({
   ScrollView: {
     width: '85%',
     alignSelf: 'center',
+    flex: 1,
   },
   button: {
     padding: 8,
@@ -228,23 +229,30 @@ export const editarstyles = StyleSheet.create({
     width: '85%',
     paddingVertical: 8,
   },
-  gradientSet: {
-    borderRadius: 10,
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    alignSelf: 'center',
-    width: '95%',
-    paddingVertical: 8,
-    marginBottom: 10,
-  },
-  savebutton: {
-    backgroundColor: '#4287f5', // Azul más claro para contraste
-    paddingVertical: 15,
-    paddingHorizontal: 30,
+  gradientsettouch:{
+    backgroundColor: '#7539e5',
     borderRadius: 5,
-    marginTop: 10,
-    marginBottom: 20,
+    alignItems: 'center',
+    marginBottom: 10,
+    flex: 2.5, 
+    paddingVertical: 17,
+  },
+  removeButton: {
+    backgroundColor: '#7539e5',
+    paddingVertical: 10,
+    borderRadius: 5,
+    alignItems: 'center',
+    marginBottom: 10,
+    flex: 1, 
+    marginLeft: 10, 
+  },
+  exercisebuttons: {
+    flexDirection: 'row',
+    width: '100%',
+    justifyContent: 'space-between',
+    alignItems: 'center', 
+    marginTop: 5, 
+    alignSelf: 'center',
   },
   addButtonText: {
     color: '#FFFFFF', // Texto blanco
@@ -261,23 +269,13 @@ export const editarstyles = StyleSheet.create({
     width: '30%',
     marginBottom: '5%',
   },
-  removeButton: {
-    backgroundColor: '#7539e5',
-    paddingVertical: 10,
-    paddingHorizontal: 20,
-    borderRadius: 10,
-    marginTop: 5,
-    width: '80%',
-    alignSelf: 'center',
-    marginBottom: 30,
-  },
   removeButtonText: {
     color: 'white',
     textAlign: 'center',
   },
   // Estilos para los ejercicios
   exerciseContainer: {
-    marginBottom: 15,
+    marginBottom: 30,
   },
   exerciseName: {
     fontSize: 18,
@@ -306,6 +304,39 @@ export const editarstyles = StyleSheet.create({
     color: '#FFFFFF',
     marginHorizontal: 5, 
   },
+  gradientSetBottom: {
+    width: '100%',
+    justifyContent: "center",
+    alignItems: "center",
+    borderRadius: 5,
+    paddingVertical: 10, // Ajusta la altura del gradiente
+  },
+  deleteButton: {
+    borderRadius: 5,
+    alignItems: 'center',
+    marginBottom: 5,
+    flex: 1,
+    marginLeft: 10,
+    overflow: 'hidden', 
+  },
+  savebutton: {
+    borderRadius: 5,
+    marginTop: 5,
+    marginBottom: 10,
+    flex: 2.5,
+    overflow: 'hidden', 
+  },
+  deleteButtonText: {
+    color: '#FFFFFF',
+    fontSize: 16,
+  },
+  bottom: {
+    flexDirection: 'row',
+    width: '95%',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginTop: 5,
+  },  
 });
 
 

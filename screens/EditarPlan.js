@@ -35,6 +35,18 @@ const handleRemoveExercise = async (user, exerciseId, planId, setChangesSaved) =
   }
 };
 
+const handleDeletePlan = async (user, planId, navigation) => {
+  try {
+    const userId = user.id;
+    await database.ref(`users/${userId}/exercisePlans/${planId}`).remove();
+    alert("Plan eliminado correctamente");
+    navigation.navigate('Workouts'); // Asegúrate de que 'Workouts' sea el nombre correcto de la pantalla a la que quieres navegar
+  } catch (error) {
+    console.error("Error eliminando el plan:", error);
+    alert("Error eliminando el plan");
+  }
+};
+
 const handleAddSet = (exerciseId, setExerciseRepsSets) => {
   setExerciseRepsSets(prevState => ({
     ...prevState,
@@ -144,31 +156,44 @@ const EditarPlan = ({ route, navigation }) => {
               <Text style={editarstyles.exerciseName}>{planDetails.exercises[exerciseId].name}</Text>
               {exerciseRepsSets[exerciseId] && exerciseRepsSets[exerciseId].map((set, setIndex) => renderSetItem(exerciseId, set, setIndex))}
               
-              
-              <TouchableOpacity onPress={() => handleAddSet(exerciseId, setExerciseRepsSets)}>
-                
-              <LinearGradient
-                colors={['#9656D2', '#6300BF']}
-                style={editarstyles.gradientSet}
-                start={{x: 0, y: 0}}
-                end={{x: 1, y: 0}}
-              >
-                
+              <View style={editarstyles.exercisebuttons}>
+              <TouchableOpacity style={editarstyles.gradientsettouch} onPress={() => handleAddSet(exerciseId, setExerciseRepsSets)}>
+
                 <Text style={editarstyles.addButtonText}>Agregar set</Text>
-              </LinearGradient>
 
               </TouchableOpacity>
-              
-
               <TouchableOpacity style={editarstyles.removeButton} onPress={() => handleRemoveExercise(user, exerciseId, planId, setChangesSaved)}>
                 <Text style={editarstyles.removeButtonText}>Eliminar ejercicio</Text>
               </TouchableOpacity>
+              </View>
+
             </View>
           ))}
         </ScrollView>
+        <View style={editarstyles.bottom}>
         <TouchableOpacity style={editarstyles.savebutton} onPress={() => handleSaveChanges(user, planId, exerciseRepsSets, setChangesSaved)}>
+        <LinearGradient
+                colors={['#9656D2', '#7539e5']}
+                start={{x: 0, y: 0}}
+                end={{x: .8, y: 0}}
+                style={editarstyles.gradientSetBottom}
+              >
           <Text style={editarstyles.buttonText}>Guardar Cambios</Text>
+        </LinearGradient>
         </TouchableOpacity>
+
+        <TouchableOpacity style={editarstyles.deleteButton} onPress={() => handleDeletePlan(user, planId, navigation)}>
+        <LinearGradient
+                colors={['#B40000', '#DE663A']}
+                start={{x: 0, y: 0}}
+                end={{x: 1, y: 0}}
+                style={editarstyles.gradientSetBottom}
+              >
+          <Text style={editarstyles.deleteButtonText}>Eliminar Plan</Text>
+        </LinearGradient>
+        </TouchableOpacity>
+
+        </View>
       </View>
     </View>
   );
