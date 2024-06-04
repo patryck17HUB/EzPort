@@ -7,6 +7,11 @@ export const styles = StyleSheet.create({
     width: '100%',
     alignSelf: 'center',
   },
+  backgroundImage: {
+    flex: 1,
+    width: '100%', // asegura que la imagen ocupe toda la anchura disponible
+    height: '100%', // ajusta la altura según sea necesario
+  },
     container: {
         flex: 1,
         justifyContent: "center",
@@ -59,14 +64,6 @@ export const styles = StyleSheet.create({
     },
     planCount: {
       color: '#fff',
-    },
-    backgroundImage: {
-      flex:1,
-      width: '100%', // asegura que la imagen ocupe toda la anchura disponible
-      height: 10, // ajusta la altura según sea necesario
-      backgroundColor: 'rgba(204, 204, 204, 0)',
-      position: 'absolute',
-      bottom: 0,
     },
 });
 
