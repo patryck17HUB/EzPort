@@ -1,10 +1,8 @@
 import React, { useState, useEffect , useContext} from "react";
 import { View, Text, TouchableOpacity, ScrollView,Image, ImageBackground } from "react-native";
-import { getMuscleList, getMuscle } from "../api/user_api";
 import { styles } from "../styles/workoutsstyles";
 import { globalstyles } from "../styles/GlobalStyles";
-import { database } from '../firebaseConfig';
-import miImagen from '../assets/reverse.png'; 
+import { database } from '../firebaseConfig'; 
 import { LinearGradient } from 'expo-linear-gradient';
 
 
