@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Color } from "./styles/GlobalStyles";
-import { BottomNavigation } from 'react-native-paper';
 import Workouts from "./screens/workouts";
+import {Text} from "react-native";
 import PlanDetails from "./screens/planDetails";
 import CreatePlan from "./screens/createPlan";
 import Explore from "./screens/explore";
@@ -12,15 +12,17 @@ import LoadingScreen from "./LoadingScreen";
 import EditarPlan from "./screens/EditarPlan";
 import Training from "./screens/Training";
 import AgregarEjercicio from "./screens/AgregarEjercicio";
+import History from "./screens/History";
 
-// Navegar entre paginas
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import { UserProvider } from './context/UserContext';
 
 const Stack = createNativeStackNavigator();
+const Tab = createBottomTabNavigator();
 
 function WorkoutsStack() {
   return (
@@ -28,9 +30,7 @@ function WorkoutsStack() {
       <Stack.Screen 
         name="Workouts" 
         component={Workouts} 
-        options={{ 
-          headerShown: false,
-        }} 
+        options={{ headerShown: false }} 
       />
       <Stack.Screen 
         name="PlanDetails" 
@@ -86,46 +86,74 @@ function WorkoutsStack() {
   );
 }
 
-function MainTabs() {
-  const [index, setIndex] = useState(0);
-
-  const [routes] = useState([
-    { key: 'Explore', title: 'Explorar', component: Explore, icon: 'search-web', tabbarColor: '#FF1C1C' },
-    { key: 'Workouts', title: 'Plan', component: WorkoutsStack, icon: 'arm-flex', tabbarColor: '#72FF1C' },
-    { key: 'Profile', title: 'Perfil', component: Profile, icon: 'account', tabbarColor: '#1CFFE3' },
-    { key: 'Settings', title: 'Config', component: Settings, icon: 'cog', tabbarColor: '#D91CFF' },
-  ]);
-
-  const renderScene = BottomNavigation.SceneMap({
-    Explore: Explore,
-    Workouts: WorkoutsStack,
-    Profile: Profile,
-    Settings: Settings,
-  });
-
+function ProfileStack() {
   return (
-    <BottomNavigation
-      navigationState={{ index, routes }}
-      onIndexChange={setIndex}
-      renderScene={renderScene}
-      shifting={true}
-      activeColor="#f0edf6"
-      inactiveColor="#f0edf6"
-      renderIcon={({ route, focused, color }) => {
-        const iconName = route.icon;
-        const iconSize = focused ? 24 : 30;
-        color = focused ? '#000000' : color;
-        return <MaterialCommunityIcons name={iconName} size={iconSize} color={color} />;
-      }}
-      barStyle={{
-        backgroundColor: Color.primary,
-        position: 'absolute',
-        overflow: 'hidden',
-        height: 68,
-        borderTopWidth: 1,
-        borderTopColor: '#FFFFFF',
-      }}
-    />
+    <Stack.Navigator>
+      <Stack.Screen 
+        name="Profile" 
+        component={Profile} 
+        options={{ headerShown: false }} 
+      />
+      <Stack.Screen 
+        name="History" 
+        component={History} 
+        options={{ 
+          headerShown: true, 
+          title: 'Historial',
+          headerStyle: { backgroundColor: Color.primary },
+          headerTintColor: '#fff' 
+        }} 
+      />
+    </Stack.Navigator>
+  );
+}
+
+function MainTabs() {
+  return (
+    <Tab.Navigator
+      screenOptions={({ route }) => ({
+        tabBarIcon: ({ focused, color, size }) => {
+          let iconName;
+          if (route.name === 'Explore') {
+            iconName = 'search-web';
+          } else if (route.name === 'Workouts') {
+            iconName = 'arm-flex';
+          } else if (route.name === 'Profile') {
+            iconName = 'account';
+          } else if (route.name === 'Settings') {
+            iconName = 'cog';
+          }
+          return (
+            <MaterialCommunityIcons
+              name={iconName}
+              size={size}
+              color={focused ? '#000000' : color}
+              style={{
+                backgroundColor: focused ? '#fff' : 'transparent',
+                borderRadius: focused ? size / 2 : 0,
+                padding: focused ? 5 : 0,
+              }}
+            />
+          );
+        },
+        tabBarLabel: ({ focused }) => {
+          return focused ? (
+            <Text style={{ color: '#FFFFFF', fontSize: 12 ,marginTop: -8}}>
+              {route.name}
+            </Text>
+          ) : null;
+        },
+        tabBarActiveTintColor: '#000000',
+        tabBarInactiveTintColor: '#f0edf6',
+        tabBarStyle: { backgroundColor: Color.primary, height: 68, borderTopWidth: 1, borderTopColor: '#FFFFFF' },
+        headerShown: false
+      })}
+    >
+      <Tab.Screen name="Explore" component={Explore} options={{ title: 'Explorar' }} />
+      <Tab.Screen name="Workouts" component={WorkoutsStack} options={{ title: 'Plan' }} />
+      <Tab.Screen name="Profile" component={ProfileStack} options={{ title: 'Perfil' }} />
+      <Tab.Screen name="Settings" component={Settings} options={{ title: 'Config' }} />
+    </Tab.Navigator>
   );
 }
 

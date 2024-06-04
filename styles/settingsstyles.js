@@ -16,7 +16,6 @@ export const styles = StyleSheet.create({
     scrollContainer: {
         marginTop: '5%',
         flexGrow: 1,
-        marginBottom: '17%',
     },
     optionText: {
         fontSize: FontSize.size_base,
