@@ -55,7 +55,6 @@ export const styles = StyleSheet.create({
 export const historystyles = StyleSheet.create({
   scrollContainer: {
     flexGrow: 1,
-    marginBottom: '17%',
   },
   title: {
     fontSize: 24,
@@ -114,5 +113,11 @@ export const historystyles = StyleSheet.create({
     color: '#FFFFFF',
     fontSize: 16,
     textAlign: 'center',
+  },
+  dateTitle: {
+    fontSize: 18,
+    color: '#FFFFFF',
+    fontWeight: 'bold',
+    marginBottom: 10,
   },
 });

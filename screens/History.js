@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
-import { View, Text, ScrollView, TouchableOpacity } from "react-native";
+import { View, Text, ScrollView } from "react-native";
 import { database } from "../firebaseConfig";
 import { historystyles } from "../styles/profilestyles";
 import { globalstyles } from "../styles/GlobalStyles";
@@ -11,17 +11,13 @@ const History = ({ navigation }) => {
 
   useEffect(() => {
     const userId = user.id;
-    const historyRef = database.ref(`users/${userId}/history`);
+    const historyRef = database.ref(`users/${userId}/exerciseHistory`);
 
     historyRef.once('value')
       .then(snapshot => {
         const historyData = snapshot.val();
         if (historyData) {
-          const historyList = Object.keys(historyData).map(key => ({
-            id: key,
-            ...historyData[key]
-          }));
-          setHistory(historyList);
+          setHistory(historyData);
         }
       })
       .catch(error => {
@@ -33,32 +29,37 @@ const History = ({ navigation }) => {
     <View style={globalstyles.background}>
       <Text style={historystyles.title}>Historial de Entrenamientos</Text>
       <ScrollView style={historystyles.scrollContainer}>
-        {history.length > 0 ? (
-          history.map(plan => (
-            <View key={plan.id} style={historystyles.planContainer}>
-              <Text style={historystyles.planTitle}>{plan.title}</Text>
-              {plan.exercises ? (
-                Object.keys(plan.exercises).map(exerciseId => {
-                  const exercise = plan.exercises[exerciseId];
-                  if (exercise) {
-                    return (
-                      <View key={exerciseId} style={historystyles.exerciseContainer}>
-                        <Text style={historystyles.exerciseName}>{exercise.name}</Text>
-                        {exercise.sets && exercise.sets.map((set, index) => (
-                          <View key={index} style={historystyles.setRow}>
-                            <Text style={historystyles.setDetails}>Set {index + 1}</Text>
-                            <Text style={historystyles.setDetails}>Repeticiones: {set.reps}</Text>
-                            <Text style={historystyles.setDetails}>Peso: {set.weight}</Text>
+        {history && Object.keys(history).length > 0 ? (
+          Object.keys(history).map((date, dateIndex) => (
+            <View key={dateIndex}>
+              <Text style={historystyles.dateTitle}>Fecha: {date}</Text>
+              {Object.keys(history[date]).map((planId, planIndex) => {
+                const plan = history[date][planId];
+                return (
+                  <View key={planIndex} style={historystyles.planContainer}>
+                    <Text style={historystyles.planTitle}>Plan ID: {plan.planId}</Text>
+                    {plan && plan.exercises && Object.keys(plan.exercises).length > 0 ? (
+                      Object.keys(plan.exercises).map((exerciseId, exerciseIndex) => {
+                        const exercise = plan.exercises[exerciseId];
+                        return (
+                          <View key={exerciseIndex} style={historystyles.exerciseContainer}>
+                            <Text style={historystyles.exerciseName}>{exercise.name}</Text>
+                            {exercise.sets && exercise.sets.map((set, setIdx) => (
+                              <View key={setIdx} style={historystyles.setRow}>
+                                <Text style={historystyles.setDetails}>Set {setIdx + 1}</Text>
+                                <Text style={historystyles.setDetails}>Repeticiones: {set.reps}</Text>
+                                <Text style={historystyles.setDetails}>Peso: {set.weight}</Text>
+                              </View>
+                            ))}
                           </View>
-                        ))}
-                      </View>
-                    );
-                  }
-                  return null;
-                })
-              ) : (
-                <Text>No hay ejercicios en este plan.</Text>
-              )}
+                        );
+                      })
+                    ) : (
+                      <Text>No hay ejercicios en este plan.</Text>
+                    )}
+                  </View>
+                );
+              })}
             </View>
           ))
         ) : (
