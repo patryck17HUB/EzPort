@@ -78,15 +78,25 @@ contentText: {
     fontWeight: 'bold',
     flex:0,
   },
+  header: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    padding: 16,
+    backgroundColor: '#000000',
+  },
+  headerTitle: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    color: '#FFFFFF',
+  },
   button: {
     marginLeft: '3%', // Mantén el margen izquierdo en 20
     marginRight: '9%',
     padding: 5,
     borderRadius: 5,
-    borderColor: '#fff', 
+    borderColor: 'rgba(204, 204, 204, 0.5)', 
     width: '100%',
-    borderColor: '#fff', // Color del borde
-    
     borderBottomWidth: 2, 
   },
   buttonText: {

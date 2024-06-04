@@ -1,5 +1,5 @@
 import React, { useState,useContext } from "react";
-import { View, Text, TextInput, Button } from "react-native";
+import { View, Text, TextInput, Button, Touchable, TouchableOpacity} from "react-native";
 import { database } from "../firebaseConfig";
 import { globalstyles } from "../styles/GlobalStyles";
 import { crearstyles } from "../styles/workoutsstyles";
@@ -50,6 +50,7 @@ export default function CreatePlan({ navigation }) {
         <TextInput
           style={crearstyles.input}
           value={title}
+          maxLength={25}
           onChangeText={setTitle}
         />
         <Text style={crearstyles.label}>Descripción del Plan</Text>
@@ -58,7 +59,12 @@ export default function CreatePlan({ navigation }) {
           value={description}
           onChangeText={setDescription}
         />
-        <Button title="Crear Plan" onPress={handleCreatePlan} />
+        <TouchableOpacity
+          style={crearstyles.Button}
+          onPress={handleCreatePlan}
+        >
+          <Text style={crearstyles.createButtonText}>Crear Rutina</Text>
+        </TouchableOpacity>
       </View>
     </View>
   );

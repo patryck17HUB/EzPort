@@ -35,13 +35,6 @@ export default function Settings() {
     }
   };
 
-  const navigateToRoot = () => {
-    navigation.reset({
-      index: 0,
-      routes: [{ name: 'MainTabs' }]
-    });
-  };
-
   const sections = [
     { title: "Sobre EzPort", content: "Está vergas" },
     { title: "Contacto", content: "Llámame 🥴" },

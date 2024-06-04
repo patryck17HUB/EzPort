@@ -9,19 +9,7 @@ import { Color } from "../styles/GlobalStyles";
 import { StatusBar } from 'expo-status-bar';
 import { getMuscle, getExerciseByID } from '../api/user_api';
 import { LinearGradient } from 'expo-linear-gradient';
-
-const Ejercicios = () => (
-  <View style={{ flex: 1, backgroundColor: Color.primary }} />
-);
-
-const Rutinas = () => (
-  <View style={{ flex: 1, backgroundColor: Color.primary }} />
-);
-
-const renderScene = SceneMap({
-  Ejercicios: Ejercicios,
-  Rutinas: Rutinas,
-});
+import { editarstyles } from '../styles/workoutsstyles';
 
 const handleGetMuscle = async (muscle, setExercises) => {
   try {
@@ -159,23 +147,14 @@ export default function Explore({ navigation }) {
 
   return (
     <View style={globalstyles.background}>
-      <TabView
-        swipeEnabled={false}
-        renderTabBar={renderTabBar}
-        navigationState={{ index, routes }}
-        renderScene={renderScene}
-        onIndexChange={setIndex}
-        initialLayout={{ width: layout.width }}
-        indicatorStyle={{ backgroundColor: Color.secondary }}
-        style={{ backgroundColor: Color.primary }}
-      />
-      
+      <View style={styles.header}>
+        <Text style={styles.headerTitle}>Explorar</Text>
+      </View>
         <FlatList
           data={options}
           keyExtractor={(item) => item.label}
           renderItem={renderOptionItem}
         />
-      
       {exerciseDetails && (
         <Modal
           animationType="slide"
@@ -192,8 +171,9 @@ export default function Explore({ navigation }) {
                 source={{ uri: exerciseDetails.gifUrl }}
                 style={{ width: 200, height: 200 }}
               />
-              <Button title="Close" onPress={toggleDetailModal} />
-              <Button title="Agregar a rutina" onPress={toggleDetailModal} />
+              <TouchableOpacity style={editarstyles.botongift} onPress={toggleDetailModal}>
+                <Text style={editarstyles.exerciseText}>Cerrar</Text>
+              </TouchableOpacity>
             </View>
           </View>
         </Modal>

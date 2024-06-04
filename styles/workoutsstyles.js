@@ -1,6 +1,12 @@
 import { StyleSheet } from "react-native";
 
 export const styles = StyleSheet.create({
+  scrollimage: {
+    flexGrow: 1,
+    marginBottom: '17%',
+    width: '100%',
+    alignSelf: 'center',
+  },
     container: {
         flex: 1,
         justifyContent: "center",
@@ -12,6 +18,10 @@ export const styles = StyleSheet.create({
       alignItems: 'center',
       padding: 16,
       backgroundColor: '#000000',
+    },
+    backgroundImage: {
+      flex: 1,
+      height: 10,
     },
     headerTitle: {
       fontSize: 24,
@@ -27,58 +37,129 @@ export const styles = StyleSheet.create({
       color: '#fff',
       fontSize: 16,
     },
-    planButton: {
-        marginVertical: 10,
-        padding: 15,
-        backgroundColor: '#ddd',
-        borderRadius: 10,
-    },
     planTitle: {
         fontSize: 18,
         fontWeight: 'bold',
+    },
+    planButton: {
+    },
+    gradient:{
+      padding: 15,
+      marginVertical: 10,
+      borderRadius: 10,
+      width: '85%',
+    },
+    planRow: {
+      flexDirection: 'row',
+      justifyContent: 'space-between',
+      alignItems: 'center',
+    },
+    planTitle: {
+      color: '#fff',
+    },
+    planCount: {
+      color: '#fff',
     },
     backgroundImage: {
       flex:1,
       width: '100%', // asegura que la imagen ocupe toda la anchura disponible
       height: 10, // ajusta la altura según sea necesario
+      backgroundColor: 'rgba(204, 204, 204, 0)',
+      position: 'absolute',
+      bottom: 0,
     },
 });
 
 export const planstyles = StyleSheet.create({
+  scrollContainer: {
+    flexGrow: 1,
+    marginBottom: '17%',
+    width: '85%',
+    alignSelf: 'center',
+  },
   planTitle: {
-    fontSize: 24,
-    fontWeight: 'bold',
+    fontSize: 30, // Tamaño manual para size_xl
+    color: '#FFFFFF', // Color manual para blanco
+    fontFamily: 'Arial-BoldMT', // Fuente manual para font_bold
     marginBottom: 10,
-    color: '#FFFFFF',
-  },
-  planDescription: {
-    fontSize: 16,
-    color: '#FFFFFF',
-    flexShrink: 1,  // Permitir que el texto se ajuste en el contenedor
-  },
-  exerciseContainer: {
-    marginBottom: 15,
-  },
-  exerciseName: {
-    fontSize: 18,
-    fontWeight: 'bold',
-    color: '#FFFFFF',
-  },
-  exerciseDetails: {
-    fontSize: 16,
-    color: '#FFFFFF',
-  },
-  moreButton: {
-    color: '#0000FF',  // Color del texto del botón
-    fontSize: 14,      // Tamaño de la fuente
-    textDecorationLine: 'underline', // Subrayar el texto
-    marginLeft: 5,     // Margen izquierdo para separar del texto
-    flexShrink: 0,     // No permitir que el botón se ajuste en el contenedor
   },
   descriptionContainer: {
-    flexDirection: 'row', // Colocar los elementos en la misma fila
-    alignItems: 'center', // Alinear verticalmente los elementos
-    flexWrap: 'wrap', // Permitir que el texto y el botón se ajusten a la pantalla
+    marginBottom: 20,
+  },
+  planDescription: {
+    fontSize: 16, // Tamaño manual para size_base
+    color: '#FFFFFF', // Color manual para blanco
+    fontFamily: 'ArialMT', // Fuente manual para font_base
+  },
+  moreButton: {
+    fontSize: 14, // Tamaño manual para size_small
+    color: '#3498db', // Color manual para primary
+    marginTop: 5,
+  },
+  exerciseContainer: {
+    marginTop: '5%',
+    marginBottom: '10%',
+  },
+  exerciseName: {
+    fontSize: 20, // Tamaño manual para size_lg
+    color: '#FFFFFF', // Color manual para blanco
+    fontFamily: 'Arial-BoldMT', // Fuente manual para font_bold
+    marginBottom: 10,
+  },
+  tableHeader: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    padding: 10,
+    borderBottomWidth: 2, // Grosor de la línea inferior
+    borderBottomColor: '#7539e5', // Color de la línea inferior (primary color)
+    marginBottom: 10, // Margen inferior
+  },
+  tableHeaderText: {
+    fontSize: 16, // Tamaño manual para size_base
+    color: '#FFFFFF', // Color manual para blanco
+    fontFamily: 'Arial-BoldMT', // Fuente manual para font_bold
+    flex: 1,
+    textAlign: 'center',
+  },
+  tableRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    padding: 10,
+    borderBottomWidth: 1,
+    borderBottomColor: 'rgba(204, 204, 204, 0.5)',
+  },
+  tableCell: {
+    fontSize: 16, // Tamaño manual para size_base
+    color: '#FFFFFF', // Color manual para blanco
+    fontFamily: 'ArialMT', // Fuente manual para font_base
+    flex: 1,
+    textAlign: 'center',
+  },
+  buttonRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginTop: 10,
+  },
+  button1: {
+    flex: 2.2,
+    paddingVertical: 15,
+    backgroundColor: '#7539e5',
+    borderTopLeftRadius: 10,
+    borderBottomLeftRadius: 10,
+    marginRight: 3
+  },
+  button2: {
+    flex: 0.8,
+    paddingVertical: 15,
+    backgroundColor: '#7539e5',
+    borderTopRightRadius: 10,
+    borderBottomRightRadius: 10,
+  },
+  buttonText: {
+    textAlign: 'center',
+    color: '#FFFFFF',
+    fontFamily: 'Arial',
+    fontSize: 16,
   },
 });
 
@@ -87,6 +168,7 @@ export const crearstyles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 16,
+    marginTop: '5%',
   },
   label: {
     fontSize: 18,
@@ -101,6 +183,19 @@ export const crearstyles = StyleSheet.create({
     marginBottom: 16,
     borderRadius: 4,
     color: '#FFF',
+  },
+  Button: {
+    backgroundColor: '#7539e5',
+    paddingVertical: 15,
+    paddingHorizontal: 30,
+    borderRadius: 5,
+    marginTop: '5%',
+  },
+  createButtonText: {
+    color: '#FFFFFF',
+    fontSize: 16,
+    fontWeight: 'bold',
+    textAlign: 'center',
   },
 });
 
@@ -170,7 +265,7 @@ export const editarstyles = StyleSheet.create({
     color: '#FFFFFF', // Texto blanco
   },
   botongift: {
-    backgroundColor: '#4287f5', // Azul más claro para contraste
+    backgroundColor: '#7539e5', // Azul más claro para contraste
     paddingVertical: 10,
     paddingHorizontal: 20,
     borderRadius: 5,
@@ -230,6 +325,7 @@ export const editarstyles = StyleSheet.create({
     marginBottom: 10,
   },
 });
+
 export const trainingstyles = StyleSheet.create({
   planTitle: {
     fontSize: 24,

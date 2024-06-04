@@ -6,13 +6,13 @@ export const styles = StyleSheet.create({
         flex: 1,
       },
      backgroundImage: {
-    flex: 1,
-    resizeMode: 'cover', // o 'contain' dependiendo de lo que prefieras
-    justifyContent: 'center',
-    alignItems: 'center',
-    width: '100%', // asegura que la imagen ocupe toda la anchura disponible
-    height: 500, // ajusta la altura según sea necesario
-  },
+        flex: 1,
+        resizeMode: 'cover', // o 'contain' dependiendo de lo que prefieras
+        justifyContent: 'center',
+        alignItems: 'center',
+        width: '100%', // asegura que la imagen ocupe toda la anchura disponible
+        height: 500, // ajusta la altura según sea necesario
+      },
       overlayContainer: {
         flex: 1,
         justifyContent: 'center',
