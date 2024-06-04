@@ -9,21 +9,22 @@ export default function Profile() {
 
   return (
     <View style={globalstyles.background}>
-    <ScrollView>
+    <ImageBackground source={require('../assets/image.png')} resizeMode="cover" style={styles.backgroundImage}>
+    <ScrollView style={[globalstyles.contenido]}>
       {user ? (
         <View style={styles.profileContainer}>
-          <ImageBackground source={require('../assets/image.png')} style={styles.backgroundImage}>
             <View style={styles.overlayContainer}>
               <Image source={{ uri: user.photo }} style={styles.profileImage} />
               <Text style={styles.profileName}>{user.name}</Text>
               <Text style={styles.profileEmail}>{user.email}</Text>
             </View>
-          </ImageBackground>
         </View>
       ) : (
         <Text style={styles.noProfileText}>No user information available</Text>
       )}
     </ScrollView>
+    </ImageBackground>
+
   </View>
   );
 }

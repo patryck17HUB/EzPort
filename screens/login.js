@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import { View, Text, TouchableOpacity } from "react-native";
 import { GoogleSignin, GoogleSigninButton } from '@react-native-google-signin/google-signin';
 import { styles } from "../styles/loginstyles";
-import SvgComponent from './SVGComponet';
+import SvgComponent  from './SVGComponet';
 import { UserContext } from '../context/UserContext';
 
 export default function Login({ navigation }) {

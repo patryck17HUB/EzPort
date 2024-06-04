@@ -18,6 +18,7 @@ export const globalstyles = StyleSheet.create({
   background: {
     backgroundColor: Color.primary,
     flex: 1,
+    position: 'relative', // Permitir la posición relativa para elementos internos
   },
   contenido: {
     marginTop: 35,
