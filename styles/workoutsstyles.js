@@ -1,4 +1,4 @@
-import { StyleSheet } from "react-native";
+import { ScrollView, StyleSheet } from "react-native";
 import { Color, FontSize, FontFamily } from "./GlobalStyles";
 
 export const styles = StyleSheet.create({
@@ -194,18 +194,23 @@ export const crearstyles = StyleSheet.create({
   },
 });
 
+
 export const editarstyles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-},
+  },
+  ScrollView: {
+    width: '85%',
+    alignSelf: 'center',
+  },
   button: {
     padding: 8,
     borderRadius: 5,
     marginBottom: 20,
     height: '14%',
-    width: '80%',
+    width: '100%',
   },
   buttonText: {
     color: '#FFFFFF', // Texto blanco
@@ -213,57 +218,64 @@ export const editarstyles = StyleSheet.create({
     fontWeight: 'bold',
     textAlign: 'center',
   },
-  modalContainer: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: 'rgba(0, 0, 0, 0.5)',
-  },
-  modalContent: {
-    backgroundColor: '#FFFFFF', // Fondo blanco para contraste
-    padding: 20,
+  gradient: {
+    marginVertical: 10,
     borderRadius: 10,
-    width: '80%',
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    alignSelf: 'center',
+    width: '85%',
+    paddingVertical: 8,
   },
-  option: {
+  gradientSet: {
+    borderRadius: 10,
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    alignSelf: 'center',
+    width: '95%',
+    paddingVertical: 8,
+    marginBottom: 10,
+  },
+  savebutton: {
+    backgroundColor: '#4287f5', // Azul más claro para contraste
     paddingVertical: 15,
-    borderBottomWidth: 1,
-    borderBottomColor: '#ccc',
-  },
-  optionText: {
-    fontSize: 16,
-    color: '#FFFFFF', // Texto blanco
-  },
-  exerciseItem: {
+    paddingHorizontal: 30,
+    borderRadius: 5,
+    marginTop: 10,
     marginBottom: 20,
   },
-  buttonchueco: {
-    backgroundColor: '#4287f5', // Azul más claro para contraste
-    paddingVertical: 10,
-    paddingHorizontal: 20,
-    borderRadius: 5,
-  },
-  exerciseText: {
+  addButtonText: {
     color: '#FFFFFF', // Texto blanco
     fontSize: 16,
     fontWeight: 'bold',
     textAlign: 'center',
+    width: '80%',
   },
-  exerciseList: {
-    flexGrow: 1,
+  removeSetButton: {
+    backgroundColor: '#7539e5', // Morado para contraste
+    paddingVertical: 10,
+    paddingHorizontal: 2,
+    borderRadius: 10,
+    width: '30%',
+    marginBottom: '5%',
   },
-  exercisePText: {
-    fontSize: 16,
-    marginBottom: 10,
-    color: '#FFFFFF', // Texto blanco
-  },
-  botongift: {
-    backgroundColor: Color.purple1, // Azul más claro para contraste
+  removeButton: {
+    backgroundColor: '#7539e5',
     paddingVertical: 10,
     paddingHorizontal: 20,
-    borderRadius: 5,
-    marginTop: 10,
+    borderRadius: 10,
+    marginTop: 5,
+    width: '80%',
+    alignSelf: 'center',
+    marginBottom: 30,
   },
+  removeButtonText: {
+    color: 'white',
+    textAlign: 'center',
+  },
+  // Estilos para los ejercicios
   exerciseContainer: {
     marginBottom: 15,
   },
@@ -271,84 +283,31 @@ export const editarstyles = StyleSheet.create({
     fontSize: 18,
     fontWeight: 'bold',
     color: '#FFFFFF',
+    marginBottom: 20,
+    alignSelf: 'center',
   },
-  removeButton: {
-    backgroundColor: '#7539e5',
-    paddingVertical: 10,
-    paddingHorizontal: 20,
-    borderRadius: 5,
-    marginTop: 5,
-    
+  setRow: {
+    flexDirection: 'row', 
+    alignItems: 'center', 
+    marginBottom: 10, 
   },
-  removeButtonD: {
-    backgroundColor: '#7539e5',
-    paddingVertical: 10,
-    paddingHorizontal: 20,
-    borderRadius: 5,
-    marginTop: 5,
-    
-  },
-  removeButtonText: {
-    color: 'white',
-    textAlign: 'center',
+  setColumn: {
+    flex: 1,
+    marginHorizontal: 5,
   },
   input: {
+    textAlign: 'center',
+    flex: 1,
     borderWidth: 1,
     borderColor: '#ccc',
     padding: 8,
     marginBottom: 16,
     borderRadius: 4,
     color: '#FFFFFF',
+    marginHorizontal: 5, 
   },
-  savebutton: {
-    backgroundColor: '#4287f5', // Azul más claro para contraste
-    paddingVertical: 15,
-    paddingHorizontal: 30,
-    borderRadius: 5,
-    marginTop: 20,
-  },
-  addButton: {
-    backgroundColor: '#4287f5', // Azul más claro para contraste
-    paddingVertical: 15,
-    paddingHorizontal: 30,
-    borderRadius: 5,
-    marginTop: 20,
-    width : '80%',
-  },
-  addButtonText: {
-    color: '#FFFFFF', // Texto blanco
-    fontSize: 16,
-    fontWeight: 'bold',
-    textAlign: 'center',
-  },
-  setContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    
-    marginBottom: 10,
-    marginLeft: '0%', // Mantén el margen izquierdo en 20
-    marginRight: '9%'
-  },
-  gradient:{
-    
-    marginVertical: 10,
-    borderRadius: 10,
-    
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    
-  },
-  planRow: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    height: '5%',
-  },
-  
-  
 });
+
 
 export const trainingstyles = StyleSheet.create({
   contenido: {

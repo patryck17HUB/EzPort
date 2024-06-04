@@ -99,7 +99,7 @@ function ProfileStack() {
         component={History} 
         options={{ 
           headerShown: true, 
-          title: 'Historial',
+          title: 'Historial de entrenamientos',
           headerStyle: { backgroundColor: Color.primary },
           headerTintColor: '#fff' 
         }} 

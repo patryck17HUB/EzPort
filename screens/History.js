@@ -27,7 +27,6 @@ const History = ({ navigation }) => {
 
   return (
     <View style={globalstyles.background}>
-      <Text style={historystyles.title}>Historial de Entrenamientos</Text>
       <ScrollView style={historystyles.scrollContainer}>
         {history && Object.keys(history).length > 0 ? (
           Object.keys(history).map((date, dateIndex) => (
@@ -37,7 +36,7 @@ const History = ({ navigation }) => {
                 const plan = history[date][planId];
                 return (
                   <View key={planIndex} style={historystyles.planContainer}>
-                    <Text style={historystyles.planTitle}>Plan ID: {plan.planId}</Text>
+                    <Text style={historystyles.planTitle}>Plan: {plan.title}</Text>
                     {plan && plan.exercises && Object.keys(plan.exercises).length > 0 ? (
                       Object.keys(plan.exercises).map((exerciseId, exerciseIndex) => {
                         const exercise = plan.exercises[exerciseId];

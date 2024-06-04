@@ -17,11 +17,12 @@ export default function Training({ route, navigation }) {
 
     planRef.once('value')
       .then(snapshot => {
-        setPlanDetails(snapshot.val());
-        if (snapshot.val() && snapshot.val().exercises) {
+        const planData = snapshot.val();
+        setPlanDetails(planData);
+        if (planData && planData.exercises) {
           const repsSets = {};
-          Object.keys(snapshot.val().exercises).forEach(exerciseId => {
-            const exercise = snapshot.val().exercises[exerciseId];
+          Object.keys(planData.exercises).forEach(exerciseId => {
+            const exercise = planData.exercises[exerciseId];
             const sets = exercise.sets || [];
             repsSets[exerciseId] = {
               name: exercise.name,
@@ -63,6 +64,7 @@ export default function Training({ route, navigation }) {
 
       await historyRef.set({
         planId,
+        title: planDetails.title,
         exercises: exerciseRepsSets
       });
 
