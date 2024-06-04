@@ -328,42 +328,88 @@ export const editarstyles = StyleSheet.create({
 
 export const trainingstyles = StyleSheet.create({
   planTitle: {
-    fontSize: 24,
+    fontSize: 30,
     fontWeight: 'bold',
+    color: '#FFFFFF',
+    marginVertical: 5,
+    textAlign: 'center',
+    fontFamily: 'Arial-BoldMT',
+    marginBottom: 60
+  },
+  tableContainer: {
+    backgroundColor: '#000000',
+    padding: 10,
     marginVertical: 10,
+    borderRadius: 10,
+    width: '90%',
+    alignSelf: 'center',
+    borderColor: '#000000', // Borde negro para la tabla
+  },
+  exerciseHeader: {
+    fontSize: 22,
+    fontWeight: 'bold',
+    color: '#7539e5', // Color morado para el nombre del ejercicio
+    marginBottom: 5,
+    fontFamily: 'Arial-BoldMT',
     textAlign: 'center',
   },
-  exerciseContainer: {
-    backgroundColor: '#f0f0f0',
-    padding: 10,
-    marginVertical: 5,
-    borderRadius: 5,
+  tableRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    paddingVertical: 5,
   },
-  exerciseName: {
+  tableHeader: {
     fontSize: 18,
     fontWeight: 'bold',
-    marginBottom: 5,
+    color: '#FFFFFF',
+    flex: 1,
+    textAlign: 'center',
+    fontFamily: 'Arial-BoldMT',
   },
-  exerciseDetails: {
-    fontSize: 16,
-    color: '#333',
+  tableCell: {
+    fontSize: 20,
+    marginHorizontal: 15,
+    color: '#FFFFFF', // Texto blanco para el contenido de la tabla
+    flex: 1,
+    textAlign: 'center',
+    fontFamily: 'Arial-BoldMT',
+    fontWeight: 'bold'
   },
-  input: {
-    height: 40,
-    borderColor: 'gray',
+  tableCellInput: {
+    height: 35,
+    borderColor: '#FFFFFF', // Borde blanco para los inputs de la tabla
     borderWidth: 1,
     marginVertical: 5,
     paddingHorizontal: 10,
+    borderRadius: 5,
+    marginHorizontal: 5,
+    color: '#FFFFFF', // Texto blanco para los inputs de la tabla
+    backgroundColor: '#000000', // Fondo negro para los inputs de la tabla
+    flex: 1,
+    textAlign: 'center',
   },
   finishButton: {
-    backgroundColor: '#4CAF50',
-    padding: 10,
-    borderRadius: 5,
+    backgroundColor: '#4A0D66',
+    padding: 20,
+    borderRadius: 10,
     alignItems: 'center',
-    marginVertical: 10,
+    marginVertical: 20,
+    width: '80%',
+    alignSelf: 'center',
   },
   finishButtonText: {
     color: '#FFFFFF',
-    fontSize: 16,
+    fontSize: 18,
+    fontWeight: 'bold',
+    fontFamily: 'Arial',
+    textAlign: 'center',
+  },
+  dividerLine: {
+    height:1,
+    backgroundColor: '#FFFFFF', // Línea blanca para dividir visualmente los contenedores de ejercicio
+    marginVertical: 15,
+    marginHorizontal: 15,
+    borderRadius: 20,
   },
 });
