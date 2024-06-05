@@ -2,7 +2,6 @@ import React, { useState, useContext } from "react";
 import { View, Text, TouchableOpacity, ScrollView, Image,ImageBackground  } from "react-native";
 import { styles } from "../styles/settingsstyles";
 import { globalstyles } from "../styles/GlobalStyles";
-import { GoogleSignin } from '@react-native-google-signin/google-signin';
 import { Ionicons } from '@expo/vector-icons';
 import { useNavigation } from "@react-navigation/native"; // Importa la función useNavigation
 import miImagen from '../assets/Logoblanco.png'; 
@@ -22,13 +21,13 @@ export default function Settings() {
   };
 
   const sections = [
-    { title: "Sobre EzPort", content: "Está Registra tus entrenamientos y monitorea tu progreso a lo largo del tiempo. EZport te permite llevar un registro de tus repeticiones, series y pesos utilizados, ayudándote a ver tu evolución y a ajustar tus rutinas según tus avances." },
-    { title: "Contacto", content: "pablojosuecamorlinga@gmail.com  +52 419 105 0392" },
-    { title: "Ayuda", content: "Si necesitas asistencia, por favor contacta con nuestro equipo de soporte a través del correo electrónico proporcionado en la sección de Contacto." },
-    { title: "Terms", content: "Por favor, revisa nuestros términos y condiciones para entender las políticas y el funcionamiento de EZport." },
-    { title: "Privacidad", content: "Nos tomamos muy en serio la privacidad de nuestros usuarios. Consulta nuestra política de privacidad para más detalle" },
-    { title: "Cookies", content: "Utilizamos cookies para mejorar tu experiencia en nuestra app. Para más información sobre el uso de cookies, por favor revisa nuestra política de cookies." },
-    { title: "Legal", content: "Toda la información legal relacionada con el uso de EZport se encuentra detallada en nuestra sección de términos y condiciones." },
+    { title: "EzPort", content: "It records your workouts and monitors your progress over time. EZport allows you to keep track of your repetitions, sets and weights used, helping you see your progress and adjust your routines accordingly. your progress." },
+    { title: "Contact", content: "pablojosuecamorlinga@gmail.com  +52 419 105 0392" },
+    { title: "Help", content: "If you need assistance, please contact our support team via the email provided in the Contact section." },
+    { title: "Terms", content: "Please review our terms and conditions to understand the policies and operation of EZport." },
+    { title: "Privacity", content: "We take the privacy of our users very seriously. Consult our privacy policy for more details" },
+    { title: "Cookies", content: "We use cookies to improve your experience in our app. For more information about the use of cookies, please review our cookie policy." },
+    { title: "Legal", content: "All legal information related to the use of EZport is detailed in our terms and conditions section." },
   ];
 
   return (

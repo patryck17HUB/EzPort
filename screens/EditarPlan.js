@@ -12,7 +12,10 @@ const handleSaveChanges = (user, planId, exerciseRepsSets, setChangesSaved, navi
     const userId = user.id;
     const userRef = database.ref(`users/${userId}/exercisePlans/${planId}/exercises`);
     Object.keys(exerciseRepsSets).forEach((exerciseId) => {
-      const sets = exerciseRepsSets[exerciseId].map(set => ({ reps: parseInt(set.reps), weight: parseInt(set.weight) }));
+      const sets = exerciseRepsSets[exerciseId].map(set => ({ 
+        reps: set.reps ? parseInt(set.reps) : 0, 
+        weight: set.weight ? parseInt(set.weight) : 0
+      }));
       userRef.child(exerciseId).update({ sets });
     });
     setChangesSaved(true);

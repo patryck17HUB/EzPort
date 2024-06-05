@@ -38,6 +38,7 @@ export const styles = StyleSheet.create({
         color: '#fff',
         fontSize: FontSize.size_base,
         fontFamily: FontFamily.font_base,
+        textAlign: 'justify',
     },
     logoutButton: {
         padding: 15,

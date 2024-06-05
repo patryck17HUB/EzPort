@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
-import { View, Text, ScrollView, Button, TouchableOpacity } from "react-native";
+import { View, Text, ScrollView, Button, TouchableOpacity, Alert } from "react-native";
 import { database } from "../firebaseConfig";
 import { planstyles } from "../styles/workoutsstyles";
 import { globalstyles } from "../styles/GlobalStyles";
@@ -37,6 +37,13 @@ export default function PlanDetails({ route, navigation }) {
       </View>
     );
   }
+  const handleRecordTrainingPress = () => {
+    if (!planDetails.exercises || Object.keys(planDetails.exercises).length === 0) {
+      Alert.alert("Add exercises to start a training");
+    } else {
+      navigation.navigate('Training', { planId });
+    }
+  };
 
   return (
     <View style={globalstyles.background}>
@@ -60,7 +67,7 @@ export default function PlanDetails({ route, navigation }) {
         <View style={planstyles.buttonRow}>
           <TouchableOpacity 
             style={planstyles.button1}
-            onPress={() => navigation.navigate('Training', { planId })}
+            onPress={handleRecordTrainingPress}
           >
             <Text style={planstyles.buttonText}>Record Training</Text>
           </TouchableOpacity>

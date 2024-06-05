@@ -1,29 +1,36 @@
-import React, { useContext } from "react";
-import { View, Image, Text, ScrollView, TouchableOpacity, ImageBackground } from "react-native";
+import React, { useContext, useState } from "react";
+import { View, Image, Text, ScrollView, TouchableOpacity, ImageBackground, Alert } from "react-native";
 import { styles } from "../styles/profilestyles";
 import { globalstyles } from "../styles/GlobalStyles";
 import { UserContext } from '../context/UserContext';
 import { GoogleSignin } from '@react-native-google-signin/google-signin';
-import { useNavigation } from '@react-navigation/native'; // Importa useNavigation desde @react-navigation/native
+import { useNavigation } from '@react-navigation/native';
 
 export default function Profile() {
   const { user, setUser } = useContext(UserContext);
-  const navigation = useNavigation(); // Obtiene el objeto de navegación
+  const navigation = useNavigation();
+  const [isLoggingOut, setIsLoggingOut] = useState(false);
+  console.log(user)
+  console.log(user.id)
 
   const logout = async () => {
+    if (isLoggingOut) return; // Prevent multiple logouts
+    setIsLoggingOut(true);
+
     try {
       await GoogleSignin.revokeAccess();
       await GoogleSignin.signOut();
-      if (user !== null && user.id) { // Verifica si 'user' no es null y si tiene una propiedad 'id'
-        setUser(null);
-      }
-      navigation.navigate('Login'); 
+
+      navigation.navigate('Login');
+
     } catch (error) {
       console.error("Error during logout:", error);
-      setError(error);
+      Alert.alert("Error during logout:", error.message);
+    } finally {
+      setIsLoggingOut(false);
     }
   };
-  
+
   return (
     <View style={globalstyles.background}>
       <ImageBackground source={require('../assets/image.png')} resizeMode="cover" style={styles.backgroundImage}>
@@ -48,7 +55,7 @@ export default function Profile() {
             >
               <Text style={styles.historyButtonText}>View History</Text>
             </TouchableOpacity>
-            <TouchableOpacity onPress={logout}>
+            <TouchableOpacity style={styles.logoutButton} onPress={logout}>
               <Text style={styles.logoutButtonText}>Logout</Text>
             </TouchableOpacity>
           </View>

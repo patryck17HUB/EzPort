@@ -1,9 +1,8 @@
-import React, { useState,useContext } from "react";
-import { View, Text, TextInput, Button, Touchable, TouchableOpacity} from "react-native";
+import React, { useState, useContext } from "react";
+import { View, Text, TextInput, TouchableOpacity, Alert } from "react-native";
 import { database } from "../firebaseConfig";
 import { globalstyles } from "../styles/GlobalStyles";
 import { crearstyles } from "../styles/workoutsstyles";
-
 import { UserContext } from '../context/UserContext';
 
 export default function CreatePlan({ navigation }) {
@@ -12,6 +11,11 @@ export default function CreatePlan({ navigation }) {
   const { user } = useContext(UserContext);
 
   const handleCreatePlan = () => {
+    if (title.trim() === "") {
+      Alert.alert("Add a name to the workout");
+      return;
+    }
+
     const userId = user.id; // Reemplaza esto con el ID del usuario actualmente autenticado
     const userRef = database.ref(`users/${userId}`);
 

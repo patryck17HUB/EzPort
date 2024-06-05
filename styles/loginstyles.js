@@ -13,8 +13,7 @@ export const styles = StyleSheet.create({
         fontSize: 80,
         color: '#fff',
         fontWeight: 'bold',
-        flex:3,
-      
+        flex:4,
     },
     subTiltle:{
         fontSize: 20,
