@@ -57,7 +57,7 @@ function WorkoutsStack() {
         component={EditarPlan} 
         options={{ 
           headerShown: true, 
-          title: 'Modify Workout',
+          title: 'Edit Workout',
           headerStyle: { backgroundColor: Color.primary },
           headerTintColor: '#fff'
         }} 

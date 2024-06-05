@@ -69,13 +69,13 @@ export default function PlanDetails({ route, navigation }) {
             style={planstyles.button1}
             onPress={handleRecordTrainingPress}
           >
-            <Text style={planstyles.buttonText}>Record Training</Text>
+            <Text style={planstyles.buttonText}>Log Training</Text>
           </TouchableOpacity>
           <TouchableOpacity 
             style={planstyles.button2}
             onPress={() => navigation.navigate('EditarPlan', { planId })}
           >
-            <Text style={planstyles.buttonText}>Modify</Text>
+            <Text style={planstyles.buttonText}>Edit</Text>
           </TouchableOpacity>
         </View>
         {planDetails.exercises ? (
