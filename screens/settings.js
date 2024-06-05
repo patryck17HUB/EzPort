@@ -4,7 +4,6 @@ import { styles } from "../styles/settingsstyles";
 import { globalstyles } from "../styles/GlobalStyles";
 import { GoogleSignin } from '@react-native-google-signin/google-signin';
 import { Ionicons } from '@expo/vector-icons';
-import RNRestart from 'react-native-restart';
 import { useNavigation } from "@react-navigation/native"; // Importa la función useNavigation
 import miImagen from '../assets/Logoblanco.png'; 
 
@@ -14,7 +13,6 @@ export default function Settings() {
   const navigation = useNavigation(); // Obtén el objeto de navegación
   const [expandedSections, setExpandedSections] = useState({});
   const [error, setError] = useState(null);
-  const { setUser } = useContext(UserContext);
 
   const toggleSection = (section) => {
     setExpandedSections((prev) => ({
@@ -23,26 +21,14 @@ export default function Settings() {
     }));
   };
 
-  const logout = async () => {
-    try {
-      await GoogleSignin.revokeAccess();
-      await GoogleSignin.signOut();
-      setUser(null);
-      RNRestart.restart();
-    } catch (error) {
-      console.error("Error during logout:", error);
-      setError(error);
-    }
-  };
-
   const sections = [
-    { title: "Sobre EzPort", content: "Está vergas" },
-    { title: "Contacto", content: "Llámame 🥴" },
-    { title: "Ayuda", content: "No sé" },
-    { title: "Terms", content: "Terminamos 😔" },
-    { title: "Privacidad", content: "No hay jajsjs" },
-    { title: "Cookies", content: "Qué vergas ponemos aquí 🤔" },
-    { title: "Legal", content: "Legal we" },
+    { title: "Sobre EzPort", content: "Está Registra tus entrenamientos y monitorea tu progreso a lo largo del tiempo. EZport te permite llevar un registro de tus repeticiones, series y pesos utilizados, ayudándote a ver tu evolución y a ajustar tus rutinas según tus avances." },
+    { title: "Contacto", content: "pablojosuecamorlinga@gmail.com  +52 419 105 0392" },
+    { title: "Ayuda", content: "Si necesitas asistencia, por favor contacta con nuestro equipo de soporte a través del correo electrónico proporcionado en la sección de Contacto." },
+    { title: "Terms", content: "Por favor, revisa nuestros términos y condiciones para entender las políticas y el funcionamiento de EZport." },
+    { title: "Privacidad", content: "Nos tomamos muy en serio la privacidad de nuestros usuarios. Consulta nuestra política de privacidad para más detalle" },
+    { title: "Cookies", content: "Utilizamos cookies para mejorar tu experiencia en nuestra app. Para más información sobre el uso de cookies, por favor revisa nuestra política de cookies." },
+    { title: "Legal", content: "Toda la información legal relacionada con el uso de EZport se encuentra detallada en nuestra sección de términos y condiciones." },
   ];
 
   return (
@@ -70,9 +56,6 @@ export default function Settings() {
             )}
           </View>
         ))}
-        <TouchableOpacity style={styles.logoutButton} onPress={logout}>
-          <Text style={styles.logoutButtonText}>Logout</Text>
-        </TouchableOpacity>
         {error && <Text style={styles.errorText}>Error: {error.message}</Text>}
       </ScrollView>
     </View>

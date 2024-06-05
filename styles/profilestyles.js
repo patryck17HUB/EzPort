@@ -40,7 +40,7 @@ export const styles = StyleSheet.create({
     marginTop: 50,
   },
   historyButton: {
-    marginTop: 20,
+    marginTop: '50%',
     padding: 10,
     backgroundColor: Color.purple1,
     borderRadius: 5,
@@ -49,6 +49,21 @@ export const styles = StyleSheet.create({
     color: 'white',
     fontSize: 16,
     textAlign: 'center',
+  },
+  logoutButton: {
+    padding: 15,
+    width: '100%',
+    alignSelf: 'center',
+    borderRadius: 10,
+    backgroundColor: Color.purple1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginTop: '25%',
+  },
+  logoutButtonText: {
+      fontSize: FontSize.size_base,
+      color: '#FFFFFF',
+      fontFamily: FontFamily.font_base,
   },
 });
 
@@ -104,17 +119,6 @@ export const historystyles = StyleSheet.create({
     fontSize: 18,
     textAlign: 'center',
     marginTop: 20,
-  },
-  historyButton: {
-    marginTop: 20,
-    padding: 10,
-    backgroundColor: '#7539e5',
-    borderRadius: 5,
-  },
-  historyButtonText: {
-    color: '#FFFFFF',
-    fontSize: 16,
-    textAlign: 'center',
   },
   dateTitle: {
     fontSize: 18,

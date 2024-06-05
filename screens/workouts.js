@@ -1,10 +1,10 @@
-import React, { useState, useEffect , useContext} from "react";
-import { View, Text, TouchableOpacity, ScrollView,Image, ImageBackground } from "react-native";
+import React, { useState, useEffect, useContext } from "react";
+import { View, Text, TouchableOpacity, ScrollView } from "react-native";
 import { styles } from "../styles/workoutsstyles";
 import { globalstyles } from "../styles/GlobalStyles";
-import { database } from '../firebaseConfig'; 
+import { database } from '../firebaseConfig'; // Importa tu configuración de Firebase aquí
 import { LinearGradient } from 'expo-linear-gradient';
-import { Color} from "../styles/GlobalStyles";
+import { Color } from "../styles/GlobalStyles";
 
 import { UserContext } from '../context/UserContext';
 
@@ -13,24 +13,24 @@ export default function Workouts({ navigation }) {
   const { user } = useContext(UserContext);
 
   useEffect(() => {
-    const userId = user.id; // Reemplaza esto con el ID del usuario actualmente autenticado
+    const userId = user.id;
     const plansRef = database.ref(`users/${userId}/exercisePlans`);
 
-    plansRef.once('value')
-      .then(snapshot => {
-        const plans = snapshot.val();
-        if (plans) {
-          const planList = Object.keys(plans).map(key => ({
-            id: key,
-            ...plans[key],
-            exercises: plans[key].exercises ? Object.keys(plans[key].exercises) : []
-          }));
-          setExercisePlans(planList);
-        }
-      })
-      .catch(error => {
-        console.error("Error fetching exercise plans:", error);
-      });
+    // Suscripción a cambios en los planes de ejercicios
+    plansRef.on('value', snapshot => {
+      const plans = snapshot.val();
+      if (plans) {
+        const planList = Object.keys(plans).map(key => ({
+          id: key,
+          ...plans[key],
+          exercises: plans[key].exercises ? Object.keys(plans[key].exercises) : []
+        }));
+        setExercisePlans(planList);
+      }
+    });
+
+    // Limpiar la suscripción cuando el componente se desmonta
+    return () => plansRef.off();
   }, [user]);
 
   return (
@@ -48,25 +48,22 @@ export default function Workouts({ navigation }) {
         <View style={styles.container}>
           {exercisePlans.map(plan => (
             <LinearGradient
-            colors={['#7236AB', Color.purple1]}
-            style={styles.gradient}
-            start={{x: 0, y: 0}}
-            end={{x: 1, y: 0}}
-          >
-            <TouchableOpacity
               key={plan.id}
-              onPress={() => navigation.navigate('PlanDetails', { planId: plan.id })}
+              colors={['#7236AB', Color.purple1]}
+              style={styles.gradient}
+              start={{ x: 0, y: 0 }}
+              end={{ x: 1, y: 0 }}
             >
-
-              <View style={styles.planRow}>
-                <Text style={styles.planTitle}>{plan.title}</Text>
-                <Text style={styles.planCount}>Ejercicios: {plan.exercises.length}</Text>
-              </View>
-              
-            </TouchableOpacity>
+              <TouchableOpacity
+                onPress={() => navigation.navigate('PlanDetails', { planId: plan.id })}
+              >
+                <View style={styles.planRow}>
+                  <Text style={styles.planTitle}>{plan.title}</Text>
+                  <Text style={styles.planCount}>Ejercicios: {plan.exercises.length}</Text>
+                </View>
+              </TouchableOpacity>
             </LinearGradient>
           ))}
-          
         </View>
       </ScrollView>
     </View>

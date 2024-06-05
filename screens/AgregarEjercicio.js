@@ -193,7 +193,7 @@ export default function Explore({ route, navigation }) {
               <Text style={styles.exercisePText}>Target: {exerciseDetails.target}</Text>
               <Image
                 source={{ uri: exerciseDetails.gifUrl }}
-                style={{ width: 200, height: 200 }}
+                style={{ width: 200, height: 200 , marginBottom: 10}}
               />
               <TouchableOpacity style={editarstyles.botongift} onPress={toggleDetailModal}>
                 <Text style={editarstyles.exerciseText}>Cerrar</Text>

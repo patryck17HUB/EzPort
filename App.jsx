@@ -28,7 +28,7 @@ function WorkoutsStack() {
   return (
     <Stack.Navigator>
       <Stack.Screen 
-        name="Workouts" 
+        name="Workouts2" 
         component={Workouts} 
         options={{ headerShown: false }} 
       />
@@ -90,7 +90,7 @@ function ProfileStack() {
   return (
     <Stack.Navigator>
       <Stack.Screen 
-        name="Profile" 
+        name="Profile2" 
         component={Profile} 
         options={{ headerShown: false }} 
       />

@@ -61,6 +61,11 @@ export const styles = StyleSheet.create({
       position: 'absolute',
       bottom: 0,
     },
+    logo: {
+      flex: 1, 
+      alignSelf: 'center',
+      resizeMode: 'contain',
+  },
 });
 
 export const planstyles = StyleSheet.create({
@@ -336,7 +341,21 @@ export const editarstyles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     marginTop: 5,
-  },  
+  },
+  botongift:{
+    backgroundColor: '#7539e5',
+    borderRadius: 5,
+    alignItems: 'center',
+    marginBottom: 10,
+    paddingVertical: 17,
+    paddingHorizontal: 10,
+  },
+  exerciseText: {
+      color: '#FFFFFF',
+      fontSize: 16,
+      fontWeight: 'bold',
+      textAlign: 'center',
+  },
 });
 
 
