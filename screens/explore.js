@@ -134,7 +134,7 @@ export default function Explore({ navigation }) {
   return (
     <View style={globalstyles.background}>
       <View style={styles.header}>
-        <Text style={styles.headerTitle}>Explorar</Text>
+        <Text style={styles.headerTitle}>Explore</Text>
       </View>
         <FlatList
           data={options}
@@ -151,15 +151,15 @@ export default function Explore({ navigation }) {
         >
           <View style={styles.modalContainer}>
             <View style={styles.modalContent}>
-              <Text style={styles.exercisePText}>Nombre: {exerciseDetails.name}</Text>
-              <Text style={styles.exercisePText}>Equipo: {exerciseDetails.equipment}</Text>
+              <Text style={styles.exercisePText}>Name: {exerciseDetails.name}</Text>
+              <Text style={styles.exercisePText}>Equipment: {exerciseDetails.equipment}</Text>
               <Text style={styles.exercisePText}>Target: {exerciseDetails.target}</Text>
               <Image
                 source={{ uri: exerciseDetails.gifUrl }}
                 style={{ width: 200, height: 200 }}
               />
               <TouchableOpacity style={editarstyles.botongift} onPress={toggleDetailModal}>
-                <Text style={editarstyles.exerciseText}>Cerrar</Text>
+                <Text style={editarstyles.exerciseText}>Close</Text>
               </TouchableOpacity>
             </View>
           </View>

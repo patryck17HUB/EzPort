@@ -47,7 +47,7 @@ function WorkoutsStack() {
         component={CreatePlan} 
         options={{ 
           headerShown: true, 
-          title: 'Crear Plan',
+          title: 'Create Workout',
           headerStyle: { backgroundColor: Color.primary },
           headerTintColor: '#fff'
         }} 
@@ -57,7 +57,7 @@ function WorkoutsStack() {
         component={EditarPlan} 
         options={{ 
           headerShown: true, 
-          title: 'Editar Plan',
+          title: 'Modify Workout',
           headerStyle: { backgroundColor: Color.primary },
           headerTintColor: '#fff'
         }} 
@@ -99,7 +99,7 @@ function ProfileStack() {
         component={History} 
         options={{ 
           headerShown: true, 
-          title: 'Historial de entrenamientos',
+          title: 'Workout History',
           headerStyle: { backgroundColor: Color.primary },
           headerTintColor: '#fff' 
         }} 

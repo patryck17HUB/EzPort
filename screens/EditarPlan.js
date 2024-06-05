@@ -16,12 +16,12 @@ const handleSaveChanges = (user, planId, exerciseRepsSets, setChangesSaved, navi
       userRef.child(exerciseId).update({ sets });
     });
     setChangesSaved(true);
-    alert("Cambios guardados correctamente");
+    alert("Changes saved successfully");
     // Navegar de regreso a PlanDetails después de guardar los cambios
     navigation.navigate('PlanDetails', { planId });
   } catch (error) {
-    console.error("Error guardando cambios:", error);
-    alert("Error al guardar cambios");
+    console.error("Error saving changes:", error);
+    alert("Error saving changes");
   }
 };
 
@@ -29,11 +29,11 @@ const handleDeletePlan = async (user, planId, navigation) => {
   try {
     const userId = user.id;
     await database.ref(`users/${userId}/exercisePlans/${planId}`).remove();
-    alert("Plan eliminado correctamente");
+    alert("Workout deleted successfully");
     navigation.navigate('Workouts2'); // Asegúrate de que 'Workouts' sea el nombre correcto de la pantalla a la que quieres navegar
   } catch (error) {
-    console.error("Error eliminando el plan:", error);
-    alert("Error eliminando el plan");
+    console.error("Error deleting workout:", error);
+    alert("Error deleting workout");
   }
 };
 
@@ -41,11 +41,11 @@ const handleRemoveExercise = async (user, exerciseId, planId, setChangesSaved) =
   try {
     const userId = user.id;
     await database.ref(`users/${userId}/exercisePlans/${planId}/exercises/${exerciseId}`).remove();
-    alert("Ejercicio eliminado de la rutina");
+    alert("Exercise removed from the workout");
     setChangesSaved(false); // Indicar que se deben guardar los cambios nuevamente
   } catch (error) {
-    console.error("Error eliminando ejercicio de la rutina:", error);
-    alert("Error eliminando ejercicio de la rutina");
+    console.error("Error removing exercise:", error);
+    alert("Error removing exercise");
   }
 };
 
@@ -123,7 +123,7 @@ const EditarPlan = ({ route, navigation }) => {
         value={set.weight}
       />
       <TouchableOpacity style={editarstyles.removeSetButton} onPress={() => handleRemoveSet(exerciseId, setIndex, setExerciseRepsSets)}>
-        <Text style={editarstyles.removeButtonText}>Eliminar set</Text>
+        <Text style={editarstyles.removeButtonText}>Delete Set</Text>
       </TouchableOpacity>
     </View>
   ); 
@@ -146,7 +146,7 @@ const EditarPlan = ({ route, navigation }) => {
             start={{x: 0, y: 0}}
             end={{x: 1, y: 0}}
           >
-            <Text style={editarstyles.buttonText}>Agregar Ejercicio</Text>
+            <Text style={editarstyles.buttonText}>Add Exercise</Text>
           </LinearGradient>
         </TouchableOpacity>
 
@@ -159,11 +159,11 @@ const EditarPlan = ({ route, navigation }) => {
               <View style={editarstyles.exercisebuttons}>
               <TouchableOpacity style={editarstyles.gradientsettouch} onPress={() => handleAddSet(exerciseId, setExerciseRepsSets)}>
 
-                <Text style={editarstyles.addButtonText}>Agregar set</Text>
+                <Text style={editarstyles.addButtonText}>Add Set</Text>
 
               </TouchableOpacity>
               <TouchableOpacity style={editarstyles.removeButton} onPress={() => handleRemoveExercise(user, exerciseId, planId, setChangesSaved)}>
-                <Text style={editarstyles.removeButtonText}>Eliminar ejercicio</Text>
+                <Text style={editarstyles.removeButtonText}>Delete Exercise</Text>
               </TouchableOpacity>
               </View>
 
@@ -178,7 +178,7 @@ const EditarPlan = ({ route, navigation }) => {
                 end={{x: .8, y: 0}}
                 style={editarstyles.gradientSetBottom}
               >
-          <Text style={editarstyles.buttonText}>Guardar Cambios</Text>
+          <Text style={editarstyles.buttonText}>Save Changes</Text>
         </LinearGradient>
         </TouchableOpacity>
 
@@ -189,7 +189,7 @@ const EditarPlan = ({ route, navigation }) => {
                 end={{x: 1, y: 0}}
                 style={editarstyles.gradientSetBottom}
               >
-          <Text style={editarstyles.deleteButtonText}>Eliminar Plan</Text>
+          <Text style={editarstyles.deleteButtonText}>Delete Plan</Text>
         </LinearGradient>
         </TouchableOpacity>
 

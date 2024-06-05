@@ -46,14 +46,14 @@ export default function CreatePlan({ navigation }) {
   return (
     <View style={globalstyles.background}>
       <View style={crearstyles.container}>
-        <Text style={crearstyles.label}>Título del Plan</Text>
+        <Text style={crearstyles.label}>Workout Name</Text>
         <TextInput
           style={crearstyles.input}
           value={title}
           maxLength={25}
           onChangeText={setTitle}
         />
-        <Text style={crearstyles.label}>Descripción del Plan</Text>
+        <Text style={crearstyles.label}>Description (optional)</Text>
         <TextInput
           style={crearstyles.input}
           value={description}
@@ -63,7 +63,7 @@ export default function CreatePlan({ navigation }) {
           style={crearstyles.Button}
           onPress={handleCreatePlan}
         >
-          <Text style={crearstyles.createButtonText}>Crear Rutina</Text>
+          <Text style={crearstyles.createButtonText}>Create</Text>
         </TouchableOpacity>
       </View>
     </View>

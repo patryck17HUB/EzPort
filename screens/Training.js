@@ -68,11 +68,11 @@ export default function Training({ route, navigation }) {
         exercises: exerciseRepsSets
       });
 
-      alert("Entrenamiento terminado y guardado en el historial!");
+      alert("Training completed and saved in the history!");
       navigation.goBack();
     } catch (error) {
-      console.error("Error guardando el historial de ejercicio:", error);
-      alert("Error guardando el historial de ejercicio");
+      console.error("Error saving exercise history:", error);
+      alert("Error saving exercise history");
     }
   };
 

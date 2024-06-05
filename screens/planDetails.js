@@ -52,7 +52,7 @@ export default function PlanDetails({ route, navigation }) {
                 {planDetails.description}
               </Text>
               <TouchableOpacity onPress={toggleDescription}>
-                <Text style={planstyles.moreButton}>{descriptionExpanded ? " menos" : " más"}</Text>
+                <Text style={planstyles.moreButton}>{descriptionExpanded ? " less" : " more"}</Text>
               </TouchableOpacity>
             </>
           )}
@@ -62,13 +62,13 @@ export default function PlanDetails({ route, navigation }) {
             style={planstyles.button1}
             onPress={() => navigation.navigate('Training', { planId })}
           >
-            <Text style={planstyles.buttonText}>Registrar Día de Entrenamiento</Text>
+            <Text style={planstyles.buttonText}>Record Training</Text>
           </TouchableOpacity>
           <TouchableOpacity 
             style={planstyles.button2}
             onPress={() => navigation.navigate('EditarPlan', { planId })}
           >
-            <Text style={planstyles.buttonText}>Editar</Text>
+            <Text style={planstyles.buttonText}>Modify</Text>
           </TouchableOpacity>
         </View>
         {planDetails.exercises ? (
@@ -80,8 +80,8 @@ export default function PlanDetails({ route, navigation }) {
                   <Text style={planstyles.exerciseName}>{exercise.name}</Text>
                   <View style={planstyles.tableHeader}>
                     <Text style={planstyles.tableHeaderText}>Set</Text>
-                    <Text style={planstyles.tableHeaderText}>Repeticiones</Text>
-                    <Text style={planstyles.tableHeaderText}>Peso</Text>
+                    <Text style={planstyles.tableHeaderText}>Reps</Text>
+                    <Text style={planstyles.tableHeaderText}>Weight</Text>
                   </View>
                   {exercise.sets && exercise.sets.map((set, index) => (
                     <View key={index} style={planstyles.tableRow}>
@@ -96,7 +96,7 @@ export default function PlanDetails({ route, navigation }) {
             return null;
           })
         ) : (
-          <Text>No hay ejercicios en este plan.</Text>
+          <Text>There are no exercises in this workout.</Text>
         )}
       </ScrollView>
     </View>

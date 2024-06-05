@@ -41,16 +41,15 @@ const agregarARutina = async (user, exerciseDetails, planId, navigation) => {
     const userRef = database.ref(`users/${userId}`);
     userRef.child(`exercisePlans/${planId}/exercises`).push(exerciseDetails, (error) => {
       if (error) {
-        console.error("Error al agregar ejercicio:", error);
+        console.error("Error Adding Exercise:", error);
       } else {
-        console.log("Ejercicio agregado a la rutina!");
-        Alert.alert("Ejercicio agregado a la rutina!");
+        Alert.alert("Exercise added!");
         navigation.goBack();
       }
     });
   } catch (error) {
-    console.error("Error agregando ejercicio a la rutina:", error);
-    alert("Error agregando ejercicio a la rutina");
+    console.error("Error adding exercise:", error);
+    alert("Error adding exercise");
   }
 };
 
@@ -171,7 +170,7 @@ export default function Explore({ route, navigation }) {
   return (
     <View style={globalstyles.background}>
       <View style={styles.header}>
-        <Text style={styles.headerTitle}> Selecciona un ejercicio </Text>
+        <Text style={styles.headerTitle}>Select an exercise</Text>
       </View>
         <FlatList
           data={options}
@@ -188,18 +187,18 @@ export default function Explore({ route, navigation }) {
         >
           <View style={styles.modalContainer}>
             <View style={styles.modalContent}>
-              <Text style={styles.exercisePText}>Nombre: {exerciseDetails.name}</Text>
-              <Text style={styles.exercisePText}>Equipo: {exerciseDetails.equipment}</Text>
+              <Text style={styles.exercisePText}>Name: {exerciseDetails.name}</Text>
+              <Text style={styles.exercisePText}>Equipment: {exerciseDetails.equipment}</Text>
               <Text style={styles.exercisePText}>Target: {exerciseDetails.target}</Text>
               <Image
                 source={{ uri: exerciseDetails.gifUrl }}
                 style={{ width: 200, height: 200 , marginBottom: 10}}
               />
               <TouchableOpacity style={editarstyles.botongift} onPress={toggleDetailModal}>
-                <Text style={editarstyles.exerciseText}>Cerrar</Text>
+                <Text style={editarstyles.exerciseText}>Close</Text>
               </TouchableOpacity>
               <TouchableOpacity style={editarstyles.botongift} onPress={() => agregarARutina(user, exerciseDetails, planId, navigation)}>
-                <Text style={editarstyles.exerciseText}>Agregar a rutina</Text>
+                <Text style={editarstyles.exerciseText}>Add to Workout</Text>
               </TouchableOpacity>
             </View>
           </View>

@@ -36,12 +36,12 @@ export default function Workouts({ navigation }) {
   return (
     <View style={globalstyles.background}>
       <View style={styles.header}>
-        <Text style={styles.headerTitle}>Entrenamientos</Text>
+        <Text style={styles.headerTitle}>Workouts</Text>
         <TouchableOpacity
           style={styles.createButton}
           onPress={() => navigation.navigate('CreatePlan')}
         >
-          <Text style={styles.createButtonText}>Crear Rutina</Text>
+          <Text style={styles.createButtonText}>Create</Text>
         </TouchableOpacity>
       </View>
       <ScrollView style={styles.contenido}>
@@ -59,7 +59,7 @@ export default function Workouts({ navigation }) {
               >
                 <View style={styles.planRow}>
                   <Text style={styles.planTitle}>{plan.title}</Text>
-                  <Text style={styles.planCount}>Ejercicios: {plan.exercises.length}</Text>
+                  <Text style={styles.planCount}>Exercises: {plan.exercises.length}</Text>
                 </View>
               </TouchableOpacity>
             </LinearGradient>

@@ -14,7 +14,7 @@ export default function Profile() {
     try {
       await GoogleSignin.revokeAccess();
       await GoogleSignin.signOut();
-      if (user !== null) {
+      if (user !== null && user.id) { // Verifica si 'user' no es null y si tiene una propiedad 'id'
         setUser(null);
       }
       navigation.navigate('Login'); 
@@ -42,16 +42,16 @@ export default function Profile() {
             <Text style={styles.noProfileText}>No user information available</Text>
           )}
           <View style={styles.buttonContainer}>
-              <TouchableOpacity
-                style={styles.historyButton}
-                onPress={() => navigation.navigate('History')}
-              >
-                <Text style={styles.historyButtonText}>Ver Historial</Text>
-              </TouchableOpacity>
-              <TouchableOpacity style={styles.logoutButton} onPress={logout}>
-                <Text style={styles.logoutButtonText}>Logout</Text>
-              </TouchableOpacity>
-            </View>
+            <TouchableOpacity
+              style={styles.historyButton}
+              onPress={() => navigation.navigate('History')}
+            >
+              <Text style={styles.historyButtonText}>View History</Text>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={logout}>
+              <Text style={styles.logoutButtonText}>Logout</Text>
+            </TouchableOpacity>
+          </View>
         </ScrollView>
       </ImageBackground>
     </View>

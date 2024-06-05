@@ -31,12 +31,12 @@ const History = ({ navigation }) => {
         {history && Object.keys(history).length > 0 ? (
           Object.keys(history).map((date, dateIndex) => (
             <View key={dateIndex}>
-              <Text style={historystyles.dateTitle}>Fecha: {date}</Text>
+              <Text style={historystyles.dateTitle}>Date: {date}</Text>
               {Object.keys(history[date]).map((planId, planIndex) => {
                 const plan = history[date][planId];
                 return (
                   <View key={planIndex} style={historystyles.planContainer}>
-                    <Text style={historystyles.planTitle}>Plan: {plan.title}</Text>
+                    <Text style={historystyles.planTitle}>Workout: {plan.title}</Text>
                     {plan && plan.exercises && Object.keys(plan.exercises).length > 0 ? (
                       Object.keys(plan.exercises).map((exerciseId, exerciseIndex) => {
                         const exercise = plan.exercises[exerciseId];
@@ -46,15 +46,15 @@ const History = ({ navigation }) => {
                             {exercise.sets && exercise.sets.map((set, setIdx) => (
                               <View key={setIdx} style={historystyles.setRow}>
                                 <Text style={historystyles.setDetails}>Set {setIdx + 1}</Text>
-                                <Text style={historystyles.setDetails}>Repeticiones: {set.reps}</Text>
-                                <Text style={historystyles.setDetails}>Peso: {set.weight}</Text>
+                                <Text style={historystyles.setDetails}>Reps: {set.reps}</Text>
+                                <Text style={historystyles.setDetails}>Weight: {set.weight}</Text>
                               </View>
                             ))}
                           </View>
                         );
                       })
                     ) : (
-                      <Text>No hay ejercicios en este plan.</Text>
+                      <Text>No exercises in this workout.</Text>
                     )}
                   </View>
                 );
@@ -62,7 +62,7 @@ const History = ({ navigation }) => {
             </View>
           ))
         ) : (
-          <Text>No hay historial disponible.</Text>
+          <Text>No history available.</Text>
         )}
       </ScrollView>
     </View>
