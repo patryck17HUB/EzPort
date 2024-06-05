@@ -4,7 +4,6 @@ import { styles } from "../styles/settingsstyles";
 import { globalstyles } from "../styles/GlobalStyles";
 import { GoogleSignin } from '@react-native-google-signin/google-signin';
 import { Ionicons } from '@expo/vector-icons';
-import RNRestart from 'react-native-restart';
 import { useNavigation } from "@react-navigation/native"; // Importa la función useNavigation
 import miImagen from '../assets/Logoblanco.png'; 
 
@@ -14,25 +13,12 @@ export default function Settings() {
   const navigation = useNavigation(); // Obtén el objeto de navegación
   const [expandedSections, setExpandedSections] = useState({});
   const [error, setError] = useState(null);
-  const { setUser } = useContext(UserContext);
 
   const toggleSection = (section) => {
     setExpandedSections((prev) => ({
       ...prev,
       [section]: !prev[section],
     }));
-  };
-
-  const logout = async () => {
-    try {
-      await GoogleSignin.revokeAccess();
-      await GoogleSignin.signOut();
-      setUser(null);
-      RNRestart.restart();
-    } catch (error) {
-      console.error("Error during logout:", error);
-      setError(error);
-    }
   };
 
   const sections = [
@@ -70,9 +56,6 @@ export default function Settings() {
             )}
           </View>
         ))}
-        <TouchableOpacity style={styles.logoutButton} onPress={logout}>
-          <Text style={styles.logoutButtonText}>Logout</Text>
-        </TouchableOpacity>
         {error && <Text style={styles.errorText}>Error: {error.message}</Text>}
       </ScrollView>
     </View>

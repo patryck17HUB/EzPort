@@ -15,14 +15,20 @@ export default function PlanDetails({ route, navigation }) {
     const userId = user.id;
     const planRef = database.ref(`users/${userId}/exercisePlans/${planId}`);
 
-    planRef.once('value')
-      .then(snapshot => {
-        setPlanDetails(snapshot.val());
-      })
-      .catch(error => {
-        console.error("Error fetching plan details:", error);
-      });
+    const handlePlanData = (snapshot) => {
+      setPlanDetails(snapshot.val());
+    };
+
+    planRef.on('value', handlePlanData); // Subscribe to changes
+
+    return () => {
+      planRef.off('value', handlePlanData); // Unsubscribe on component unmount
+    };
   }, [planId]);
+
+  const toggleDescription = () => {
+    setDescriptionExpanded(!descriptionExpanded);
+  };
 
   if (!planDetails) {
     return (
@@ -31,10 +37,6 @@ export default function PlanDetails({ route, navigation }) {
       </View>
     );
   }
-
-  const toggleDescription = () => {
-    setDescriptionExpanded(!descriptionExpanded);
-  };
 
   return (
     <View style={globalstyles.background}>

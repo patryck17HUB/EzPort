@@ -39,16 +39,30 @@ export const styles = StyleSheet.create({
     textAlign: 'center',
     marginTop: 50,
   },
-  historyButton: {
-    marginTop: 20,
-    padding: 10,
-    backgroundColor: Color.purple1,
-    borderRadius: 5,
+  buttonContainer: {
+    flexDirection: 'row', // Establece la dirección de los elementos en fila
+    justifyContent: 'space-between', // Distribuye los elementos horizontalmente
+    width: '80%', // Ancho del contenedor, ajusta según sea necesario
+    marginTop: 20, // Espaciado superior, ajusta según sea necesario
+    alignSelf: 'center', // Alinea el contenedor al centro horizontalmente
   },
+
   historyButtonText: {
     color: 'white',
     fontSize: 16,
     textAlign: 'center',
+  },
+ 
+  logoutButtonText: {
+      fontSize: FontSize.size_base,
+      color: '#FFFFFF',
+      fontFamily: FontFamily.font_base,
+  },
+  userInfoSection: {
+    backgroundColor: 'rgba(0, 0, 0, 0.5)', // Fondo oscuro semitransparente
+    padding: 20, // Espaciado interno
+    borderRadius: 10, // Bordes redondeados
+    marginBottom: 20, // Espaciado inferior
   },
 });
 
@@ -104,17 +118,6 @@ export const historystyles = StyleSheet.create({
     fontSize: 18,
     textAlign: 'center',
     marginTop: 20,
-  },
-  historyButton: {
-    marginTop: 20,
-    padding: 10,
-    backgroundColor: '#7539e5',
-    borderRadius: 5,
-  },
-  historyButtonText: {
-    color: '#FFFFFF',
-    fontSize: 16,
-    textAlign: 'center',
   },
   dateTitle: {
     fontSize: 18,
