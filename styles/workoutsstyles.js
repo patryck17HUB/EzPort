@@ -61,11 +61,7 @@ export const styles = StyleSheet.create({
       position: 'absolute',
       bottom: 0,
     },
-    logo: {
-      flex: 1, 
-      alignSelf: 'center',
-      resizeMode: 'contain',
-  },
+    
 });
 
 export const planstyles = StyleSheet.create({

@@ -4,7 +4,7 @@ const ApiManager = axios.create({
     baseURL: 'https://exercisedb.p.rapidapi.com/exercises',
     responseType: 'json',
     headers: {
-        'X-RapidAPI-Key': '2d9b7adb33mshc96f8d43938499cp1ac2dbjsnce3fffed9643',
+        'X-RapidAPI-Key': 'e020056f71msh7088694a48afbd1p154515jsna30932910448',
         'X-RapidAPI-Host': 'exercisedb.p.rapidapi.com'
     }
 });
